@@ -1,0 +1,54 @@
+http://www.plantuml.com/plantuml/png/VLDDRy8m3BttLqISoZIGs2z0sdQODAOTfWcE8J4iKfgWV7HCYF--ncr32GsNndtlnNwMdQLrr3XVoO99QYtvqfvHHKv5hGKd5jmtbU3Dcn9ED54fb2DAFrCBZoJ4DPNJgFtKjf5fTQCwjiTV9sK6mBo3NMbVGmNAMLBEvtCEXsaHTFixPQV5kUYyDXa2OXktfvq0oSy4TTjNHmymA8N_c8ErHY00RSY5QODONMqnQnczhEWnP40eK04B9sOKYWisT1MOnD6bcIkuHlWAebjx8zE68vReKaqoiJ8x7LkEZ6HFFVi1WXHRj1nxwaXkj70vijBAWSdT1Cj0SPE_pCMkCvmCHi5lG-GM8k9zLpsppbER2vMMZCGB72Hbk9Jh-_HcICVfuwAa2-ahC3eTVTYJAumFIkU8JM_a0tFUD3JUnxXzTDszzzcCJ1QJ-AAAFa3YOKBGRFZqGFl4bg2uh-G_
+
+
+@startuml
+class Toucan {
+void setValeurInitiale(int noCase, int val)
+void setPosition(int noCase, int x, int y)
+void creerLesMouvements (...dep)
+int getValeurInitiale(int noCase)
+}
+
+class LesCases {
+{field} int nbEtape
+void creerEtape(int c, int etape, int dir, int dep)
+int nbCases()
+int getMaxEtapes()
+Case getCase(int indice)
+}
+
+class Case {
+{field} int ValeurInit
+{field} int absInit
+{field} int ordInit
+void setValeur(int val)
+void setPositions(int x, int y)
+void gauche (int etape, int dep)
+void droite (int etape, int dep)
+void monter (int etape, int dep)
+void descendre (int etape, int dep)
+void modifValeur(int etape, int newVal)
+int getValeurInitiale()
+int getPositionInitialeX()
+int getPositionInitialeY()
+int getValeur(int etape)
+int getDeplacementX(int etape)
+int getDeplacementY(int etape)
+String toString()
+}
+
+class Etape {
+{field} int numero
+{field} int valCase
+{field} int deplacementX
+{field} int deplacementY
+int getNumero()
+int getValeur()
+int getDeplacementX()
+int getDeplacementY()
+}
+
+Toucan -- "1" LesCases
+LesCases -- "*" Case
+Case -- "*" Etape
+@enduml
