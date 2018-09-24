@@ -1,6 +1,8 @@
 package toucan.modele;
 
-public class Toucan {
+import java.util.Observable;
+
+public class Toucan extends Observable {
 
     public static final int NORD = 1;
     public static final int SUD = 2;

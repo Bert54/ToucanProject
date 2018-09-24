@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import toucan.modele.Toucan;
 import toucan.vuesFXML.panneauAnimation.PanneauAnimation;
+import toucan.vuesFXML.panneauControles.ControlesControleur;
 import toucan.vuesFXML.toucan.ToucanControleur;
 
 public class Main extends Application {
@@ -48,11 +49,15 @@ public class Main extends Application {
         loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/toucan/vuesFXML/panneauAnimation/panneauAnimation.fxml"));
         loader.setControllerFactory(instantiatedClass -> { return panneau ; });
-
         Parent sheet = loader.load();
         root.setCenter(sheet);
 
-        primaryStage.setOnCloseRequest(event -> toucan.quitter());
+        loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/toucan/vuesFXML/panneauControles/panneauControles.fxml"));
+        ControlesControleur controles = new ControlesControleur(modele);
+        loader.setControllerFactory(instantiatedClass -> { return controles ; });
+        BorderPane south = loader.load();
+        root.setBottom(south);
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
 
