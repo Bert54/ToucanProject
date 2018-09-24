@@ -11,7 +11,7 @@ import toucan.modele.Toucan;
 import toucan.vuesFXML.panneauAnimation.PanneauAnimation;
 import toucan.vuesFXML.toucan.ToucanControleur;
 
-public class MainToucanFXML extends Application {
+public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
