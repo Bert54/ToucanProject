@@ -7,8 +7,8 @@ public class Toucan {
     public static final int EST = 3;
     public static final int OUEST = 4;
     public static final int STABLE = 5;
-    public static final int CASELONGUEUR = 10;
-    public static final int CASELARGEUR = 10;
+    public static final int CASELONGUEUR = 50;
+    public static final int CASELARGEUR = 50;
 
     private LesCases lesCases;
 
@@ -76,6 +76,31 @@ public class Toucan {
      */
     public int getValeurInitiale(int noCase) {
         return this.lesCases.getCase(noCase).getValeurInitiale();
+    }
+
+    /**
+     * Getter sur le nombre de cases
+     * @return le nombre de cases
+     */
+    public int nbCases() {
+        return this.lesCases.nbCases();
+    }
+
+    /**
+     * Getter sur une case par son numéro
+     * @param numCase numéro de la case
+     * @return La case associée au numéro
+     */
+    public Case getCase(int numCase){
+        return this.lesCases.getCase(numCase);
+    }
+
+    /**
+     * Getter sur le nombre maximal d'étapes
+     * @return le nombre maximal d'étapes
+     */
+    public int getNbMaxEtapes() {
+        return this.lesCases.getMaxEtapes();
     }
 
     @Override

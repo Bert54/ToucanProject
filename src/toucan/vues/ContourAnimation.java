@@ -36,7 +36,7 @@ public class ContourAnimation extends Rectangle {
      * @return la transition séquentielle permettant d'animer la forme carrée
      */
     public SequentialTransition animer(int etape) {
-        // System.out.println("animer (" + laCase.getValeurInitialeString() + ") étape : " + etape);
+         System.out.println("animer (" + laCase.getValeurInitiale() + ") étape : " + etape);
 
         int depX = laCase.getDeplacementX(etape) ;
         int depY = laCase.getDeplacementY(etape) ;

@@ -153,19 +153,30 @@ public class Case {
         return 0;
     }
 
-
+    /**
+     * Getter sur la couleur initiale de la case
+     * @return le numéro associé à la couleur initiale de la case
+     */
     public int getCouleurInitiale() {
         return couleur ;
     }
 
+    /**
+     * Getter sur la couleur de la case
+     * @return le numéro associé à la couleur de la case
+     */
     public int getCouleur(int etape) {
         return couleur ;
     }
 
+    /**
+     * Getter sur l'existance d'animation
+     * @return vrai si une animation existe
+     */
     public boolean existeAnimation (int etape) {
-
-        int res = random.nextInt(5) ;
-        return (res != 0) ;
+        if(hmEtapes.containsKey(etape))
+            return true;
+        return false;
     }
 
 

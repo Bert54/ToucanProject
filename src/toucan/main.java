@@ -25,9 +25,4 @@ public class main {
         System.out.println(toucan.toString());
 
     }
-
-    public void aaa() {
-        
-    }
-
 }
