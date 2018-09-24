@@ -72,7 +72,7 @@ public class TexteAnimation extends Text {
         });
 
         // le déplacement ...
-        TranslateTransition tt = new TranslateTransition(Duration.millis(temps * 10), this);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(temps * 30), this);
         tt.setToX(depX);
         tt.setToY(depY);
         tt.setDelay(Duration.ZERO) ;

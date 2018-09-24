@@ -47,7 +47,7 @@ public class ContourAnimation extends Rectangle {
         st.setDelay(Duration.ZERO);
 
         // déplacement
-        TranslateTransition tt = new TranslateTransition(Duration.millis(temps * 10), this);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(temps * 30), this);
         tt.setToX(depX); // distance à parcourir
         tt.setToY(depY);
         tt.setDelay(Duration.ZERO) ;

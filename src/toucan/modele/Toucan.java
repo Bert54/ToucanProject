@@ -1,9 +1,11 @@
 package toucan.modele;
 
 import java.util.Observable;
+import java.util.Observer;
 
 public class Toucan extends Observable {
 
+    private boolean execution;
     public static final int NORD = 1;
     public static final int SUD = 2;
     public static final int EST = 3;
@@ -19,13 +21,30 @@ public class Toucan extends Observable {
      * @param nbCases nombre de cases du toucan
      */
     public Toucan(int nbCases) {
-        assert(nbCases >= 0) : "Nombre de cases invalides";
+        assert (nbCases >= 0) : "Nombre de cases invalides";
         this.lesCases = new LesCases(nbCases);
         int abs = 10;
-        for(int i = 0 ; i < nbCases ; i++){
+        for (int i = 0; i < nbCases; i++) {
             setPosition(i, abs, CASELARGEUR);
             abs += CASELONGUEUR;
         }
+        this.execution = false;
+    }
+
+    public void lancerExecution() {
+        this.execution = true;
+        this.setChanged();
+        this.notifyObservers();
+    }
+
+    public void stopperExecution() {
+        this.execution = false;
+        this.setChanged();
+        this.notifyObservers();
+    }
+
+    public boolean getEtatExecution() {
+        return this.execution;
     }
 
     /**

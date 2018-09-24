@@ -11,7 +11,6 @@ public class ControlesControleur{
     private Image imagePlay;
     private Image imagePause;
     public Toucan toucan;
-    private boolean animer;
 
     @FXML
     public Button boutonPlayPause;
@@ -20,20 +19,19 @@ public class ControlesControleur{
 
     public ControlesControleur(Toucan mod) {
         this.toucan = mod;
-        this.animer = false;
-        this.imagePlay = new Image("/toucan/ressources/play.jpg");
-        this.imagePause = new Image("/toucan/ressources/pause.jpg");
+        this.imagePlay = new Image(getClass().getResource("/toucan/ressources/play.jpg").toString());
+        this.imagePause = new Image(getClass().getResource("/toucan/ressources/pause.jpg").toString());
     }
 
     @FXML
     public void toggleAnimation() {
-        if (animer) {
+        if (this.toucan.getEtatExecution()) {
+            this.toucan.stopperExecution();
             this.playPauseImage.setImage(this.imagePlay);
-            this.animer = false;
         }
         else {
+            this.toucan.lancerExecution();
             this.playPauseImage.setImage(this.imagePause);
-            this.animer = true;
         }
     }
 

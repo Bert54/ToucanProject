@@ -10,10 +10,14 @@ import javafx.util.Duration;
 import toucan.modele.Toucan;
 import toucan.vues.LesCasesAnimation;
 
-public class PanneauAnimation {
+import java.util.Observable;
+import java.util.Observer;
+
+public class PanneauAnimation implements Observer {
 
     private LesCasesAnimation lesCasesAnimation;
     protected Toucan toucan;
+    private SequentialTransition mouv;
     @FXML
     private BorderPane panneau ;
 
@@ -23,6 +27,7 @@ public class PanneauAnimation {
      */
     public PanneauAnimation(Toucan modele) {
         this.toucan = modele;
+        this.toucan.addObserver(this);
     }
 
     @FXML
@@ -32,21 +37,18 @@ public class PanneauAnimation {
 
     protected void dessiner() {
         ParallelTransition[] lesEtapes = new ParallelTransition[toucan.getNbMaxEtapes()] ;
-
         for (int i = 0 ; i < lesEtapes.length ; i++) {
             lesEtapes[i] = lesCasesAnimation.animerLesCases(i+1) ;
         }
 
-        SequentialTransition mouv = new SequentialTransition(lesEtapes) ;
+        mouv = new SequentialTransition(lesEtapes) ;
         mouv.setDelay(Duration.ZERO);
-        mouv.play() ;
-
         mouv.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 // à modifier pour que l'animation s'arrête...
                 mouv.setRate(-1) ;
-                //mouv.play() ;
+                mouv.stop() ;
             }
         });
     }
@@ -54,4 +56,23 @@ public class PanneauAnimation {
     public void run() {
         dessiner() ;
     }
+
+    public void jouerAnimation() {
+        this.mouv.play();
+    }
+
+    public void arreterAnimation() {
+        this.mouv.pause();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (this.toucan.getEtatExecution()) {
+            this.jouerAnimation();
+        }
+        else {
+            this.arreterAnimation();
+        }
+    }
+
 }
