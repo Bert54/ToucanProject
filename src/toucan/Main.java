@@ -24,15 +24,6 @@ public class Main extends Application {
         modele.setValeurInitiale(2, 7);
         modele.setValeurInitiale(3, 8);
         modele.setValeurInitiale(4, 2);
-        modele.creerLesMouvements(
-                0, 1, Toucan.EST, 50,
-                0, 2, Toucan.STABLE, 23,
-                1, 4, Toucan.SUD, 50,
-                1, 1, Toucan.OUEST, 50,
-                3, 6, Toucan.NORD, 50,
-                1, 5, Toucan.STABLE, 9);
-        //   indice, etape, type, valeur
-
 
         primaryStage.setTitle("Toucan");
 
@@ -60,9 +51,6 @@ public class Main extends Application {
         root.setBottom(south);
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
-
-        // ligne à décommenter pour activer l'animation
-        panneau.run() ;
     }
 
 

@@ -1,19 +1,18 @@
 package toucan.modele;
 
 import java.util.Observable;
-import java.util.Observer;
 
 public class Toucan extends Observable {
 
-    private boolean execution;
     public static final int NORD = 1;
     public static final int SUD = 2;
     public static final int EST = 3;
     public static final int OUEST = 4;
     public static final int STABLE = 5;
     public static final int CASELONGUEUR = 50;
-    public static final int COEFFDUREE = 20;
+    public static final int COEFFDUREE = 10;
 
+    private StatutAnimation statutAnimation;
     private LesCases lesCases;
 
     /**
@@ -28,25 +27,44 @@ public class Toucan extends Observable {
             setPosition(i, abs, CASELONGUEUR);
             abs += CASELONGUEUR;
         }
-        this.execution = false;
+        this.statutAnimation = StatutAnimation.NON_INITIALISEE;
     }
 
     /**
-     * Arret ou lancement de l'execution
-     * @param exec true pour le lancement de l'execution, false sinon
+     * Retourne l'etat actuel de l'animation
+     * @return StatutAnimation
      */
-    public void changetExecution(boolean exec) {
-        this.execution = exec;
+    public StatutAnimation getStatutAnimation() {
+        return this.statutAnimation;
+    }
+
+    /**
+     * Set l'etat de l'animation
+     * @param s
+     */
+    public void setStatutAnimation(int s) {
+        switch (s) {
+            case 0:
+                this.statutAnimation = StatutAnimation.NON_INITIALISEE;
+                break;
+            case 1:
+                this.statutAnimation = StatutAnimation.EN_COURS_ACTIF;
+                break;
+            case 2:
+                this.statutAnimation = StatutAnimation.EN_COURS_PAUSE;
+                break;
+            default:
+                this.statutAnimation = StatutAnimation.FINIE;
+        }
+        prevenirVues();
+    }
+
+    /**
+     * Previent les vues lors d'un changement
+     */
+    public void prevenirVues() {
         this.setChanged();
         this.notifyObservers();
-    }
-
-    /**
-     * Getter sur l'etat du boolean execution
-     * @return execution
-     */
-    public boolean getEtatExecution() {
-        return this.execution;
     }
 
     /**
@@ -90,6 +108,7 @@ public class Toucan extends Observable {
             direction += 4;
             dureeDep += 4;
         }
+        prevenirVues();
     }
 
     /**

@@ -40,47 +40,40 @@ public class PanneauAnimation implements Observer {
         for (int i = 0 ; i < lesEtapes.length ; i++) {
             lesEtapes[i] = lesCasesAnimation.animerLesCases(i+1) ;
         }
-
         mouv = new SequentialTransition(lesEtapes) ;
         mouv.setDelay(Duration.ZERO);
         mouv.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                // à modifier pour que l'animation s'arrête...
-                mouv.setRate(-1) ;
-                mouv.stop() ;
+                toucan.setStatutAnimation(3); // Animations finies
             }
         });
     }
 
-    /**
-     * Lancement de l'application
-     */
     public void run() {
         dessiner() ;
     }
 
-    /**
-     * Lancement de l'animation
-     */
-    public void jouerAnimation() {
-        this.mouv.play();
-    }
-
-    /**
-     * Arrêt de l'animation
-     */
-    public void arreterAnimation() {
-        this.mouv.pause();
-    }
-
     @Override
     public void update(Observable o, Object arg) {
-        if (this.toucan.getEtatExecution()) {
-            this.jouerAnimation();
-        }
-        else {
-            this.arreterAnimation();
+        switch (this.toucan.getStatutAnimation()) {
+            case NON_INITIALISEE: //Initialise les animations des cases
+                try {
+                    this.initialize();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                this.run();
+                break;
+            case EN_COURS_ACTIF: //Joue l'animation
+                this.mouv.play();
+                break;
+            case EN_COURS_PAUSE: // Met en pause l'animation
+                this.mouv.pause();
+                break;
+            default: // (StatutAnimation.FINIT) Stoppe l'animation lorsqu'il n'y a plus de mouvements
+                mouv.setRate(-1) ;
+                mouv.stop();
         }
     }
 
