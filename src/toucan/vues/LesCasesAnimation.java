@@ -32,8 +32,8 @@ public class LesCasesAnimation {
 
     /**
      * visualisation de l'animation des cases
-     * @param noEtape numéro de l'étape à animer
-     * @return l'animation parallèle de toutes les cases à animer pour cette étape
+     * @param noEtape numero de l'etape a animer
+     * @return l'animation parallele de toutes les cases a animer pour cette etape
      */
     public ParallelTransition animerLesCases(int noEtape) {
         ArrayList<ParallelTransition> lesAnimations = new ArrayList<>() ;

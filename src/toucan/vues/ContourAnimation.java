@@ -8,6 +8,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import toucan.modele.Case;
 
+import static toucan.modele.Toucan.CASELONGUEUR;
 import static toucan.modele.Toucan.COEFFDUREE;
 
 
@@ -18,11 +19,11 @@ public class ContourAnimation extends Rectangle {
 
     /**
      * Constructeur
-     * @param c la case du modèle dont on anime le contour
+     * @param c la case du modele dont on anime le contour
      * @param lesCouleurs tableau des couleurs
      */
     public ContourAnimation(Case c, Color[] lesCouleurs) {
-        super(c.getPositionInitialeX(), c.getPositionInitialeY(), 50, 50) ;
+        super(c.getPositionInitialeX(), c.getPositionInitialeY(), CASELONGUEUR, CASELONGUEUR) ;
 
         laCase = c ;
         this.lesCouleurs = lesCouleurs ;
@@ -33,12 +34,12 @@ public class ContourAnimation extends Rectangle {
     }
 
     /**
-     * animation de la forme carrée représentant la case
-     * @param etape numéro de l'étape à animer
-     * @return la transition séquentielle permettant d'animer la forme carrée
+     * Animation de la forme carree representant la case
+     * @param etape numero de l'etape à animer
+     * @return la transition sequentielle permettant d'animer la forme carree
      */
     public SequentialTransition animer(int etape) {
-        //System.out.println("animer (" + laCase.getValeurInitiale() + ") étape : " + etape);
+         //System.out.println("animer (" + laCase.getValeurInitiale() + ") étape : " + etape);
 
         int depX = laCase.getDeplacementX(etape) ;
         int depY = laCase.getDeplacementY(etape) ;

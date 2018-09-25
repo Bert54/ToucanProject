@@ -31,16 +31,16 @@ public class Toucan extends Observable {
     }
 
     /**
-     * Retourne l'etat actuel de l'animation
-     * @return StatutAnimation
+     * Previent les vues lors d'un changement
      */
-    public StatutAnimation getStatutAnimation() {
-        return this.statutAnimation;
+    public void prevenirVues() {
+        this.setChanged();
+        this.notifyObservers();
     }
 
     /**
      * Set l'etat de l'animation
-     * @param s
+     * @param s entier representant l'etat d'animation a attribuer au modele
      */
     public void setStatutAnimation(int s) {
         switch (s) {
@@ -60,11 +60,11 @@ public class Toucan extends Observable {
     }
 
     /**
-     * Previent les vues lors d'un changement
+     * Getter sur l'etat actuel de l'animation
+     * @return statutAnimation
      */
-    public void prevenirVues() {
-        this.setChanged();
-        this.notifyObservers();
+    public StatutAnimation getStatutAnimation() {
+        return this.statutAnimation;
     }
 
     /**
@@ -74,6 +74,15 @@ public class Toucan extends Observable {
      */
     public void setValeurInitiale(int noCase, int val) {
         this.lesCases.getCase(noCase).setValeur(val);
+    }
+
+    /**
+     * Getter sur la valeur initiale d une case
+     * @param noCase numero de la case
+     * @return valeur initiale de la case
+     */
+    public int getValeurInitiale(int noCase) {
+        return this.lesCases.getCase(noCase).getValeurInitiale();
     }
 
     /**
@@ -109,15 +118,6 @@ public class Toucan extends Observable {
             dureeDep += 4;
         }
         prevenirVues();
-    }
-
-    /**
-     * Getter sur la valeur initiale d une case
-     * @param noCase numero de la case
-     * @return valeur initiale de la case
-     */
-    public int getValeurInitiale(int noCase) {
-        return this.lesCases.getCase(noCase).getValeurInitiale();
     }
 
     /**

@@ -22,7 +22,7 @@ public class TexteAnimation extends Text {
 
     /**
      * Constructeur
-     * @param c la case du modèle dont on anime la valeur
+     * @param c la case du modele dont on anime la valeur
      * @param lesCouleurs tableau des couleurs
      */
     public TexteAnimation(Case c, Color[] lesCouleurs) {
@@ -44,16 +44,16 @@ public class TexteAnimation extends Text {
 
     /**
      * animation du texte au centre de la case
-     * @param etape numéro de l'étape à animer
-     * @return la transition séquentielle permettant d'animer le texte au centre de la cqse
+     * @param etape numero de l'etape a animer
+     * @return la transition saquentielle permettant d'animer le texte au centre de la case
      */
     public SequentialTransition animer(int etape) {
         int depX = laCase.getDeplacementX(etape) ;
         int depY = laCase.getDeplacementY(etape) ;
         int temps = Math.max(Math.abs(depX), Math.abs(depY)) ;
 
-        // mise à jour de la couleur et de la valeur au début du déplacement
-        // changement de couleur (donner une durée non nulle pour visualiser un changement de couleur même quand celui-ci n'est pas suivi d'un déplacement)
+        // mise a jour de la couleur et de la valeur au debut du déplacement
+        // changement de couleur (donner une duree non nulle pour visualiser un changement de couleur meme quand celui-ci n'est pas suivi d'un deplacement)
         FillTransition ft = new FillTransition(Duration.millis(1), this, lesCouleurs[laCase.getCouleur(etape-1)], lesCouleurs[laCase.getCouleur(etape)]) ;
         ft.setDelay(Duration.ZERO) ;
         ft.setOnFinished(event -> {
@@ -73,7 +73,7 @@ public class TexteAnimation extends Text {
             }
         });
 
-        // le déplacement ...
+        // le deplacement ...
         TranslateTransition tt = new TranslateTransition(Duration.millis(temps * COEFFDUREE), this);
         tt.setToX(depX);
         tt.setToY(depY);

@@ -30,6 +30,42 @@ public class Case {
     }
 
     /**
+     * Getter sur la valeur initiale possedant la case
+     * @return la valeur initiale de la case
+     */
+    public int getValeurInitiale() {
+        return this.valeurInit;
+    }
+
+    /**
+     * Getter sur la valeur actuelle de la case
+     * @param etape etape
+     * @return valeur de la case
+     */
+    public int getValeur(int etape) {
+        int val = this.valeurInit;
+        int tmpEtape = etape;
+        boolean trouve = false;
+        while(!trouve && tmpEtape > 0){
+            if (this.hmEtapes.containsKey(tmpEtape)) {
+                val = this.hmEtapes.get(tmpEtape).getValeur();
+                trouve = true;
+            }
+            tmpEtape--;
+        }
+        return val;
+    }
+
+    /**
+     * Modification de la valeur de la case
+     * @param etape numero de l etape dans laquelle la case se deplacera
+     * @param newVal nouvelle valeur de la case
+     */
+    public void modifValeur(int etape, int newVal) {
+        this.hmEtapes.put(etape, new Etape(etape, newVal,0,0));
+    }
+
+    /**
      * Setter sur les positions de la case
      * @param x abscisse de la case
      * @param y ordonnee de la case
@@ -37,6 +73,22 @@ public class Case {
     public void setPositions(int x, int y) {
         this.absInit = x;
         this.ordInit = y;
+    }
+
+    /**
+     * Getter sur la position initiale de l abscisse
+     * @return Position initiable de l abscisse
+     */
+    public int getPositionInitialeX() {
+        return this.absInit;
+    }
+
+    /**
+     * Getter sur la position initiale de l ordonnee
+     * @return Position initiable de l ordonnee
+     */
+    public int getPositionInitialeY() {
+        return this.ordInit;
     }
 
     /**
@@ -80,65 +132,14 @@ public class Case {
     }
 
     /**
-     * Modification de la valeur de la case
-     * @param etape numero de l etape dans laquelle la case se deplacera
-     * @param newVal nouvelle valeur de la case
-     */
-    public void modifValeur(int etape, int newVal) {
-        this.hmEtapes.put(etape, new Etape(etape, newVal,0,0));
-    }
-
-    /**
-     * Getter sur la valeur initiale possedant la case
-     * @return la valeur initiale de la case
-     */
-    public int getValeurInitiale() {
-        return this.valeurInit;
-    }
-
-    /**
-     * Getter sur la position initiale de l abscisse
-     * @return Position initiable de l abscisse
-     */
-    public int getPositionInitialeX() {
-        return this.absInit;
-    }
-
-    /**
-     * Getter sur la position initiale de l ordonnee
-     * @return Position initiable de l ordonnee
-     */
-    public int getPositionInitialeY() {
-        return this.ordInit;
-    }
-
-    /**
-     * Getter sur la valeur actuelle de la case
-     * @param etape etape
-     * @return valeur de la case
-     */
-    public int getValeur(int etape) {
-        int val = this.valeurInit;
-        int tmpEtape = etape;
-        boolean trouve = false;
-        while(!trouve && tmpEtape > 0){
-            if (this.hmEtapes.containsKey(tmpEtape)) {
-                val = this.hmEtapes.get(tmpEtape).getValeur();
-                trouve = true;
-            }
-            tmpEtape--;
-        }
-        return val;
-    }
-
-    /**
      * Getter sur le deplacement pour une certaine etape
      * @param etape numero de l etape
      * @return valeur du deplacement
      */
     public int getDeplacementX(int etape) {
-        if(this.hmEtapes.containsKey(etape))
+        if(this.hmEtapes.containsKey(etape)) {
             return this.hmEtapes.get(etape).getDeplacementX();
+        }
         return 0;
     }
 
@@ -148,29 +149,30 @@ public class Case {
      * @return valeur du deplacement
      */
     public int getDeplacementY(int etape) {
-        if(this.hmEtapes.containsKey(etape))
+        if(this.hmEtapes.containsKey(etape)) {
             return this.hmEtapes.get(etape).getDeplacementY();
+        }
         return 0;
     }
 
     /**
      * Getter sur la couleur initiale de la case
-     * @return le numéro associé à la couleur initiale de la case
+     * @return le numéro associe a la couleur initiale de la case
      */
     public int getCouleurInitiale() {
         return couleur ;
     }
 
     /**
-     * Getter sur la couleur de la case
-     * @return le numéro associé à la couleur de la case
+     * Getter sur la couleur de la case a une etape donnee
+     * @return le numéro associe a la couleur de la case
      */
     public int getCouleur(int etape) {
         return couleur ;
     }
 
     /**
-     * Getter sur l'existance d'animation
+     * Getter sur l'existence d'animation
      * @return vrai si une animation existe
      */
     public boolean existeAnimation (int etape) {

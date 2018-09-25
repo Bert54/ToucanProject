@@ -26,7 +26,7 @@ public class ControlesControleur implements Observer {
 
     /**
      * Constructeur de la vue. ImagePlay, imagePause et ImageReset sont definies ici, permettant
-     * ainsi d'eviter de devoir les reinstancier a chaque mise a jour de la vue.
+     * ainsi d'eviter de devoir les reinstancier a chaque mise a jour de la vue
      * @param mod Modele
      */
     public ControlesControleur(Toucan mod) {
@@ -38,13 +38,13 @@ public class ControlesControleur implements Observer {
     }
 
     /**
-     * Methode associee au bouton permettant de soit instancier les mouvements, jouer l'animation ou mettre en pause
-     * l'animation.
+     * Methode associee au bouton permettant d'instancier les mouvements, de jouer l'animation ou de mettre en pause
+     * l'animation
      */
     @FXML
     public void toggleAnimation() {
         switch (this.toucan.getStatutAnimation()) {
-            case NON_INITIALISEE: // Creation des mouvements (codee en dur pour le moment, sera changee plus tard)
+            case NON_INITIALISEE:   // Creation des mouvements (codee en dur pour le moment, sera changee plus tard)
                 this.toucan.creerLesMouvements(
                         0, 1, Toucan.EST, 50,
                         //0, 2, Toucan.STABLE, 23,
@@ -54,13 +54,13 @@ public class ControlesControleur implements Observer {
                 //1, 5, Toucan.STABLE, 9);
                 this.toucan.setStatutAnimation(1);
                 break;
-            case EN_COURS_ACTIF: // Mise en pause de l'animation
+            case EN_COURS_ACTIF:    // Mise en pause de l'animation
                 this.toucan.setStatutAnimation(2);
                 break;
-            case EN_COURS_PAUSE: // Reprise de l'animation
+            case EN_COURS_PAUSE:    // Reprise de l'animation
                 this.toucan.setStatutAnimation(1);
                 break;
-            case FINIE: // Reinitialisation de l'animation
+            case FINIE:             // Reinitialisation de l'animation
                 this.toucan.setStatutAnimation(0);
         }
     }

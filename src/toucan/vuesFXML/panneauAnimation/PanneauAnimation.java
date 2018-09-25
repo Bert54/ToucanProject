@@ -57,7 +57,7 @@ public class PanneauAnimation implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         switch (this.toucan.getStatutAnimation()) {
-            case NON_INITIALISEE: //Initialise les animations des cases
+            case NON_INITIALISEE:      //Initialise les animations des cases
                 try {
                     this.initialize();
                 } catch (Exception e) {
@@ -65,13 +65,13 @@ public class PanneauAnimation implements Observer {
                 }
                 this.run();
                 break;
-            case EN_COURS_ACTIF: //Joue l'animation
+            case EN_COURS_ACTIF:       //Joue l'animation
                 this.mouv.play();
                 break;
-            case EN_COURS_PAUSE: // Met en pause l'animation
+            case EN_COURS_PAUSE:      // Met en pause l'animation
                 this.mouv.pause();
                 break;
-            default: // (StatutAnimation.FINIT) Stoppe l'animation lorsqu'il n'y a plus de mouvements
+            default:                  // (StatutAnimation.FINIT) Stoppe l'animation lorsqu'il n'y a plus de mouvements
                 mouv.setRate(-1) ;
                 mouv.stop();
         }
