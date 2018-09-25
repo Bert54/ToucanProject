@@ -9,7 +9,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import toucan.modele.Case;
-import toucan.modele.Toucan;
+
+import static toucan.modele.Toucan.CASELONGUEUR;
+import static toucan.modele.Toucan.COEFFDUREE;
 
 public class TexteAnimation extends Text {
 
@@ -36,8 +38,8 @@ public class TexteAnimation extends Text {
         W = getBoundsInLocal().getWidth();
         H = getBoundsInLocal().getHeight();
 
-        setX(c.getPositionInitialeX() + (Toucan.CASELARGEUR - W) / 2);      // Centre de la case
-        setY(c.getPositionInitialeY() + Toucan.CASELARGEUR / 2 + H / 4);
+        setX(c.getPositionInitialeX() + (CASELONGUEUR - W) / 2);      // Centre de la case
+        setY(c.getPositionInitialeY() + CASELONGUEUR / 2 + H / 4);
     }
 
     /**
@@ -72,7 +74,7 @@ public class TexteAnimation extends Text {
         });
 
         // le déplacement ...
-        TranslateTransition tt = new TranslateTransition(Duration.millis(temps * 30), this);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(temps * COEFFDUREE), this);
         tt.setToX(depX);
         tt.setToY(depY);
         tt.setDelay(Duration.ZERO) ;

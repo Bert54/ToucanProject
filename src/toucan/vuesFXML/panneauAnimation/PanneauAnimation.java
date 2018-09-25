@@ -53,14 +53,23 @@ public class PanneauAnimation implements Observer {
         });
     }
 
+    /**
+     * Lancement de l'application
+     */
     public void run() {
         dessiner() ;
     }
 
+    /**
+     * Lancement de l'animation
+     */
     public void jouerAnimation() {
         this.mouv.play();
     }
 
+    /**
+     * Arrêt de l'animation
+     */
     public void arreterAnimation() {
         this.mouv.pause();
     }

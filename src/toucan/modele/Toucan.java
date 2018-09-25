@@ -12,7 +12,7 @@ public class Toucan extends Observable {
     public static final int OUEST = 4;
     public static final int STABLE = 5;
     public static final int CASELONGUEUR = 50;
-    public static final int CASELARGEUR = 50;
+    public static final int COEFFDUREE = 20;
 
     private LesCases lesCases;
 
@@ -25,24 +25,26 @@ public class Toucan extends Observable {
         this.lesCases = new LesCases(nbCases);
         int abs = 10;
         for (int i = 0; i < nbCases; i++) {
-            setPosition(i, abs, CASELARGEUR);
+            setPosition(i, abs, CASELONGUEUR);
             abs += CASELONGUEUR;
         }
         this.execution = false;
     }
 
-    public void lancerExecution() {
-        this.execution = true;
+    /**
+     * Arret ou lancement de l'execution
+     * @param exec true pour le lancement de l'execution, false sinon
+     */
+    public void changetExecution(boolean exec) {
+        this.execution = exec;
         this.setChanged();
         this.notifyObservers();
     }
 
-    public void stopperExecution() {
-        this.execution = false;
-        this.setChanged();
-        this.notifyObservers();
-    }
-
+    /**
+     * Getter sur l'etat du boolean execution
+     * @return execution
+     */
     public boolean getEtatExecution() {
         return this.execution;
     }

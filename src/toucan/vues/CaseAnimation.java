@@ -50,6 +50,11 @@ public class CaseAnimation {
         return pt ;
     }
 
+    /**
+     * Gettr sur l'existance d'une animation
+     * @param etape numero de l'etape
+     * @return true si une animation existe, false sinon
+     */
     public boolean existeAnimation(int etape) {
         return laCase.existeAnimation(etape) ;
     }

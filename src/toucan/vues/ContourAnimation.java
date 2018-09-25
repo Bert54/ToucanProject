@@ -8,6 +8,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import toucan.modele.Case;
 
+import static toucan.modele.Toucan.CASELONGUEUR;
+import static toucan.modele.Toucan.COEFFDUREE;
+
 
 public class ContourAnimation extends Rectangle {
 
@@ -20,7 +23,7 @@ public class ContourAnimation extends Rectangle {
      * @param lesCouleurs tableau des couleurs
      */
     public ContourAnimation(Case c, Color[] lesCouleurs) {
-        super(c.getPositionInitialeX(), c.getPositionInitialeY(), 50, 50) ;
+        super(c.getPositionInitialeX(), c.getPositionInitialeY(), CASELONGUEUR, CASELONGUEUR) ;
 
         laCase = c ;
         this.lesCouleurs = lesCouleurs ;
@@ -47,7 +50,7 @@ public class ContourAnimation extends Rectangle {
         st.setDelay(Duration.ZERO);
 
         // déplacement
-        TranslateTransition tt = new TranslateTransition(Duration.millis(temps * 30), this);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(temps * COEFFDUREE), this);
         tt.setToX(depX); // distance à parcourir
         tt.setToY(depY);
         tt.setDelay(Duration.ZERO) ;
