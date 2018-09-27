@@ -9,16 +9,17 @@ public class Case {
     private int ordInit;
     private HashMap<Integer, Etape> hmEtapes;
     private int couleur;
-    private Random random ;
+    private int maxEtape;
+
+    public static final int COULEURCASE = 0; // Couleur des cases quand pas de mouvement. 0 = bleu.
 
     /**
-     * Constructeur par defaut d'un case
+     * Constructeur par defaut d'une case
      */
     public Case () {
         this.hmEtapes = new HashMap<>();
-
-        random = new Random() ;
-        couleur = random.nextInt(4) ;
+        this.maxEtape = 0;
+        couleur = COULEURCASE;
     }
 
     /**
@@ -61,8 +62,8 @@ public class Case {
      * @param etape numero de l etape dans laquelle la case se deplacera
      * @param newVal nouvelle valeur de la case
      */
-    public void modifValeur(int etape, int newVal) {
-        this.hmEtapes.put(etape, new Etape(etape, newVal,0,0));
+    public void modifValeur(int etape, int newVal, int couleur) {
+        this.ajouterEtape(etape, newVal,0,0, couleur);
     }
 
     /**
@@ -96,9 +97,9 @@ public class Case {
      * @param etape numero de l etape dans laquelle la case se deplacera
      * @param dep valeur de la distance a parcourir
      */
-    public void gauche(int etape, int dep) {
+    public void gauche(int etape, int dep, int couleur) {
         int val = getValeur(etape);
-        this.hmEtapes.put(etape, new Etape(etape, val, -dep, 0));
+        this.ajouterEtape(etape, val, -dep, 0, couleur);
     }
 
     /**
@@ -106,9 +107,9 @@ public class Case {
      * @param etape numero de l etape dans laquelle la case se deplacera
      * @param dep valeur de la distance a parcourir
      */
-    public void droite(int etape, int dep) {
+    public void droite(int etape, int dep, int couleur) {
         int val = getValeur(etape);
-        this.hmEtapes.put(etape, new Etape(etape, val, dep, 0));
+        this.ajouterEtape(etape, val, dep, 0, couleur);
     }
 
     /**
@@ -116,9 +117,9 @@ public class Case {
      * @param etape numero de l etape dans laquelle la case se deplacera
      * @param dep valeur de la distance a parcourir
      */
-    public void monter(int etape, int dep) {
+    public void monter(int etape, int dep, int couleur) {
         int val = getValeur(etape);
-        this.hmEtapes.put(etape, new Etape(etape, val, 0, -dep));
+        this.ajouterEtape(etape, val, 0, -dep, couleur);
     }
 
     /**
@@ -126,9 +127,16 @@ public class Case {
      * @param etape numero de l etape dans laquelle la case se deplacera
      * @param dep valeur de la distance a parcourir
      */
-    public void descendre(int etape, int dep) {
+    public void descendre(int etape, int dep, int couleur) {
         int val = getValeur(etape);
-        this.hmEtapes.put(etape, new Etape(etape, val, 0, dep));
+        this.ajouterEtape(etape, val, 0, dep, couleur);
+    }
+
+    public void ajouterEtape(int etape, int val, int depX, int depY, int couleur) {
+        if (etape > this.maxEtape) {
+            this.setLastEtape(etape);
+        }
+        this.hmEtapes.put(etape, new Etape(etape, val, depX, depY, couleur));
     }
 
     /**
@@ -165,10 +173,23 @@ public class Case {
 
     /**
      * Getter sur la couleur de la case a une etape donnee
-     * @return le numéro associe a la couleur de la case
+     * @param etape Etape a laquelle la couleur doit etre recuperee
+     * @return la couleur associee a l'etape donnee
      */
     public int getCouleur(int etape) {
-        return couleur ;
+        int coul = this.couleur;
+        if (existeAnimation(etape)) {
+            int tmpEtape = etape;
+            boolean trouve = false;
+            while (!trouve && tmpEtape > 0) {
+                if (this.hmEtapes.containsKey(tmpEtape)) {
+                    coul = this.hmEtapes.get(tmpEtape).getCouleur();
+                    trouve = true;
+                }
+                tmpEtape--;
+            }
+        }
+        return coul;
     }
 
     /**
@@ -179,6 +200,22 @@ public class Case {
         if(hmEtapes.containsKey(etape))
             return true;
         return false;
+    }
+
+    /**
+     * Getter du numero de la derniere etape de la case
+     * @return numero de la derniere etape de la case
+     */
+    public int getLastEtape() {
+        return this.maxEtape;
+    }
+
+    /**
+     * Setter du numero de la derniere etape de la case
+     * @param l numero de la derniere etape de la case
+     */
+    public void setLastEtape(int l) {
+        this.maxEtape = l;
     }
 
 

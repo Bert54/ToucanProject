@@ -6,6 +6,7 @@ public class Etape {
     private int valCase;
     private int deplacementX;
     private int deplacementY;
+    private int couleur;
 
     /**
      * Constructeur d une etape de deplacement
@@ -14,11 +15,12 @@ public class Etape {
      * @param depX deplacement en abscisse de la case
      * @param depY deplacement en ordonnee de la case
      */
-    public Etape(int num, int val, int depX, int depY) {
+    public Etape(int num, int val, int depX, int depY, int coul) {
         this.numero = num;
         this.valCase = val;
         this.deplacementX = depX;
         this.deplacementY = depY;
+        this.couleur = coul;
     }
 
     /**
@@ -51,5 +53,13 @@ public class Etape {
      */
     public int getDeplacementY() {
         return deplacementY;
+    }
+
+    /**
+     *  Getter de la couleur de la case a cette etape
+     * @return couleur de la case a cette etape
+     */
+    public int getCouleur() {
+        return this.couleur;
     }
 }

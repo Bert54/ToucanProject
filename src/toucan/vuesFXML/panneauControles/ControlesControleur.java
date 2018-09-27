@@ -45,13 +45,7 @@ public class ControlesControleur implements Observer {
     public void toggleAnimation() {
         switch (this.toucan.getStatutAnimation()) {
             case NON_INITIALISEE:   // Creation des mouvements (codee en dur pour le moment, sera changee plus tard)
-                this.toucan.creerLesMouvements(
-                        0, 1, Toucan.EST, 50,
-                        //0, 2, Toucan.STABLE, 23,
-                        1, 4, Toucan.SUD, 50,
-                        1, 1, Toucan.OUEST, 50,
-                        3, 6, Toucan.NORD, 50);
-                //1, 5, Toucan.STABLE, 9);
+                this.toucan.creerLesMouvements();
                 this.toucan.setStatutAnimation(1);
                 break;
             case EN_COURS_ACTIF:    // Mise en pause de l'animation

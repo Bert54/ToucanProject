@@ -1,5 +1,9 @@
 package toucan.modele;
 
+import toucan.modele.animation.AffectationCaseCase;
+import toucan.modele.animation.ComparaisonCaseCase;
+import toucan.modele.animation.IAnimation;
+
 import java.util.Observable;
 
 public class Toucan extends Observable {
@@ -10,9 +14,11 @@ public class Toucan extends Observable {
     public static final int OUEST = 4;
     public static final int STABLE = 5;
     public static final int CASELONGUEUR = 50;
-    public static final int COEFFDUREE = 10;
+    public static final int COEFFDUREE = 8;
 
-    private StatutAnimation statutAnimation;
+    private IAnimation mouvCases; // champ qui s'occupe de l'affectation lors d'un mouvement
+    private IAnimation compCases; // champ qui s'occupe de la comparaison lors d'un mouvement
+    private StatutAnimation statutAnimation; // permet de definir l'etat actuel de l'animation
     private LesCases lesCases;
 
     /**
@@ -27,6 +33,8 @@ public class Toucan extends Observable {
             setPosition(i, abs, CASELONGUEUR);
             abs += CASELONGUEUR;
         }
+        this.mouvCases = new AffectationCaseCase();
+        this.compCases = new ComparaisonCaseCase();
         this.statutAnimation = StatutAnimation.NON_INITIALISEE;
     }
 
@@ -97,26 +105,57 @@ public class Toucan extends Observable {
 
     /**
      * Creation des mouvements des cases
-     * @param dep indice de la case a deplacer
-     *            le numero de l etape
-     *            le type du deplacement
-     *            la duree du deplacement
      */
-    public void creerLesMouvements(int... dep) {
-        assert(dep.length % 4 == 0) : "Nombre de paramètres de mouvements incorrects";
-        int indiceCase = 0;
-        int numEtape = 1;
-        int direction = 2;
-        int dureeDep = 3;
-        int nbFois = dep.length/4;   // 4 car le parametre est en fait composé de 4 parametres
-        for(int i = 0 ; i < nbFois ; i++) {
-            this.lesCases.creerEtape(dep[indiceCase], dep[numEtape],
-                    dep[direction], dep[dureeDep]);
-            indiceCase += 4;
-            numEtape += 4;
-            direction += 4;
-            dureeDep += 4;
-        }
+    public void creerLesMouvements() {
+        this.lesCases.resetMaxEtape();
+        this.mouvCases.executer(lesCases, 1, 4);
+        this.compCases.executer(lesCases, 3, 0);
+        this.mouvCases.executer(lesCases, 2, 4);
+        this.mouvCases.executer(lesCases, 1);
+        this.mouvCases.executer(lesCases, 7, 8);
+        this.mouvCases.executer(lesCases, 4, 6);
+        this.mouvCases.executer(lesCases, 3);
+        this.mouvCases.executer(lesCases, 0, 4);
+        this.mouvCases.executer(lesCases, 1, 2);
+        this.mouvCases.executer(lesCases, 7);
+        this.mouvCases.executer(lesCases, 3, 8);
+        this.compCases.executer(lesCases, 2, 6);
+        this.mouvCases.executer(lesCases, 1, 0);
+        this.compCases.executer(lesCases, 6, 3);
+        this.mouvCases.executer(lesCases, 3, 2);
+        this.compCases.executer(lesCases, 3, 1);
+        this.mouvCases.executer(lesCases, 4, 0);
+        this.compCases.executer(lesCases, 4, 1);
+        this.mouvCases.executer(lesCases, 4, 0);
+        this.compCases.executer(lesCases, 5, 6);
+        this.mouvCases.executer(lesCases, 2);
+        this.mouvCases.executer(lesCases, 8, 6);
+        this.mouvCases.executer(lesCases, 0);
+        this.mouvCases.executer(lesCases, 8, 2);
+        this.mouvCases.executer(lesCases, 3, 1);
+        this.mouvCases.executer(lesCases, 5);
+        this.mouvCases.executer(lesCases, 4, 3);
+        this.compCases.executer(lesCases, 1, 7);
+        this.mouvCases.executer(lesCases, 8, 4);
+        this.mouvCases.executer(lesCases, 3, 5);
+        this.mouvCases.executer(lesCases, 8);
+        this.compCases.executer(lesCases, 4, 2);
+        this.mouvCases.executer(lesCases, 8, 7);
+        this.mouvCases.executer(lesCases, 2, 0);
+        this.compCases.executer(lesCases, 4, 1);
+        this.compCases.executer(lesCases, 0, 1);
+        this.mouvCases.executer(lesCases, 3, 7);
+        this.mouvCases.executer(lesCases, 4);
+        this.compCases.executer(lesCases, 4, 2);
+        this.mouvCases.executer(lesCases, 1, 5);
+        this.compCases.executer(lesCases, 7, 4);
+        this.mouvCases.executer(lesCases, 2);
+        this.mouvCases.executer(lesCases, 1, 2);
+        this.mouvCases.executer(lesCases, 6);
+        this.mouvCases.executer(lesCases, 0, 3);
+        this.mouvCases.executer(lesCases, 4);
+        this.mouvCases.executer(lesCases, 0, 8);
+        this.mouvCases.executer(lesCases, 1, 4);
         prevenirVues();
     }
 

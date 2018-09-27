@@ -18,13 +18,16 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         // Initialisation du toucan
-        Toucan modele = new Toucan(5);
+        Toucan modele = new Toucan(9);
         modele.setValeurInitiale(0, 4);
         modele.setValeurInitiale(1, 1);
-        modele.setValeurInitiale(2, 7);
+        modele.setValeurInitiale(2, -6);
         modele.setValeurInitiale(3, 8);
-        modele.setValeurInitiale(4, 2);
-
+        modele.setValeurInitiale(4, 12);
+        modele.setValeurInitiale(5, -3);
+        modele.setValeurInitiale(6, 7);
+        modele.setValeurInitiale(7, 0);
+        modele.setValeurInitiale(8, 25);
         primaryStage.setTitle("Toucan");
 
         FXMLLoader loader;

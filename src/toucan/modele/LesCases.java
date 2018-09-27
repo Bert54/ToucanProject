@@ -34,7 +34,7 @@ public class LesCases {
      * @param dir direction de la case
      * @param val valeur du deplacement de la case OU nouvelle valeur de la case
      */
-    public void creerEtape(int c, int etape, int dir, int val) {
+    public void creerEtape(int c, int etape, int dir, int val, int couleur) {
         assert(c >= 0) : "L'indice de la case est incorrect";
         assert(etape > 0) : "Une etape ne peut pas etre negative";
         assert(dir == Toucan.NORD || dir == Toucan.SUD ||
@@ -45,25 +45,35 @@ public class LesCases {
         switch (dir){
             case Toucan.NORD :      // NORD
                 assert(val > 0) : "Deplacement negatif impossible";
-                this.lesCases.get(c).monter(etape, val);
+                this.lesCases.get(c).monter(etape, val, couleur);
                 break;
             case Toucan.SUD :       // SUD
                 assert(val > 0) : "Deplacement negatif impossible";
-                this.lesCases.get(c).descendre(etape, val);
+                this.lesCases.get(c).descendre(etape, val, couleur);
                 break;
             case Toucan.EST :       // EST
                 assert(val > 0) : "Deplacement negatif impossible";
-                this.lesCases.get(c).droite(etape, val);
+                this.lesCases.get(c).droite(etape, val, couleur);
                 break;
             case Toucan.OUEST :     // OUEST
                 assert(val > 0) : "Deplacement negatif impossible";
-                this.lesCases.get(c).gauche(etape, val);
+                this.lesCases.get(c).gauche(etape, val, couleur);
                 break;
             case Toucan.STABLE :    // Modification de la valeur de la case
-                this.lesCases.get(c).modifValeur(etape, val);
+                this.lesCases.get(c).modifValeur(etape, val, couleur);
             default:
                 break;
         }
+    }
+
+    /**
+     *  Reinitialisation du maximum d'etapes (utile pour la reconstruction des mouvements)
+     */
+    public void resetMaxEtape() {
+        for (int i = 0; i < this.nbCases() ; i++) {
+            this.getCase(i).setLastEtape(0);
+        }
+        this.nbEtapes = 0;
     }
 
     /**
