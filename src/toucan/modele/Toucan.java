@@ -1,9 +1,11 @@
 package toucan.modele;
 
 import toucan.modele.animation.AffectationCaseCase;
+import toucan.modele.animation.AttributAnimation;
 import toucan.modele.animation.ComparaisonCaseCase;
 import toucan.modele.animation.IAnimation;
 
+import java.util.HashMap;
 import java.util.Observable;
 
 public class Toucan extends Observable {
@@ -16,8 +18,7 @@ public class Toucan extends Observable {
     public static final int CASELONGUEUR = 50;
     public static final int COEFFDUREE = 8;
 
-    private IAnimation mouvCases; // champ qui s'occupe de l'affectation lors d'un mouvement
-    private IAnimation compCases; // champ qui s'occupe de la comparaison lors d'un mouvement
+    private HashMap<AttributAnimation, IAnimation> animationsCases;
     private StatutAnimation statutAnimation; // permet de definir l'etat actuel de l'animation
     private LesCases lesCases;
 
@@ -33,8 +34,9 @@ public class Toucan extends Observable {
             setPosition(i, abs, CASELONGUEUR);
             abs += CASELONGUEUR;
         }
-        this.mouvCases = new AffectationCaseCase();
-        this.compCases = new ComparaisonCaseCase();
+        this.animationsCases = new HashMap<>(); // Contient les types d'animation possibles, chacunes referencees par un AttributAnimation
+        this.animationsCases.put(AttributAnimation.AFFECTATION, new AffectationCaseCase());
+        this.animationsCases.put(AttributAnimation.COMPARAISON, new ComparaisonCaseCase());
         this.statutAnimation = StatutAnimation.NON_INITIALISEE;
     }
 
@@ -108,55 +110,64 @@ public class Toucan extends Observable {
      */
     public void creerLesMouvements() {
         this.lesCases.resetMaxEtape();
-        this.mouvCases.executer(lesCases, 1, 4);
-        this.compCases.executer(lesCases, 3, 0);
-        this.mouvCases.executer(lesCases, 2, 4);
-        this.mouvCases.executer(lesCases, 1);
-        this.mouvCases.executer(lesCases, 7, 8);
-        this.mouvCases.executer(lesCases, 4, 6);
-        this.mouvCases.executer(lesCases, 3);
-        this.mouvCases.executer(lesCases, 0, 4);
-        this.mouvCases.executer(lesCases, 1, 2);
-        this.mouvCases.executer(lesCases, 7);
-        this.mouvCases.executer(lesCases, 3, 8);
-        this.compCases.executer(lesCases, 2, 6);
-        this.mouvCases.executer(lesCases, 1, 0);
-        this.compCases.executer(lesCases, 6, 3);
-        this.mouvCases.executer(lesCases, 3, 2);
-        this.compCases.executer(lesCases, 3, 1);
-        this.mouvCases.executer(lesCases, 4, 0);
-        this.compCases.executer(lesCases, 4, 1);
-        this.mouvCases.executer(lesCases, 4, 0);
-        this.compCases.executer(lesCases, 5, 6);
-        this.mouvCases.executer(lesCases, 2);
-        this.mouvCases.executer(lesCases, 8, 6);
-        this.mouvCases.executer(lesCases, 0);
-        this.mouvCases.executer(lesCases, 8, 2);
-        this.mouvCases.executer(lesCases, 3, 1);
-        this.mouvCases.executer(lesCases, 5);
-        this.mouvCases.executer(lesCases, 4, 3);
-        this.compCases.executer(lesCases, 1, 7);
-        this.mouvCases.executer(lesCases, 8, 4);
-        this.mouvCases.executer(lesCases, 3, 5);
-        this.mouvCases.executer(lesCases, 8);
-        this.compCases.executer(lesCases, 4, 2);
-        this.mouvCases.executer(lesCases, 8, 7);
-        this.mouvCases.executer(lesCases, 2, 0);
-        this.compCases.executer(lesCases, 4, 1);
-        this.compCases.executer(lesCases, 0, 1);
-        this.mouvCases.executer(lesCases, 3, 7);
-        this.mouvCases.executer(lesCases, 4);
-        this.compCases.executer(lesCases, 4, 2);
-        this.mouvCases.executer(lesCases, 1, 5);
-        this.compCases.executer(lesCases, 7, 4);
-        this.mouvCases.executer(lesCases, 2);
-        this.mouvCases.executer(lesCases, 1, 2);
-        this.mouvCases.executer(lesCases, 6);
-        this.mouvCases.executer(lesCases, 0, 3);
-        this.mouvCases.executer(lesCases, 4);
-        this.mouvCases.executer(lesCases, 0, 8);
-        this.mouvCases.executer(lesCases, 1, 4);
+        this.executerAux(AttributAnimation.AFFECTATION, 1, 4);
+        this.executerAux(AttributAnimation.COMPARAISON, 3, 0);
+        this.executerAux(AttributAnimation.AFFECTATION, 2, 4);
+        this.executerAux(AttributAnimation.AFFECTATION, 1);
+        this.executerAux(AttributAnimation.AFFECTATION, 7, 8);
+        this.executerAux(AttributAnimation.COMPARAISON, 4, 6);
+        this.executerAux(AttributAnimation.AFFECTATION, 3);
+        this.executerAux(AttributAnimation.AFFECTATION, 0, 4);
+        this.executerAux(AttributAnimation.COMPARAISON, 1, 2);
+        this.executerAux(AttributAnimation.AFFECTATION, 7);
+        this.executerAux(AttributAnimation.COMPARAISON, 3, 8);
+        this.executerAux(AttributAnimation.AFFECTATION, 2, 6);
+        this.executerAux(AttributAnimation.AFFECTATION, 1, 0);
+        this.executerAux(AttributAnimation.AFFECTATION, 6, 3);
+        this.executerAux(AttributAnimation.COMPARAISON, 3, 2);
+        this.executerAux(AttributAnimation.AFFECTATION, 3, 1);
+        this.executerAux(AttributAnimation.AFFECTATION, 4, 0);
+        this.executerAux(AttributAnimation.AFFECTATION, 4, 1);
+        this.executerAux(AttributAnimation.COMPARAISON, 4, 0);
+        this.executerAux(AttributAnimation.COMPARAISON, 5, 6);
+        this.executerAux(AttributAnimation.AFFECTATION, 2);
+        this.executerAux(AttributAnimation.COMPARAISON, 8, 6);
+        this.executerAux(AttributAnimation.AFFECTATION, 0);
+        this.executerAux(AttributAnimation.AFFECTATION, 8, 2);
+        this.executerAux(AttributAnimation.AFFECTATION, 3, 1);
+        this.executerAux(AttributAnimation.AFFECTATION, 5);
+        this.executerAux(AttributAnimation.COMPARAISON, 4, 3);
+        this.executerAux(AttributAnimation.AFFECTATION, 1, 7);
+        this.executerAux(AttributAnimation.COMPARAISON, 8, 4);
+        this.executerAux(AttributAnimation.COMPARAISON, 3, 5);
+        this.executerAux(AttributAnimation.AFFECTATION, 8);
+        this.executerAux(AttributAnimation.COMPARAISON, 4, 2);
+        this.executerAux(AttributAnimation.AFFECTATION, 8, 7);
+        this.executerAux(AttributAnimation.AFFECTATION, 2, 0);
+        this.executerAux(AttributAnimation.AFFECTATION, 4, 1);
+        this.executerAux(AttributAnimation.COMPARAISON, 0, 1);
+        this.executerAux(AttributAnimation.AFFECTATION, 3, 7);
+        this.executerAux(AttributAnimation.AFFECTATION, 4);
+        this.executerAux(AttributAnimation.AFFECTATION, 4, 2);
+        this.executerAux(AttributAnimation.AFFECTATION, 1, 5);
+        this.executerAux(AttributAnimation.COMPARAISON, 7, 4);
+        this.executerAux(AttributAnimation.AFFECTATION, 2);
+        this.executerAux(AttributAnimation.COMPARAISON, 1, 2);
+        this.executerAux(AttributAnimation.AFFECTATION, 6);
+        this.executerAux(AttributAnimation.COMPARAISON, 0, 3);
+        this.executerAux(AttributAnimation.AFFECTATION, 4);
+        this.executerAux(AttributAnimation.AFFECTATION, 0, 8);
+        this.executerAux(AttributAnimation.AFFECTATION, 1, 4);
         prevenirVues();
+    }
+
+    /**
+     * Fonction auxiliaire pour la creation d'un mouvement, permet de determiner quel type de mouvement
+     * @param attrAnim Type de mouvement definie dans AttributAnimation
+     * @param lesIndices Indices des cases
+     */
+    private void executerAux(AttributAnimation attrAnim, int... lesIndices) {
+        this.animationsCases.get(attrAnim).executer(this.lesCases, lesIndices);
     }
 
     /**
