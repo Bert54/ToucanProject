@@ -13,7 +13,7 @@ public class ComparaisonCaseCase implements IAnimation {
     /**
      * Execution d'une animation de comparaison ; les cases en trop sont ignorees
      * @param lesCases Liste des cases
-     * @param lesIndices Cases a animer
+     * @param lesIndices Indices des cases a animer
      */
     @Override
     public void executer(LesCases lesCases, int... lesIndices) {
@@ -25,8 +25,10 @@ public class ComparaisonCaseCase implements IAnimation {
             lesCases.creerEtape(lesIndices[1], maxEt, Toucan.SUD, CASELONGUEUR, COULEURANIMATION);
             lesCases.creerEtape(lesIndices[0], maxEt+1, Toucan.NORD, CASELONGUEUR, COULEURANIMATION);
             lesCases.creerEtape(lesIndices[1], maxEt+1, Toucan.NORD, CASELONGUEUR, COULEURANIMATION);
-            lesCases.creerEtape(lesIndices[0], maxEt+2, Toucan.STABLE, case1.getValeur(case1.getLastEtape()), case1.getCouleurInitiale());
-            lesCases.creerEtape(lesIndices[1], maxEt+2, Toucan.STABLE, case2.getValeur(case2.getLastEtape()), case2.getCouleurInitiale());
+            lesCases.creerEtape(lesIndices[0], maxEt+2, Toucan.STABLE,      // La case redevient bleue
+                    case1.getValeur(case1.getLastEtape()), case1.getCouleurInitiale());
+            lesCases.creerEtape(lesIndices[1], maxEt+2, Toucan.STABLE,
+                    case2.getValeur(case2.getLastEtape()), case2.getCouleurInitiale());
         }
     }
 

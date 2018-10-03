@@ -95,7 +95,7 @@ public class LesCases {
     /**
      * Getter sur la case
      * @param indice numero de la case
-     * @return la case d indice i
+     * @return la case d indice indice
      */
     public Case getCase(int indice) {
         return this.lesCases.get(indice);

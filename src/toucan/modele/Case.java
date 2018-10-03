@@ -203,19 +203,19 @@ public class Case {
     }
 
     /**
-     * Getter du numero de la derniere etape de la case
-     * @return numero de la derniere etape de la case
-     */
-    public int getLastEtape() {
-        return this.maxEtape;
-    }
-
-    /**
      * Setter du numero de la derniere etape de la case
      * @param l numero de la derniere etape de la case
      */
     public void setLastEtape(int l) {
         this.maxEtape = l;
+    }
+
+    /**
+     * Getter du numero de la derniere etape de la case
+     * @return numero de la derniere etape de la case
+     */
+    public int getLastEtape() {
+        return this.maxEtape;
     }
 
 

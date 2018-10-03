@@ -13,7 +13,7 @@ public class AffectationCaseCase implements IAnimation {
     /**
      * Execution d'une animation d'affectation
      * @param lesCases Liste des cases
-     * @param lesIndices Case(s) a animer
+     * @param lesIndices Indices des cases a animer
      */
     @Override
     public void executer(LesCases lesCases, int... lesIndices) { //si on a 2 cases

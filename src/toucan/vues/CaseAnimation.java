@@ -23,7 +23,7 @@ public class CaseAnimation {
      *                le contour d'un carré et un texte
      * @param c la case du modèle à animer
      */
-    public CaseAnimation(BorderPane panneau, Case c ) {
+    public CaseAnimation(BorderPane panneau, Case c) {
         laCase = c ;
         // dessin de la forme de la case
         rect = new ContourAnimation(laCase, lesCouleurs) ;
