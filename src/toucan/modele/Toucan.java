@@ -2,13 +2,7 @@ package toucan.modele;
 
 import toucan.modele.algos.Algo;
 import toucan.modele.algos.AlgoBulle;
-import toucan.modele.algos.AlgoTest;
-import toucan.modele.animation.AffectationCaseCase;
-import toucan.modele.animation.AttributAnimation;
-import toucan.modele.animation.ComparaisonCaseCase;
-import toucan.modele.animation.IAnimation;
 
-import java.util.HashMap;
 import java.util.Observable;
 
 public class Toucan extends Observable {

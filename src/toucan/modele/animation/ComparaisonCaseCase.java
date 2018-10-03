@@ -8,7 +8,13 @@ import static toucan.modele.Toucan.CASELONGUEUR;
 
 public class ComparaisonCaseCase implements IAnimation {
 
-    public static final int COULEURANIMATION = 2; // Couleur de cette animation en particulier ; 2 = jaune
+    private static ComparaisonCaseCase ourInstance = new ComparaisonCaseCase();
+
+    public static ComparaisonCaseCase getInstance() {
+        return ourInstance;
+    }
+
+    private static final int COULEURANIMATION = 2; // Couleur de cette animation en particulier ; 2 = jaune
 
     /**
      * Execution d'une animation de comparaison ; les cases en trop sont ignorees
@@ -31,5 +37,4 @@ public class ComparaisonCaseCase implements IAnimation {
                     case2.getValeur(case2.getLastEtape()), case2.getCouleurInitiale());
         }
     }
-
 }

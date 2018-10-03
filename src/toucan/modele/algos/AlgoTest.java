@@ -6,7 +6,7 @@ import toucan.modele.animation.AttributAnimation;
 public class AlgoTest extends Algo {
 
     /**
-     * Constructeur d'un algorithme
+     * Constructeur d'un algorithme de test
      * @param lesCases cases du Toucan
      */
     public AlgoTest(LesCases lesCases, int...  entiers) {

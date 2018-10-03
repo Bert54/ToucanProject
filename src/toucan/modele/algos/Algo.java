@@ -23,8 +23,8 @@ public abstract class Algo {
         this.tabEntiers = new int[entiers.length];
         this.tabEntiers = entiers.clone();
         this.animationsCases = new HashMap<>(); // Contient les types d'animation possibles, chacunes referencees par un AttributAnimation
-        this.animationsCases.put(AttributAnimation.AFFECTATION, new AffectationCaseCase());
-        this.animationsCases.put(AttributAnimation.COMPARAISON, new ComparaisonCaseCase());
+        this.animationsCases.put(AttributAnimation.AFFECTATION, AffectationCaseCase.getInstance());
+        this.animationsCases.put(AttributAnimation.COMPARAISON, ComparaisonCaseCase.getInstance());
     }
 
 

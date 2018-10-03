@@ -8,7 +8,7 @@ import static toucan.modele.animation.AttributAnimation.COMPARAISON;
 public class AlgoBulle extends Algo {
 
     /**
-     * Constructeur d'un algorithme
+     * Constructeur d'un algorithme de tri à bulles
      * @param lesCases cases du Toucan
      */
     public AlgoBulle(LesCases lesCases, int... entiers) {
