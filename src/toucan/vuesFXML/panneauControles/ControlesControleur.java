@@ -2,6 +2,7 @@ package toucan.vuesFXML.panneauControles;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import toucan.modele.StatutAnimation;
@@ -23,6 +24,8 @@ public class ControlesControleur implements Observer {
     public Button boutonPlayPause;
     @FXML
     public ImageView playPauseImage;
+    @FXML
+    public Label nomAlgoLabel;
 
     /**
      * Constructeur de la vue. ImagePlay, imagePause et ImageReset sont definies ici, permettant
@@ -59,6 +62,17 @@ public class ControlesControleur implements Observer {
         }
     }
 
+    public void updateLabel() {
+        switch (this.toucan.getAlgoActuel()) {
+            case ALGOBULLE:
+                this.nomAlgoLabel.setText("Tri à Bulles");
+                break;
+            case ALGOTEST:
+                this.nomAlgoLabel.setText("Tri de Test");
+                break;
+        }
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         switch (this.toucan.getStatutAnimation()) {
@@ -71,5 +85,6 @@ public class ControlesControleur implements Observer {
             default:
                 this.playPauseImage.setImage(this.imagePlay);
         }
+        this.updateLabel();
     }
 }

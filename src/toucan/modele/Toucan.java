@@ -1,9 +1,10 @@
 package toucan.modele;
 
-import toucan.modele.algos.Algo;
-import toucan.modele.algos.AlgoBulle;
+import toucan.modele.algos.*;
 
 import java.util.Observable;
+
+import static toucan.modele.algos.AttributAlgo.*;
 
 public class Toucan extends Observable {
 
@@ -17,7 +18,8 @@ public class Toucan extends Observable {
 
     private int[] tabEntiers;
     private Algo algoTri;
-    private StatutAnimation statutAnimation; // permet de definir l'etat actuel de l'animation
+    private StatutAnimation statutAnimation = StatutAnimation.NON_INITIALISEE;; // permet de definir l'etat actuel de l'animation
+    private AttributAlgo algoActuel = ALGOBULLE;
     private LesCases lesCases;
 
     /**
@@ -32,7 +34,6 @@ public class Toucan extends Observable {
             setPosition(i, abs, CASELONGUEUR);
             abs += CASELONGUEUR;
         }
-        this.statutAnimation = StatutAnimation.NON_INITIALISEE;
     }
 
     /**
@@ -100,6 +101,11 @@ public class Toucan extends Observable {
         this.lesCases.getCase(noCase).setPositions(x, y);
     }
 
+    public void setAlgoActuel(AttributAlgo att) {
+        this.algoActuel = att;
+        this.prevenirVues();
+    }
+
     /**
      * Creation des mouvements des cases
      */
@@ -109,7 +115,14 @@ public class Toucan extends Observable {
         for(int i = 0 ; i < this.nbCases() ; i++){
             this.tabEntiers[i] = getValeurInitiale(i);
         }
-        this.algoTri = new AlgoBulle(this.lesCases, this.tabEntiers);
+        switch (this.algoActuel) {
+            case ALGOBULLE:
+                this.algoTri = new AlgoBulle(this.lesCases, this.tabEntiers);
+                break;
+            case ALGOTEST:
+                this.algoTri = new AlgoTest(this.lesCases, this.tabEntiers);
+                break;
+        }
         this.algoTri.trier();
         prevenirVues();
     }
@@ -137,6 +150,10 @@ public class Toucan extends Observable {
      */
     public int getNbMaxEtapes() {
         return this.lesCases.getMaxEtapes();
+    }
+
+    public AttributAlgo getAlgoActuel() {
+        return this.algoActuel;
     }
 
     @Override

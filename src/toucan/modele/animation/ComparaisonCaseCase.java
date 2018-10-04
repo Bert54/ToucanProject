@@ -8,10 +8,10 @@ import static toucan.modele.Toucan.CASELONGUEUR;
 
 public class ComparaisonCaseCase implements IAnimation {
 
-    private static ComparaisonCaseCase ourInstance = new ComparaisonCaseCase();
+    private static ComparaisonCaseCase compInstance = new ComparaisonCaseCase();
 
     public static ComparaisonCaseCase getInstance() {
-        return ourInstance;
+        return compInstance;
     }
 
     private static final int COULEURANIMATION = 2; // Couleur de cette animation en particulier ; 2 = jaune

@@ -3,14 +3,19 @@ package toucan;
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import toucan.modele.Toucan;
 import toucan.vuesFXML.panneauAnimation.PanneauAnimation;
 import toucan.vuesFXML.panneauControles.ControlesControleur;
+import toucan.vuesFXML.panneauMenu.MenuControleur;
 import toucan.vuesFXML.toucan.ToucanControleur;
+
+import java.util.Collection;
 
 public class Main extends Application {
 
@@ -46,12 +51,21 @@ public class Main extends Application {
         Parent sheet = loader.load();
         root.setCenter(sheet);
 
+        // Le panneau des controles
         loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/toucan/vuesFXML/panneauControles/panneauControles.fxml"));
         ControlesControleur controles = new ControlesControleur(modele);
         loader.setControllerFactory(instantiatedClass -> { return controles ; });
         BorderPane south = loader.load();
         root.setBottom(south);
+
+        // Le menu
+        loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/toucan/vuesFXML/panneauMenu/panneauMenu.fxml"));
+        MenuControleur menu = new MenuControleur(modele);
+        loader.setControllerFactory(instantiatedClass -> { return menu ; });
+        root.getChildren().addAll(((Node)loader.load()));
+
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
     }
