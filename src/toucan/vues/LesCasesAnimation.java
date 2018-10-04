@@ -22,7 +22,7 @@ public class LesCasesAnimation {
     public LesCasesAnimation(BorderPane panneau, Toucan modele) {
         this.toucan = modele;
         // ménage du panneau pour une instanciation préalable de cases d'animation
-        panneau.getChildren().removeAll(panneau.getChildren()) ;
+        panneau.getChildren().removeAll(panneau.getChildren()) ;        // panneau.getCenter()
         int nbCases = toucan.nbCases();
         lesCases = new ArrayList<>(nbCases);
         for (int i = 0 ; i < nbCases ; i++) {

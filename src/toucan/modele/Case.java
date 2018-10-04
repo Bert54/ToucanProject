@@ -218,6 +218,13 @@ public class Case {
         return this.maxEtape;
     }
 
+    /**
+     * Vide les etapes liees a la case
+     */
+    public void viderEtapes() {
+        this.hmEtapes.clear();
+    }
+
 
     @Override
     public String toString() {

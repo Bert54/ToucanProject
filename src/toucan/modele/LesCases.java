@@ -101,6 +101,16 @@ public class LesCases {
         return this.lesCases.get(indice);
     }
 
+
+    /**
+     * Vide les etapes des cases dans la liste
+     */
+    public void viderEtapes() {
+        for(Case c : this.lesCases){
+            c.viderEtapes();
+        }
+    }
+
     @Override
     public String toString() {
 

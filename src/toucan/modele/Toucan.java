@@ -19,7 +19,7 @@ public class Toucan extends Observable {
     private int[] tabEntiers;
     private Algo algoTri;
     private StatutAnimation statutAnimation = StatutAnimation.NON_INITIALISEE;; // permet de definir l'etat actuel de l'animation
-    private AttributAlgo algoActuel = ALGOBULLE;
+    private AttributAlgo algoActuel = ALGOBULLE;        // L'algorithme du tri a bulles est selectionne par defaut
     private LesCases lesCases;
 
     /**
@@ -101,9 +101,22 @@ public class Toucan extends Observable {
         this.lesCases.getCase(noCase).setPositions(x, y);
     }
 
+
+    /**
+     * Setter sur le choix de l'algorithme
+     * @param att algorithme choisi
+     */
     public void setAlgoActuel(AttributAlgo att) {
         this.algoActuel = att;
         this.prevenirVues();
+    }
+
+    /**
+     * Getter sur le choix de l'algorithme
+     * @return l'algorithme actuellement utilisé
+     */
+    public AttributAlgo getAlgoActuel() {
+        return this.algoActuel;
     }
 
     /**
@@ -111,6 +124,7 @@ public class Toucan extends Observable {
      */
     public void creerLesMouvements() {
         this.lesCases.resetMaxEtape();
+        lesCases.viderEtapes();
         this.tabEntiers = new int[this.nbCases()];
         for(int i = 0 ; i < this.nbCases() ; i++){
             this.tabEntiers[i] = getValeurInitiale(i);
@@ -140,7 +154,7 @@ public class Toucan extends Observable {
      * @param numCase numéro de la case
      * @return La case associée au numéro
      */
-    public Case getCase(int numCase){
+    public Case getCase(int numCase) {
         return this.lesCases.getCase(numCase);
     }
 
@@ -150,10 +164,6 @@ public class Toucan extends Observable {
      */
     public int getNbMaxEtapes() {
         return this.lesCases.getMaxEtapes();
-    }
-
-    public AttributAlgo getAlgoActuel() {
-        return this.algoActuel;
     }
 
     @Override

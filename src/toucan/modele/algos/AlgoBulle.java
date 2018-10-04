@@ -17,21 +17,21 @@ public class AlgoBulle extends Algo {
 
     @Override
     public void trier() {
-            boolean encore = true ;
-            int n = this.lesCases.nbCases() ;
-            while (encore) {
-                encore = false ;
-                for (int j = 0 ; j < n - 1; j++) {
-                    this.executerAux(COMPARAISON, j, j+1);
-                    if (this.tabEntiers[j] > this.tabEntiers[j+1]) {
-                        int var = this.tabEntiers[j] ;
-                        this.executerAux(AFFECTATION, j, j+1);
-                        this.tabEntiers[j] = this.tabEntiers[j+1] ;
-                        this.tabEntiers[j+1] = var ;
-                        encore = true ;
-                    }
+        boolean encore = true ;
+        int n = this.lesCases.nbCases() ;
+        while (encore) {
+            encore = false ;
+            for (int j = 0 ; j < n - 1; j++) {
+                this.executerAux(COMPARAISON, j, j+1);
+                if (this.tabEntiers[j] > this.tabEntiers[j+1]) {
+                    int var = this.tabEntiers[j] ;
+                    this.executerAux(AFFECTATION, j, j+1);
+                    this.tabEntiers[j] = this.tabEntiers[j+1] ;
+                    this.tabEntiers[j+1] = var ;
+                    encore = true ;
                 }
-                n = n-1 ;
             }
+            n = n-1 ;
+        }
     }
 }

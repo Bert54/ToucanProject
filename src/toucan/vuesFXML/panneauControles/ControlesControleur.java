@@ -62,6 +62,9 @@ public class ControlesControleur implements Observer {
         }
     }
 
+    /**
+     * Met a jour le label
+     */
     public void updateLabel() {
         switch (this.toucan.getAlgoActuel()) {
             case ALGOBULLE:
