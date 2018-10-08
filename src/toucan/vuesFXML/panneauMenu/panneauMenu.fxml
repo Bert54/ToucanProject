@@ -16,8 +16,9 @@
           </Menu>
           <Menu fx:id="menuSelectionAlgo" style="-fx-border-style: solid; -fx-border-width: 0px 1px 0px 0px; -fx-border-color: #848484;" text="Algorithmes">
             <items>
-                  <MenuItem mnemonicParsing="false" onAction="#setAlgoTest" text="Algo Test" />
-              <MenuItem onAction="#setAlgoBulle" text="Tri à Bulles" />
+                <MenuItem onAction="#setAlgoTest" text="Algo Test" />
+                <MenuItem onAction="#setAlgoBulle" text="Tri à Bulles" />
+                <MenuItem onAction="#setAlgoStupide" text="Tri Stupide" />
             </items>
           </Menu>
         </menus>
