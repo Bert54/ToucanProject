@@ -76,6 +76,12 @@ public class ControlesControleur implements Observer {
             case ALGOSTUPIDE:
                 this.nomAlgoLabel.setText("Tri Stupide");
                 break;
+            case ALGOSELECTION:
+                this.nomAlgoLabel.setText("Tri par Sélection");
+                break;
+            case ALGOINSERTION:
+                this.nomAlgoLabel.setText("Tri par Insertion");
+                break;
         }
     }
 

@@ -30,9 +30,9 @@ public class Main extends Application {
         modele.setValeurInitiale(3, 8);
         modele.setValeurInitiale(4, 12);
         modele.setValeurInitiale(5, -3);
-        modele.setValeurInitiale(6, 7);
+        modele.setValeurInitiale(6, 25);
         modele.setValeurInitiale(7, 0);
-        modele.setValeurInitiale(8, 25);
+        modele.setValeurInitiale(8, 7);
         primaryStage.setTitle("Toucan");
 
         FXMLLoader loader;

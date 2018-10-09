@@ -18,6 +18,8 @@
             <items>
                 <MenuItem onAction="#setAlgoTest" text="Algo Test" />
                 <MenuItem onAction="#setAlgoBulle" text="Tri à Bulles" />
+                <MenuItem onAction="#setAlgoSelection" text="Tri par Sélection" />
+                <!--  <MenuItem onAction="#setAlgoInsertion" text="Tri par Insertion" /> -->
                 <MenuItem onAction="#setAlgoStupide" text="Tri Stupide" />
             </items>
           </Menu>
