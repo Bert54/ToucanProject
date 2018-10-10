@@ -43,13 +43,13 @@ public class MenuControleur implements Observer {
     }
 
     @FXML
-    public void setAlgoSelection() {
-        this.toucan.setAlgoActuel(AttributAlgo.ALGOSELECTION);
+    public void setAlgoInsertion() {
+        this.toucan.setAlgoActuel(AttributAlgo.ALGOINSERTION);
     }
 
     @FXML
-    public void setAlgoInsertion() {
-        this.toucan.setAlgoActuel(AttributAlgo.ALGOINSERTION);
+    public void setAlgoCocktail() {
+        this.toucan.setAlgoActuel(AttributAlgo.ALGOCOCKTAIL);
     }
 
     @Override

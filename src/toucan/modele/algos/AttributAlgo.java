@@ -5,6 +5,6 @@ public enum AttributAlgo {
     ALGOTEST,
     ALGOBULLE,
     ALGOSTUPIDE,
-    ALGOSELECTION,
-    ALGOINSERTION;
+    ALGOINSERTION,
+    ALGOCOCKTAIL;
 }

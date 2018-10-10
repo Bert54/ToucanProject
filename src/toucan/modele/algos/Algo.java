@@ -17,6 +17,7 @@ public abstract class Algo {
     /**
      * Constructeur d'un algorithme
      * @param lesCases cases du Toucan
+     * @param entiers tableaux des entiers
      */
     public Algo(LesCases lesCases, int... entiers) {
         this.lesCases = lesCases;

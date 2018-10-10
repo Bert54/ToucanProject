@@ -7,8 +7,13 @@ import java.util.Random;
 import static toucan.modele.animation.AttributAnimation.*;
 
 
-public class AlgoStupide  extends Algo{
+public class AlgoStupide  extends Algo {
 
+    /**
+     * Constructeur d'un algorithme stupide
+     * @param lesCases case du Toucan
+     * @param entiers tableau des entiers
+     */
     public AlgoStupide(LesCases lesCases, int... entiers) {
         super(lesCases, entiers);
     }
@@ -35,7 +40,6 @@ public class AlgoStupide  extends Algo{
         boolean trier = true;
         for (int i = 0; i < this.tabEntiers.length - 1 ; i++) {
             this.executerAux(COMPARAISON, i, i+1);
-            System.out.println(this.tabEntiers[i] + " / " +this.tabEntiers[i+1]);
             if (this.tabEntiers[i] > this.tabEntiers[i+1]) {
                 trier = false;
             }

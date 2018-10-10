@@ -14,7 +14,7 @@ public class Toucan extends Observable {
     public static final int OUEST = 4;
     public static final int STABLE = 5;
     public static final int CASELONGUEUR = 50;
-    public static final int COEFFDUREE = 5;
+    public static final int COEFFDUREE = 3;
 
     private int[] tabEntiers;
     private Algo algoTri;
@@ -139,11 +139,11 @@ public class Toucan extends Observable {
             case ALGOSTUPIDE:
                 this.algoTri = new AlgoStupide(this.lesCases, this.tabEntiers);
                 break;
-            case ALGOSELECTION:
-                this.algoTri = new AlgoSelection(this.lesCases, this.tabEntiers);
-                break;
             case ALGOINSERTION:
                 this.algoTri = new AlgoInsertion(this.lesCases, this.tabEntiers);
+                break;
+            case ALGOCOCKTAIL:
+                this.algoTri = new AlgoCocktail(this.lesCases, this.tabEntiers);
                 break;
         }
         this.algoTri.trier();

@@ -21,6 +21,8 @@
                 <MenuItem onAction="#setAlgoSelection" text="Tri par Sélection" />
                 <!--  <MenuItem onAction="#setAlgoInsertion" text="Tri par Insertion" /> -->
                 <MenuItem onAction="#setAlgoStupide" text="Tri Stupide" />
+                <MenuItem onAction="#setAlgoInsertion" text="Tri à Insertion" />
+                <MenuItem onAction="#setAlgoCocktail" text="Tri Cocktail" />
             </items>
           </Menu>
         </menus>
