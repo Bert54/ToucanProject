@@ -125,8 +125,9 @@ public class Toucan extends Observable {
         return this.algoActuel;
     }
 
+
     /**
-     * Creation des mouvements des cases
+     * Creation des mouvements des cases ainsi que creation execution de l'algorithme choisit
      */
     public void creerLesMouvements() {
         this.lesCases.resetMaxEtape();
