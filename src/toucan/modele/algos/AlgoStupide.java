@@ -12,7 +12,7 @@ public class AlgoStupide  extends Algo {
     /**
      * Constructeur d'un algorithme stupide
      * @param lesCases case du Toucan
-     * @param entiers tableaux des entiers
+     * @param entiers tableau des entiers
      */
     public AlgoStupide(LesCases lesCases, int... entiers) {
         super(lesCases, entiers);

@@ -139,6 +139,12 @@ public class Toucan extends Observable {
             case ALGOSTUPIDE:
                 this.algoTri = new AlgoStupide(this.lesCases, this.tabEntiers);
                 break;
+            case ALGOINSERTION:
+                this.algoTri = new AlgoInsertion(this.lesCases, this.tabEntiers);
+                break;
+            case ALGOCOCKTAIL:
+                this.algoTri = new AlgoCocktail(this.lesCases, this.tabEntiers);
+                break;
         }
         this.algoTri.trier();
         prevenirVues();
