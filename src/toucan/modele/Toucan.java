@@ -14,7 +14,8 @@ public class Toucan extends Observable {
     public static final int OUEST = 4;
     public static final int STABLE = 5;
     public static final int CASELONGUEUR = 50;
-    public static final int COEFFDUREE = 3;
+    public static final int COEFFDUREE = 5;
+    public static final int CASETEMPORDONNE = CASELONGUEUR * 5;
 
     private int[] tabEntiers;
     private Algo algoTri;
@@ -30,9 +31,14 @@ public class Toucan extends Observable {
         assert (nbCases >= 0) : "Nombre de cases invalides";
         this.lesCases = new LesCases(nbCases);
         int abs = 10;
-        for (int i = 0; i < nbCases; i++) {
-            setPosition(i, abs, CASELONGUEUR);
-            abs += CASELONGUEUR;
+        for (int i = 0; i < nbCases+1; i++) {
+            if (i < nbCases) {
+                setPosition(i, abs, CASELONGUEUR);
+                abs += CASELONGUEUR;
+            }
+            else {
+                setPosition(i, 10, CASETEMPORDONNE);
+            }
         }
     }
 
@@ -138,6 +144,9 @@ public class Toucan extends Observable {
                 break;
             case ALGOSTUPIDE:
                 this.algoTri = new AlgoStupide(this.lesCases, this.tabEntiers);
+                break;
+            case ALGOSELECTION:
+                this.algoTri = new AlgoSelection(this.lesCases, this.tabEntiers);
                 break;
             case ALGOINSERTION:
                 this.algoTri = new AlgoInsertion(this.lesCases, this.tabEntiers);

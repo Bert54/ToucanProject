@@ -40,6 +40,11 @@ public class ControlesControleur implements Observer {
         this.imageReset = new Image(getClass().getResource("/toucan/ressources/rewind.jpg").toString());
     }
 
+    @FXML
+    public void initialize() throws Exception {
+        this.updateLabel();
+    }
+
     /**
      * Methode associee au bouton permettant d'instancier les mouvements, de jouer l'animation ou de mettre en pause
      * l'animation
@@ -77,7 +82,10 @@ public class ControlesControleur implements Observer {
                 this.nomAlgoLabel.setText("Tri Stupide");
                 break;
             case ALGOINSERTION:
-                this.nomAlgoLabel.setText("Tri à Insertion");
+                this.nomAlgoLabel.setText("Tri par Insertion");
+                break;
+            case ALGOSELECTION:
+                this.nomAlgoLabel.setText("Tri par Sélection");
                 break;
             case ALGOCOCKTAIL:
                 this.nomAlgoLabel.setText("Tri Cocktail");

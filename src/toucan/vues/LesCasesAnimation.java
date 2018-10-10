@@ -6,6 +6,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 import toucan.modele.Case;
 import toucan.modele.Toucan;
+import toucan.modele.algos.AttributAlgo;
 
 import java.util.ArrayList;
 
@@ -24,9 +25,14 @@ public class LesCasesAnimation {
         // ménage du panneau pour une instanciation préalable de cases d'animation
         panneau.getChildren().removeAll(panneau.getChildren()) ;        // panneau.getCenter()
         int nbCases = toucan.nbCases();
-        lesCases = new ArrayList<>(nbCases);
-        for (int i = 0 ; i < nbCases ; i++) {
-            lesCases.add(new CaseAnimation(panneau, this.toucan.getCase(i))) ;
+        lesCases = new ArrayList<>(nbCases+1);
+        for (int i = 0 ; i < nbCases + 1; i++) {
+            if (i == nbCases && this.toucan.getAlgoActuel() == AttributAlgo.ALGOINSERTION) { // Si on a besoin de la case temporaire dans notre animation, on l'affiche
+                lesCases.add(new CaseAnimation(panneau, this.toucan.getCase(i)));
+            }
+            else if (i < nbCases) {
+                lesCases.add(new CaseAnimation(panneau, this.toucan.getCase(i)));
+            }
         }
     }
 

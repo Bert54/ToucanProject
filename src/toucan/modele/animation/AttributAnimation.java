@@ -3,8 +3,10 @@ package toucan.modele.animation;
 public enum AttributAnimation {
 
     AFFECTATION,
-    COMPARAISON;
-
+    COMPARAISON,
+    AFFECTATIONVCASE,
+    AFFECTATIONCVAL,
+    AFFECTATIONECRASEMENTCASECASE;
 }
 
 /**

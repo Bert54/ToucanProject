@@ -21,8 +21,8 @@ public class LesCases {
      */
     public LesCases(int taille) {
         this.nbEtapes = 0;
-        this.lesCases = new ArrayList(taille);
-        for(int i = 0 ; i < taille ; i++){
+        this.lesCases = new ArrayList(taille+1); // Taille+1 pour ajouter la case temporaire
+        for(int i = 0 ; i < taille+1 ; i++){
             lesCases.add(new Case());
         }
     }
@@ -81,7 +81,7 @@ public class LesCases {
      * @return le nombre de cases de la liste
      */
     public int nbCases() {
-        return lesCases.size();
+        return lesCases.size() - 1;
     }
 
     /**

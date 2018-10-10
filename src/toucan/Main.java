@@ -54,8 +54,9 @@ public class Main extends Application {
         // Le panneau des controles
         loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/toucan/vuesFXML/panneauControles/panneauControles.fxml"));
-        ControlesControleur controles = new ControlesControleur(modele);
-        loader.setControllerFactory(instantiatedClass -> { return controles ; });
+        loader.setControllerFactory(iC->new ControlesControleur(modele));
+        //ControlesControleur controles = new ControlesControleur(modele);
+        //loader.setControllerFactory(instantiatedClass -> { return controles ; });
         BorderPane south = loader.load();
         root.setBottom(south);
 
@@ -72,7 +73,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-
         launch(args);
     }
 }

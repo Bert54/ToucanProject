@@ -1,10 +1,7 @@
 package toucan.modele.algos;
 
 import toucan.modele.LesCases;
-import toucan.modele.animation.AffectationCaseCase;
-import toucan.modele.animation.AttributAnimation;
-import toucan.modele.animation.ComparaisonCaseCase;
-import toucan.modele.animation.IAnimation;
+import toucan.modele.animation.*;
 
 import java.util.HashMap;
 
@@ -26,6 +23,9 @@ public abstract class Algo {
         this.animationsCases = new HashMap<>(); // Contient les types d'animation possibles, chacunes referencees par un AttributAnimation
         this.animationsCases.put(AttributAnimation.AFFECTATION, AffectationCaseCase.getInstance());
         this.animationsCases.put(AttributAnimation.COMPARAISON, ComparaisonCaseCase.getInstance());
+        this.animationsCases.put(AttributAnimation.AFFECTATIONCVAL, AffectationCaseVal.getInstance());
+        this.animationsCases.put(AttributAnimation.AFFECTATIONVCASE, AffectationValCase.getInstance());
+        this.animationsCases.put(AttributAnimation.AFFECTATIONECRASEMENTCASECASE, AffectationEcrasementCaseCase.getInstance());
     }
 
 

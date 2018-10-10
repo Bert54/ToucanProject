@@ -16,13 +16,12 @@
           </Menu>
           <Menu fx:id="menuSelectionAlgo" style="-fx-border-style: solid; -fx-border-width: 0px 1px 0px 0px; -fx-border-color: #848484;" text="Algorithmes">
             <items>
-                <MenuItem onAction="#setAlgoTest" text="Algo Test" />
                 <MenuItem onAction="#setAlgoBulle" text="Tri à Bulles" />
                 <MenuItem onAction="#setAlgoSelection" text="Tri par Sélection" />
-                <!--  <MenuItem onAction="#setAlgoInsertion" text="Tri par Insertion" /> -->
-                <MenuItem onAction="#setAlgoStupide" text="Tri Stupide" />
-                <MenuItem onAction="#setAlgoInsertion" text="Tri à Insertion" />
+                <MenuItem onAction="#setAlgoInsertion" text="Tri par Insertion" />
                 <MenuItem onAction="#setAlgoCocktail" text="Tri Cocktail" />
+                <MenuItem onAction="#setAlgoStupide" text="Tri Stupide" />
+                <MenuItem onAction="#setAlgoTest" text="Algo Test" />
             </items>
           </Menu>
         </menus>
