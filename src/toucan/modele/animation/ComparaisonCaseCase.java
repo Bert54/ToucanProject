@@ -26,7 +26,8 @@ public class ComparaisonCaseCase implements IAnimation {
         if (lesIndices.length == 2) {
             Case case1 = lesCases.getCase(lesIndices[0]);
             Case case2 = lesCases.getCase(lesIndices[1]);
-            int maxEt = Math.max(case1.getLastEtape()+1, case2.getLastEtape()+1);
+            int maxEt = lesCases.getMaxEtapes()+1;      // Une seule affectation par étape
+            //int maxEt = Math.max(case1.getLastEtape()+1, case2.getLastEtape()+1);     // plusieurs affectations possible par étape
             lesCases.creerEtape(lesIndices[0], maxEt, Toucan.SUD, CASELONGUEUR, COULEURANIMATION);
             lesCases.creerEtape(lesIndices[1], maxEt, Toucan.SUD, CASELONGUEUR, COULEURANIMATION);
             lesCases.creerEtape(lesIndices[0], maxEt+1, Toucan.NORD, CASELONGUEUR, COULEURANIMATION);

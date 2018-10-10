@@ -10,6 +10,7 @@ public class AlgoTest extends Algo {
     /**
      * Constructeur d'un algorithme de test
      * @param lesCases cases du Toucan
+     * @param entiers tableaux des entiers
      */
     public AlgoTest(LesCases lesCases, int...  entiers) {
         super(lesCases, entiers);

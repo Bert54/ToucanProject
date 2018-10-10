@@ -14,7 +14,7 @@ public class Toucan extends Observable {
     public static final int OUEST = 4;
     public static final int STABLE = 5;
     public static final int CASELONGUEUR = 50;
-    public static final int COEFFDUREE = 1;
+    public static final int COEFFDUREE = 3;
 
     private int[] tabEntiers;
     private Algo algoTri;
