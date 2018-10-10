@@ -35,7 +35,7 @@ public class AlgoCocktail extends Algo {
                 }
             }
             fin--;
-            for(int j = fin ; j > debut ; j--){
+            for(int j = fin ; j >= debut ; j--){
                 this.executerAux(COMPARAISON, j, j+1);
                 if (this.tabEntiers[j] > this.tabEntiers[j+1]) {
                     int var = this.tabEntiers[j] ;
@@ -47,6 +47,5 @@ public class AlgoCocktail extends Algo {
             }
             debut++;
         }
-
     }
 }
