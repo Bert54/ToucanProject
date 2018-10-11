@@ -6,6 +6,7 @@ public class LesCases {
 
     private ArrayList<Case> lesCases;
     private int nbEtapes;
+    private boolean variableTemp;
 
     /**
      * Constructeur par defaut
@@ -25,6 +26,15 @@ public class LesCases {
         for(int i = 0 ; i < taille+1 ; i++){
             lesCases.add(new Case());
         }
+        this.variableTemp = false;
+    }
+
+    public void setVariableTemp(boolean status) {
+        this.variableTemp = status;
+    }
+
+    public boolean variableTempActivee() {
+        return this.variableTemp;
     }
 
     /**

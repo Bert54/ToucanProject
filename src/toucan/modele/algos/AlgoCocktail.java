@@ -2,8 +2,8 @@ package toucan.modele.algos;
 
 import toucan.modele.LesCases;
 
-import static toucan.modele.animation.AttributAnimation.AFFECTATION;
-import static toucan.modele.animation.AttributAnimation.COMPARAISON;
+import static toucan.modele.animation.AttributAnimation.*;
+import static toucan.modele.animation.AttributAnimation.AFFECTATIONVCASE;
 
 public class AlgoCocktail extends Algo {
 
@@ -27,10 +27,17 @@ public class AlgoCocktail extends Algo {
             for(int j = debut ; j < fin ; j++){
                 this.executerAux(COMPARAISON, j, j+1);
                 if (this.tabEntiers[j] > this.tabEntiers[j+1]) {
-                    int var = this.tabEntiers[j] ;
-                    this.executerAux(AFFECTATION, j, j+1);
-                    this.tabEntiers[j] = this.tabEntiers[j+1] ;
-                    this.tabEntiers[j+1] = var ;
+                    int var = this.tabEntiers[j];
+                    this.tabEntiers[j] = this.tabEntiers[j + 1];
+                    this.tabEntiers[j + 1] = var;
+                    if (this.lesCases.variableTempActivee()) {
+                        this.executerAux(AFFECTATIONCVAL, j);
+                        this.executerAux(AFFECTATIONECRASEMENTCASECASE, j + 1, j);
+                        this.executerAux(AFFECTATIONVCASE, j + 1);
+                    }
+                    else {
+                        this.executerAux(AFFECTATION, j, j + 1);
+                    }
                     encore = true ;
                 }
             }
@@ -39,9 +46,16 @@ public class AlgoCocktail extends Algo {
                 this.executerAux(COMPARAISON, j, j+1);
                 if (this.tabEntiers[j] > this.tabEntiers[j+1]) {
                     int var = this.tabEntiers[j] ;
-                    this.executerAux(AFFECTATION, j, j+1);
                     this.tabEntiers[j] = this.tabEntiers[j+1] ;
                     this.tabEntiers[j+1] = var ;
+                    if (this.lesCases.variableTempActivee()) {
+                        this.executerAux(AFFECTATIONCVAL, j);
+                        this.executerAux(AFFECTATIONECRASEMENTCASECASE, j + 1, j);
+                        this.executerAux(AFFECTATIONVCASE, j + 1);
+                    }
+                    else {
+                        this.executerAux(AFFECTATION, j, j + 1);
+                    }
                     encore = true ;
                 }
             }

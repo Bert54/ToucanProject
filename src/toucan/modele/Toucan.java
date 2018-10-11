@@ -14,7 +14,7 @@ public class Toucan extends Observable {
     public static final int OUEST = 4;
     public static final int STABLE = 5;
     public static final int CASELONGUEUR = 50;
-    public static final int COEFFDUREE = 5;
+    public static final int COEFFDUREE = 2;
     public static final int CASETEMPORDONNE = CASELONGUEUR * 5;
 
     private int[] tabEntiers;
@@ -183,6 +183,15 @@ public class Toucan extends Observable {
      */
     public int getNbMaxEtapes() {
         return this.lesCases.getMaxEtapes();
+    }
+
+    public void setVariableTemp(boolean status) {
+        this.lesCases.setVariableTemp(status);
+        this.prevenirVues();
+    }
+
+    public boolean variableTempActivee() {
+        return this.lesCases.variableTempActivee();
     }
 
     @Override

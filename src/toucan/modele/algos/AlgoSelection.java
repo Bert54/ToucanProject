@@ -25,7 +25,14 @@ public class AlgoSelection extends Algo {
                 }
             }
             if (min != i) {
-                this.executerAux(AFFECTATION, min, i);
+                if (this.lesCases.variableTempActivee()) {
+                    this.executerAux(AFFECTATIONCVAL, i);
+                    this.executerAux(AFFECTATIONECRASEMENTCASECASE, min, i);
+                    this.executerAux(AFFECTATIONVCASE, min);
+                }
+                else {
+                    this.executerAux(AFFECTATION, min, i);
+                }
                 temp = this.tabEntiers[i];
                 this.tabEntiers[i] = this.tabEntiers[min];
                 this.tabEntiers[min] = temp;

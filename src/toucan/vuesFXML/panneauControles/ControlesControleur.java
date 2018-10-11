@@ -2,22 +2,21 @@ package toucan.vuesFXML.panneauControles;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import toucan.modele.StatutAnimation;
 import toucan.modele.Toucan;
 
 import java.util.Observable;
 import java.util.Observer;
-
-import static toucan.modele.StatutAnimation.FINIE;
 
 public class ControlesControleur implements Observer {
 
     private Image imagePlay;
     private Image imagePause;
     private Image imageReset;
+    private boolean majEnCours;
     public Toucan toucan;
 
     @FXML
@@ -26,6 +25,8 @@ public class ControlesControleur implements Observer {
     public ImageView playPauseImage;
     @FXML
     public Label nomAlgoLabel;
+    @FXML
+    public CheckBox varTempCheckBox;
 
     /**
      * Constructeur de la vue. ImagePlay, imagePause et ImageReset sont definies ici, permettant
@@ -38,11 +39,13 @@ public class ControlesControleur implements Observer {
         this.imagePlay = new Image(getClass().getResource("/toucan/ressources/play.jpg").toString());
         this.imagePause = new Image(getClass().getResource("/toucan/ressources/pause.jpg").toString());
         this.imageReset = new Image(getClass().getResource("/toucan/ressources/rewind.jpg").toString());
+        this.majEnCours = false;
     }
 
     @FXML
     public void initialize() throws Exception {
         this.updateLabel();
+        this.algoVariableTempDetection();
     }
 
     /**
@@ -67,8 +70,24 @@ public class ControlesControleur implements Observer {
         }
     }
 
+    public void algoVariableTempDetection() {
+        if (!this.majEnCours) {
+            this.majEnCours = true; // Permet d'eviter une boucle infinie
+            switch (this.toucan.getAlgoActuel()) {
+                case ALGOINSERTION:
+                    this.varTempCheckBox.setSelected(true);
+                    this.toggleVariableTemp();
+                    this.varTempCheckBox.setDisable(true);
+                    break;
+                default:
+                    this.varTempCheckBox.setDisable(false);
+            }
+            this.majEnCours = false;
+        }
+    }
+
     /**
-     * Met a jour le label
+     * Met a jour le label affichant l'algo en cours
      */
     public void updateLabel() {
         switch (this.toucan.getAlgoActuel()) {
@@ -93,17 +112,34 @@ public class ControlesControleur implements Observer {
         }
     }
 
+    @FXML
+    public void toggleVariableTemp() {
+        if (this.varTempCheckBox.isSelected()) {
+            this.toucan.setVariableTemp(true);
+        }
+        else {
+            this.toucan.setVariableTemp(false);
+        }
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         switch (this.toucan.getStatutAnimation()) {
             case EN_COURS_ACTIF:
                 this.playPauseImage.setImage(this.imagePause);
+                this.varTempCheckBox.setDisable(true);
                 break;
             case FINIE:
                 this.playPauseImage.setImage(this.imageReset);
+                this.varTempCheckBox.setDisable(true);
                 break;
-            default:
+            case EN_COURS_PAUSE:
                 this.playPauseImage.setImage(this.imagePlay);
+                this.varTempCheckBox.setDisable(true);
+                break;
+            case NON_INITIALISEE:
+                this.playPauseImage.setImage(this.imagePlay);
+                this.algoVariableTempDetection();
         }
         this.updateLabel();
     }
