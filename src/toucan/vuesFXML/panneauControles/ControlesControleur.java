@@ -24,6 +24,8 @@ public class ControlesControleur implements Observer {
     @FXML
     public ImageView playPauseImage;
     @FXML
+    public Button boutonStop;
+    @FXML
     public Label nomAlgoLabel;
     @FXML
     public CheckBox varTempCheckBox;
@@ -39,6 +41,7 @@ public class ControlesControleur implements Observer {
         this.imagePlay = new Image(getClass().getResource("/toucan/ressources/play.jpg").toString());
         this.imagePause = new Image(getClass().getResource("/toucan/ressources/pause.jpg").toString());
         this.imageReset = new Image(getClass().getResource("/toucan/ressources/rewind.jpg").toString());
+
         this.majEnCours = false;
     }
 
@@ -122,23 +125,32 @@ public class ControlesControleur implements Observer {
         }
     }
 
+    @FXML
+    public void reinitialiseAnimation() {
+        this.toucan.setStatutAnimation(0);
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         switch (this.toucan.getStatutAnimation()) {
             case EN_COURS_ACTIF:
                 this.playPauseImage.setImage(this.imagePause);
                 this.varTempCheckBox.setDisable(true);
+                this.boutonStop.setDisable(true);
                 break;
             case FINIE:
                 this.playPauseImage.setImage(this.imageReset);
                 this.varTempCheckBox.setDisable(true);
+                this.boutonStop.setDisable(true);
                 break;
             case EN_COURS_PAUSE:
                 this.playPauseImage.setImage(this.imagePlay);
                 this.varTempCheckBox.setDisable(true);
+                this.boutonStop.setDisable(false);
                 break;
             case NON_INITIALISEE:
                 this.playPauseImage.setImage(this.imagePlay);
+                this.boutonStop.setDisable(true);
                 this.algoVariableTempDetection();
         }
         this.updateLabel();

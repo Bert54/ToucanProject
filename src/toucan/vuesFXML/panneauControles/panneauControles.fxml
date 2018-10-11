@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="toucan.vuesFXML.panneauControles.ControlesControleur">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="toucan.vuesFXML.panneauControles.ControlesControleur">
    <bottom>
       <HBox prefHeight="131.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -26,24 +26,40 @@
                         <Insets bottom="15.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="boutonPlayPause" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#toggleAnimation" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white; -fx-border-style: solid;">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <graphic>
-                        <ImageView fx:id="playPauseImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="/toucan/ressources/play.jpg" />
-                           </image>
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
-                        </ImageView>
-                     </graphic>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Button>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="boutonStop" alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onMouseClicked="#reinitialiseAnimation" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white; -fx-border-style: solid;">
+                           <graphic>
+                              <ImageView fx:id="stopImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/toucan/ressources/stop.jpg" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="boutonPlayPause" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#toggleAnimation" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: white; -fx-border-style: solid;">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <graphic>
+                              <ImageView fx:id="playPauseImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="/toucan/ressources/play.jpg" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
             <VBox prefHeight="109.0" prefWidth="188.0">
