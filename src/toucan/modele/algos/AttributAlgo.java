@@ -7,5 +7,11 @@ public enum AttributAlgo {
     ALGOSTUPIDE,
     ALGOINSERTION,
     ALGOSELECTION,
-    ALGOCOCKTAIL;
+    ALGOCOCKTAIL,
+    ALGOPEIGNE,
+    ALGOSHELL,
 }
+
+ /**
+  * Permet d'identifier chaque algorithme existant par un attribut defini ici
+  */

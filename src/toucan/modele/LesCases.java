@@ -29,10 +29,18 @@ public class LesCases {
         this.variableTemp = false;
     }
 
+    /**
+     * Setter sur le statut d'activation de la variable temporaire
+     * @param status le nouveau status
+     */
     public void setVariableTemp(boolean status) {
         this.variableTemp = status;
     }
 
+    /**
+     * Getter sur le statut d'activation de la variable temporaire
+     * @return le statut d'activation de la variable temporaire
+     */
     public boolean variableTempActivee() {
         return this.variableTemp;
     }

@@ -3,6 +3,7 @@ package toucan.modele;
 import toucan.modele.algos.*;
 
 import java.util.Observable;
+import java.util.Random;
 
 import static toucan.modele.algos.AttributAlgo.*;
 
@@ -16,6 +17,7 @@ public class Toucan extends Observable {
     public static final int CASELONGUEUR = 50;
     public static final int COEFFDUREE = 2;
     public static final int CASETEMPORDONNE = CASELONGUEUR * 5;
+    public static final int NOMBREALEATOIREMAX = 20;
 
     private int[] tabEntiers;
     private Algo algoTri;
@@ -29,12 +31,19 @@ public class Toucan extends Observable {
      */
     public Toucan(int nbCases) {
         assert (nbCases >= 0) : "Nombre de cases invalides";
+        Random random = new Random();
+        int newVal;
         this.lesCases = new LesCases(nbCases);
         int abs = 10;
         for (int i = 0; i < nbCases+1; i++) {
             if (i < nbCases) {
                 setPosition(i, abs, CASELONGUEUR);
                 abs += CASELONGUEUR;
+                newVal = random.nextInt(NOMBREALEATOIREMAX + 1); // Generation d'une valeur aleatoire pour la case i
+                if (random.nextInt(2) == 1) { // Determiner si la valeur generee sera negative ou non
+                    newVal -= newVal * 2;
+                }
+                this.setValeurInitiale(i, newVal);
             }
             else {
                 setPosition(i, 10, CASETEMPORDONNE);
@@ -155,6 +164,12 @@ public class Toucan extends Observable {
             case ALGOCOCKTAIL:
                 this.algoTri = new AlgoCocktail(this.lesCases, this.tabEntiers);
                 break;
+            case ALGOPEIGNE:
+                this.algoTri = new AlgoPeigne(this.lesCases, this.tabEntiers);
+                break;
+            case ALGOSHELL:
+                this.algoTri = new AlgoShell(this.lesCases, this.tabEntiers);
+                break;
         }
         this.algoTri.trier();
         prevenirVues();
@@ -185,11 +200,19 @@ public class Toucan extends Observable {
         return this.lesCases.getMaxEtapes();
     }
 
+    /**
+     * Setter sur le statut d'activation de la variable temporaire
+     * @param status le nouveau status
+     */
     public void setVariableTemp(boolean status) {
         this.lesCases.setVariableTemp(status);
         this.prevenirVues();
     }
 
+    /**
+     * Getter sur le statut d'activation de la variable temporaire
+     * @return le statut d'activation de la variable temporaire
+     */
     public boolean variableTempActivee() {
         return this.lesCases.variableTempActivee();
     }

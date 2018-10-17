@@ -6,8 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import toucan.modele.Toucan;
 import toucan.vuesFXML.panneauAnimation.PanneauAnimation;
@@ -23,18 +23,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         // Initialisation du toucan
-        Toucan modele = new Toucan(9);
-        modele.setValeurInitiale(0, 4);
-        modele.setValeurInitiale(1, 1);
-        modele.setValeurInitiale(2, -6);
-        modele.setValeurInitiale(3, 8);
-        modele.setValeurInitiale(4, 12);
-        modele.setValeurInitiale(5, -3);
-        modele.setValeurInitiale(6, 25);
-        modele.setValeurInitiale(7, 0);
-        modele.setValeurInitiale(8, 7);
+        Toucan modele = new Toucan(11);
         primaryStage.setTitle("Toucan");
-
         FXMLLoader loader;
         // La vue principale
         loader = new FXMLLoader();
@@ -68,6 +58,8 @@ public class Main extends Application {
         root.getChildren().addAll(((Node)loader.load()));
 
         primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setResizable(false);
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/toucan/ressources/toucan.jpg"))); // Ne fonctionne pas sour les systemes linux apparemment. Dommage.
         primaryStage.show();
     }
 

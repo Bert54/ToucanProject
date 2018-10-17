@@ -6,12 +6,13 @@ import java.util.Random;
 
 import static toucan.modele.animation.AttributAnimation.*;
 
+// N'utiliser ce tri qu'avec 5 cases ou moins.
 
 public class AlgoStupide  extends Algo {
 
     /**
      * Constructeur d'un algorithme stupide
-     * @param lesCases case du Toucan
+     * @param lesCases cases du Toucan
      * @param entiers tableau des entiers
      */
     public AlgoStupide(LesCases lesCases, int... entiers) {
@@ -32,10 +33,21 @@ public class AlgoStupide  extends Algo {
             temp = tabEntiers[rVal1];
             tabEntiers[rVal1] = tabEntiers[rVal2];
             tabEntiers[rVal2] = temp;
-            this.executerAux(AFFECTATION, rVal1, rVal2);
+            if (this.lesCases.variableTempActivee()) {
+                this.executerAux(AFFECTATIONCVAL, rVal1);
+                this.executerAux(AFFECTATIONECRASEMENTCASECASE, rVal2, rVal1);
+                this.executerAux(AFFECTATIONVCASE, rVal2);
+            }
+            else {
+                this.executerAux(AFFECTATION, rVal1, rVal2);
+            }
         }
     }
 
+    /**
+     * Verifie que la tableau est trie (propre au tri stupide).
+     * @return Tableau trie ou tableau non triee
+     */
     public boolean estTrie() {
         boolean trier = true;
         for (int i = 0; i < this.tabEntiers.length - 1 ; i++) {

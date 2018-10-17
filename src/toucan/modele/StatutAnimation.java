@@ -6,3 +6,7 @@ public enum StatutAnimation {
     EN_COURS_PAUSE,
     FINIE;
 }
+
+/**
+ * Enumeration permettant de definir l'etat de l'animation en cours
+ */

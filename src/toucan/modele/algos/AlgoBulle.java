@@ -29,8 +29,8 @@ public class AlgoBulle extends Algo {
                     this.tabEntiers[j+1] = var ;
                     if (this.lesCases.variableTempActivee()) {
                         this.executerAux(AFFECTATIONCVAL, j);
-                        this.executerAux(AFFECTATIONECRASEMENTCASECASE, j+1, j);
-                        this.executerAux(AFFECTATIONVCASE, j+1);
+                        this.executerAux(AFFECTATIONECRASEMENTCASECASE, j + 1, j);
+                        this.executerAux(AFFECTATIONVCASE, j + 1);
                     }
                     else {
                         this.executerAux(AFFECTATION, j, j + 1);

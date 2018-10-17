@@ -57,6 +57,16 @@ public class MenuControleur implements Observer {
         this.toucan.setAlgoActuel(AttributAlgo.ALGOCOCKTAIL);
     }
 
+    @FXML
+    public void setAlgoPeigne() {
+        this.toucan.setAlgoActuel(AttributAlgo.ALGOPEIGNE);
+    }
+
+    @FXML
+    public void setAlgoShell() {
+        this.toucan.setAlgoActuel(AttributAlgo.ALGOSHELL);
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         if (this.toucan.getStatutAnimation() == StatutAnimation.NON_INITIALISEE) {

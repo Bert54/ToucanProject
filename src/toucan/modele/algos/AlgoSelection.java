@@ -6,6 +6,11 @@ import static toucan.modele.animation.AttributAnimation.*;
 
 public class AlgoSelection extends Algo {
 
+    /**
+     * Constructeur d'un algorithme de tri par selection
+     * @param lesCases cases du Toucan
+     * @param entiers tableau des entiers
+     */
     public AlgoSelection(LesCases lesCases, int... entiers) {
         super(lesCases, entiers);
     }

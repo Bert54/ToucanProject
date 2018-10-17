@@ -20,6 +20,8 @@
                 <MenuItem onAction="#setAlgoSelection" text="Tri par Sélection" />
                 <MenuItem onAction="#setAlgoInsertion" text="Tri par Insertion" />
                 <MenuItem onAction="#setAlgoCocktail" text="Tri Cocktail" />
+                <MenuItem onAction="#setAlgoPeigne" text="Tri à Peigne" />
+                <MenuItem onAction="#setAlgoShell" text="Tri de Shell" />
                 <MenuItem onAction="#setAlgoStupide" text="Tri Stupide" />
                 <!-- <MenuItem onAction="#setAlgoTest" text="Algo Test" /> -->
             </items>

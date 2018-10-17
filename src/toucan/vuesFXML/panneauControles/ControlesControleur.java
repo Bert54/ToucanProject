@@ -1,11 +1,13 @@
 package toucan.vuesFXML.panneauControles;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Region;
 import toucan.modele.Toucan;
 
 import java.util.Observable;
@@ -17,6 +19,7 @@ public class ControlesControleur implements Observer {
     private Image imagePause;
     private Image imageReset;
     private boolean majEnCours;
+    private Alert algoStupideAlerte;
     public Toucan toucan;
 
     @FXML
@@ -41,7 +44,11 @@ public class ControlesControleur implements Observer {
         this.imagePlay = new Image(getClass().getResource("/toucan/ressources/play.jpg").toString());
         this.imagePause = new Image(getClass().getResource("/toucan/ressources/pause.jpg").toString());
         this.imageReset = new Image(getClass().getResource("/toucan/ressources/rewind.jpg").toString());
-
+        this.algoStupideAlerte = new Alert(Alert.AlertType.WARNING);
+        this.algoStupideAlerte.setTitle("Avertissement sur l'algorithme de tri stupide");
+        this.algoStupideAlerte.setHeaderText(null);
+        this.algoStupideAlerte.setContentText("Attention, l'algorithme de tri stupide est un algorithme extrêment inefficace. Il est donc recommandé de ne l'utiliser qu'avec 5 cases ou moins pour éviter les problèmes de performance.");
+        this.algoStupideAlerte.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         this.majEnCours = false;
     }
 
@@ -73,11 +80,15 @@ public class ControlesControleur implements Observer {
         }
     }
 
+    /**
+     * Permet de forcer le mode de visualisation avec variable temporaire si l'algorithme actif du modele l'oblige
+     */
     public void algoVariableTempDetection() {
         if (!this.majEnCours) {
             this.majEnCours = true; // Permet d'eviter une boucle infinie
             switch (this.toucan.getAlgoActuel()) {
                 case ALGOINSERTION:
+                case ALGOSHELL:
                     this.varTempCheckBox.setSelected(true);
                     this.toggleVariableTemp();
                     this.varTempCheckBox.setDisable(true);
@@ -102,6 +113,7 @@ public class ControlesControleur implements Observer {
                 break;
             case ALGOSTUPIDE:
                 this.nomAlgoLabel.setText("Tri Stupide");
+                this.algoStupideAlerte.showAndWait(); // Averti l'utilisateur de l'inefficacite monumentale du tri stupide
                 break;
             case ALGOINSERTION:
                 this.nomAlgoLabel.setText("Tri par Insertion");
@@ -112,9 +124,18 @@ public class ControlesControleur implements Observer {
             case ALGOCOCKTAIL:
                 this.nomAlgoLabel.setText("Tri Cocktail");
                 break;
+            case ALGOPEIGNE:
+                this.nomAlgoLabel.setText("Tri à Peigne");
+                break;
+            case ALGOSHELL:
+                this.nomAlgoLabel.setText("Tri de Shell");
+                break;
         }
     }
 
+    /**
+     * Change le mode de mode de visualitation de l'animation
+     */
     @FXML
     public void toggleVariableTemp() {
         if (this.varTempCheckBox.isSelected()) {
