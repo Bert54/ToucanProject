@@ -48,6 +48,7 @@ public class ControlesControleur implements Observer {
     @FXML
     public void initialize() throws Exception {
         this.updateLabel();
+        this.setVitesse();
         this.algoVariableTempDetection();
     }
 

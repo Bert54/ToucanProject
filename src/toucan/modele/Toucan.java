@@ -20,7 +20,7 @@ public class Toucan extends Observable {
     private Algo algoTri;
     private StatutAnimation statutAnimation = StatutAnimation.NON_INITIALISEE;; // permet de definir l'etat actuel de l'animation
     private LesCases lesCases;
-    public int coeffDuree = 10;
+    public int coeffDuree = 5;
 
     /**
      * Constructeur en connaissant le nombre de cases
