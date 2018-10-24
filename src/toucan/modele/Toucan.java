@@ -202,6 +202,7 @@ public class Toucan extends Observable {
         else {
             this.coeffDuree = 200 / ( 200 - nouveauCoeff);
         }
+        System.out.println(coeffDuree);
     }
 
     public int getVitesse() {

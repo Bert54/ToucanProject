@@ -2,13 +2,9 @@ package toucan.vuesFXML.panneauControles;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Region;
 import toucan.modele.Toucan;
 
 import java.util.Observable;
@@ -32,6 +28,8 @@ public class ControlesControleur implements Observer {
     public Label nomAlgoLabel;
     @FXML
     public CheckBox varTempCheckBox;
+    @FXML
+    public Slider sliderVitesse;
 
     /**
      * Constructeur de la vue. ImagePlay, imagePause et ImageReset sont definies ici, permettant
@@ -111,6 +109,15 @@ public class ControlesControleur implements Observer {
         else {
             this.toucan.setVariableTemp(false);
         }
+    }
+
+    /**
+     * Fixe la vitesse de l'animation
+     */
+    @FXML
+    public void setVitesse() {
+        System.out.println("cc");
+        this.toucan.setVitesse((int)sliderVitesse.getValue());
     }
 
     @FXML
