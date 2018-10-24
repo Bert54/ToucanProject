@@ -11,11 +11,10 @@ public class AlgoPeigne extends Algo{
 
     /**
      * Constructeur d'un algorithme de tri a peigne
-     * @param lesCases cases du Toucan
-     * @param entiers tableau des entiers
      */
-    public AlgoPeigne(LesCases lesCases, int... entiers) {
-        super(lesCases, entiers);
+    public AlgoPeigne() {
+        super();
+        this.nomAlgo = "Tri à Peigne";
     }
 
     @Override

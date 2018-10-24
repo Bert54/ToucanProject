@@ -11,11 +11,10 @@ public class AlgoTest extends Algo {
 
     /**
      * Constructeur d'un algorithme de test
-     * @param lesCases cases du Toucan
-     * @param entiers tableau des entiers
      */
-    public AlgoTest(LesCases lesCases, int...  entiers) {
-        super(lesCases, entiers);
+    public AlgoTest() {
+        super();
+        this.nomAlgo = "Algo Test";
     }
 
     @Override

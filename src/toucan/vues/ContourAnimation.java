@@ -9,7 +9,6 @@ import javafx.util.Duration;
 import toucan.modele.Case;
 
 import static toucan.modele.Toucan.CASELONGUEUR;
-import static toucan.modele.Toucan.COEFFDUREE;
 
 
 public class ContourAnimation extends Rectangle {
@@ -50,7 +49,7 @@ public class ContourAnimation extends Rectangle {
         st.setDelay(Duration.ZERO);
 
         // déplacement
-        TranslateTransition tt = new TranslateTransition(Duration.millis(temps * COEFFDUREE), this);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(temps * coeffduree), this);
         tt.setToX(depX); // distance à parcourir
         tt.setToY(depY);
         tt.setDelay(Duration.ZERO) ;

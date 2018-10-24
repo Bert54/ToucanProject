@@ -11,11 +11,11 @@ public class AlgoShell extends Algo {
 
     /**
      * Constructeur d'un algorithme de tri de shell
-     * @param lesCases cases du Toucan
-     * @param entiers tableau des entiers
      */
-    public AlgoShell(LesCases lesCases, int... entiers) {
-        super(lesCases, entiers);
+    public AlgoShell() {
+        super();
+        this.nomAlgo = "Tri de Shell";
+        this.caseTempForcee = true;
     }
 
     @Override

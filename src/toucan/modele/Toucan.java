@@ -1,12 +1,9 @@
 package toucan.modele;
 
-import javafx.concurrent.Task;
 import toucan.modele.algos.*;
 
 import java.util.Observable;
 import java.util.Random;
-
-import static toucan.modele.algos.AttributAlgo.*;
 
 public class Toucan extends Observable {
 
@@ -16,15 +13,14 @@ public class Toucan extends Observable {
     public static final int OUEST = 4;
     public static final int STABLE = 5;
     public static final int CASELONGUEUR = 50;
-    public static final int COEFFDUREE = 2;
     public static final int CASETEMPORDONNE = CASELONGUEUR * 5;
     public static final int NOMBREALEATOIREMAX = 20;
 
     private int[] tabEntiers;
     private Algo algoTri;
     private StatutAnimation statutAnimation = StatutAnimation.NON_INITIALISEE;; // permet de definir l'etat actuel de l'animation
-    private AttributAlgo algoActuel = ALGOBULLE;        // L'algorithme du tri a bulles est selectionne par defaut
     private LesCases lesCases;
+    public int coeffduree = 100;
 
     /**
      * Constructeur en connaissant le nombre de cases
@@ -50,6 +46,7 @@ public class Toucan extends Observable {
                 setPosition(i, 10, CASETEMPORDONNE);
             }
         }
+        this.algoTri = new AlgoBulle();
     }
 
     /**
@@ -121,10 +118,10 @@ public class Toucan extends Observable {
 
     /**
      * Setter sur le choix de l'algorithme
-     * @param att algorithme choisi
+     * @param algo algorithme choisi
      */
-    public void setAlgoActuel(AttributAlgo att) {
-        this.algoActuel = att;
+    public void setAlgoActuel(Algo algo) {
+        this.algoTri = algo;
         this.prevenirVues();
     }
 
@@ -132,8 +129,8 @@ public class Toucan extends Observable {
      * Getter sur le choix de l'algorithme
      * @return l'algorithme actuellement utilisé
      */
-    public AttributAlgo getAlgoActuel() {
-        return this.algoActuel;
+    public String getAlgoActuel() {
+        return this.algoTri.getNomAlgo();
     }
 
 
@@ -147,35 +144,7 @@ public class Toucan extends Observable {
         for(int i = 0 ; i < this.nbCases() ; i++){
             this.tabEntiers[i] = getValeurInitiale(i);
         }
-        switch (this.algoActuel) {
-            case ALGOBULLE:
-                this.algoTri = new AlgoBulle(this.lesCases, this.tabEntiers);
-                break;
-            case ALGOTEST:
-                this.algoTri = new AlgoTest(this.lesCases, this.tabEntiers);
-                break;
-            case ALGOSTUPIDE:
-                this.algoTri = new AlgoStupide(this.lesCases, this.tabEntiers);
-                break;
-            case ALGOSELECTION:
-                this.algoTri = new AlgoSelection(this.lesCases, this.tabEntiers);
-                break;
-            case ALGOINSERTION:
-                this.algoTri = new AlgoInsertion(this.lesCases, this.tabEntiers);
-                break;
-            case ALGOCOCKTAIL:
-                this.algoTri = new AlgoCocktail(this.lesCases, this.tabEntiers);
-                break;
-            case ALGOPEIGNE:
-                this.algoTri = new AlgoPeigne(this.lesCases, this.tabEntiers);
-                break;
-            case ALGOSHELL:
-                this.algoTri = new AlgoShell(this.lesCases, this.tabEntiers);
-                break;
-            case ALGODECALAGECIRC:
-                this.algoTri = new AlgoDecalageCirculaire(this.lesCases, this.tabEntiers);
-                break;
-        }
+        this.algoTri.setTab(this.lesCases, this.tabEntiers);
         this.algoTri.trier();
         prevenirVues();
     }
@@ -212,6 +181,10 @@ public class Toucan extends Observable {
     public void setVariableTemp(boolean status) {
         this.lesCases.setVariableTemp(status);
         this.prevenirVues();
+    }
+
+    public boolean varTempForceActif() {
+        return this.algoTri.variableForceeActive();
     }
 
     /**

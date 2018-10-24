@@ -6,7 +6,7 @@ import javafx.scene.control.Menu;
 import toucan.modele.GestionThreads;
 import toucan.modele.StatutAnimation;
 import toucan.modele.Toucan;
-import toucan.modele.algos.AttributAlgo;
+import toucan.modele.algos.*;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -31,47 +31,47 @@ public class MenuControleur implements Observer {
 
     @FXML
     public void setAlgoBulle() {
-        this.toucan.setAlgoActuel(AttributAlgo.ALGOBULLE);
+        this.toucan.setAlgoActuel(new AlgoBulle());
     }
 
     @FXML
     public void setAlgoTest() {
-        this.toucan.setAlgoActuel(AttributAlgo.ALGOTEST);
+        this.toucan.setAlgoActuel(new AlgoTest());
     }
 
     @FXML
     public void setAlgoStupide() {
-        this.toucan.setAlgoActuel(AttributAlgo.ALGOSTUPIDE);
+        this.toucan.setAlgoActuel(new AlgoStupide());
     }
 
     @FXML
     public void setAlgoInsertion() {
-        this.toucan.setAlgoActuel(AttributAlgo.ALGOINSERTION);
+        this.toucan.setAlgoActuel(new AlgoInsertion());
     }
 
     @FXML
     public void setAlgoSelection() {
-        this.toucan.setAlgoActuel(AttributAlgo.ALGOSELECTION);
+        this.toucan.setAlgoActuel(new AlgoSelection());
     }
 
     @FXML
     public void setAlgoCocktail() {
-        this.toucan.setAlgoActuel(AttributAlgo.ALGOCOCKTAIL);
+        this.toucan.setAlgoActuel(new AlgoCocktail());
     }
 
     @FXML
     public void setAlgoPeigne() {
-        this.toucan.setAlgoActuel(AttributAlgo.ALGOPEIGNE);
+        this.toucan.setAlgoActuel(new AlgoPeigne());
     }
 
     @FXML
     public void setAlgoDecCirc() {
-        this.toucan.setAlgoActuel(AttributAlgo.ALGODECALAGECIRC);
+        this.toucan.setAlgoActuel(new AlgoSelection());
     }
 
     @FXML
     public void setAlgoShell() {
-        this.toucan.setAlgoActuel(AttributAlgo.ALGOSHELL);
+        this.toucan.setAlgoActuel(new AlgoShell());
     }
 
     @Override

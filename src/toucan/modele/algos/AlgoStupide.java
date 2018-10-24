@@ -9,17 +9,14 @@ import java.util.Random;
 import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
 
-// N'utiliser ce tri qu'avec 5 cases ou moins.
-
 public class AlgoStupide  extends Algo {
 
     /**
      * Constructeur d'un algorithme stupide
-     * @param lesCases cases du Toucan
-     * @param entiers tableau des entiers
      */
-    public AlgoStupide(LesCases lesCases, int... entiers) {
-        super(lesCases, entiers);
+    public AlgoStupide() {
+        super();
+        this.nomAlgo = "Tri Stupide";
     }
 
     @Override

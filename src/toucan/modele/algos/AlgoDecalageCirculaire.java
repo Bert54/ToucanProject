@@ -9,8 +9,10 @@ import static toucan.modele.animation.AttributAnimation.*;
 
 public class AlgoDecalageCirculaire extends Algo {
 
-    public AlgoDecalageCirculaire(LesCases lesCases, int... entiers) {
-        super(lesCases, entiers);
+    public AlgoDecalageCirculaire() {
+        super();
+        this.nomAlgo = "Décalage Circulaire";
+        this.caseTempForcee = true;
     }
 
     @Override

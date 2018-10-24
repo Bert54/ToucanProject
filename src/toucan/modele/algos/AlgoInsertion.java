@@ -11,11 +11,11 @@ public class AlgoInsertion extends Algo {
 
     /**
      * Constructeur d'un algorithme de tri par insertion
-     * @param lesCases cases du Toucan
-     * @param entiers tableau des entiers
      */
-    public AlgoInsertion(LesCases lesCases, int... entiers) {
-        super(lesCases, entiers);
+    public AlgoInsertion() {
+        super();
+        this.nomAlgo = "Tri par Insertion";
+        this.caseTempForcee = true;
     }
 
     @Override

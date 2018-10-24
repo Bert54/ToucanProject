@@ -20,7 +20,6 @@ public class ControlesControleur implements Observer {
     private Image imagePause;
     private Image imageReset;
     private boolean majEnCours;
-    private Alert algoStupideAlerte;
     public Toucan toucan;
 
     @FXML
@@ -45,11 +44,6 @@ public class ControlesControleur implements Observer {
         this.imagePlay = new Image(getClass().getResource("/toucan/ressources/play.jpg").toString());
         this.imagePause = new Image(getClass().getResource("/toucan/ressources/pause.jpg").toString());
         this.imageReset = new Image(getClass().getResource("/toucan/ressources/rewind.jpg").toString());
-        this.algoStupideAlerte = new Alert(Alert.AlertType.WARNING);
-        this.algoStupideAlerte.setTitle("Avertissement sur l'algorithme de tri stupide");
-        this.algoStupideAlerte.setHeaderText(null);
-        this.algoStupideAlerte.setContentText("Attention, l'algorithme de tri stupide est un algorithme extrêment inefficace. Il est donc recommandé de ne l'utiliser qu'avec 5 cases ou moins pour éviter les problèmes de performance.");
-        this.algoStupideAlerte.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         this.majEnCours = false;
     }
 
@@ -87,16 +81,13 @@ public class ControlesControleur implements Observer {
     public void algoVariableTempDetection() {
         if (!this.majEnCours) {
             this.majEnCours = true; // Permet d'eviter une boucle infinie
-            switch (this.toucan.getAlgoActuel()) {
-                case ALGOINSERTION:
-                case ALGODECALAGECIRC:
-                case ALGOSHELL:
-                    this.varTempCheckBox.setSelected(true);
-                    this.toggleVariableTemp();
-                    this.varTempCheckBox.setDisable(true);
-                    break;
-                default:
-                    this.varTempCheckBox.setDisable(false);
+            if (this.toucan.varTempForceActif()) {
+                this.varTempCheckBox.setSelected(true);
+                this.toggleVariableTemp();
+                this.varTempCheckBox.setDisable(true);
+            }
+            else {
+                this.varTempCheckBox.setDisable(false);
             }
             this.majEnCours = false;
         }
@@ -106,36 +97,7 @@ public class ControlesControleur implements Observer {
      * Met a jour le label affichant l'algo en cours
      */
     public void updateLabel() {
-        switch (this.toucan.getAlgoActuel()) {
-            case ALGOBULLE:
-                this.nomAlgoLabel.setText("Tri à Bulles");
-                break;
-            case ALGOTEST:
-                this.nomAlgoLabel.setText("Tri de Test");
-                break;
-            case ALGOSTUPIDE:
-                this.nomAlgoLabel.setText("Tri Stupide");
-                this.algoStupideAlerte.showAndWait(); // Averti l'utilisateur de l'inefficacite monumentale du tri stupide
-                break;
-            case ALGOINSERTION:
-                this.nomAlgoLabel.setText("Tri par Insertion");
-                break;
-            case ALGOSELECTION:
-                this.nomAlgoLabel.setText("Tri par Sélection");
-                break;
-            case ALGOCOCKTAIL:
-                this.nomAlgoLabel.setText("Tri Cocktail");
-                break;
-            case ALGOPEIGNE:
-                this.nomAlgoLabel.setText("Tri à Peigne");
-                break;
-            case ALGOSHELL:
-                this.nomAlgoLabel.setText("Tri de Shell");
-                break;
-            case ALGODECALAGECIRC:
-                this.nomAlgoLabel.setText("Tri Décalage Circulaire");
-                break;
-        }
+        this.nomAlgoLabel.setText(this.toucan.getAlgoActuel());
     }
 
     /**

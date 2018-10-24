@@ -4,9 +4,7 @@ import javafx.animation.ParallelTransition;
 
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
-import toucan.modele.Case;
 import toucan.modele.Toucan;
-import toucan.modele.algos.AttributAlgo;
 
 import java.util.ArrayList;
 

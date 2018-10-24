@@ -11,11 +11,10 @@ public class AlgoSelection extends Algo {
 
     /**
      * Constructeur d'un algorithme de tri par selection
-     * @param lesCases cases du Toucan
-     * @param entiers tableau des entiers
      */
-    public AlgoSelection(LesCases lesCases, int... entiers) {
-        super(lesCases, entiers);
+    public AlgoSelection() {
+        super();
+        this.nomAlgo = "Tri par Sélection";
     }
 
     @Override

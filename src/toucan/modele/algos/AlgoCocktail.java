@@ -12,12 +12,10 @@ public class AlgoCocktail extends Algo {
 
     /**
      * Constructeur d'un algorithme de tri cocktail
-     *
-     * @param lesCases cases du Toucan
-     * @param entiers tableau des entiers
      */
-    public AlgoCocktail(LesCases lesCases, int... entiers) {
-        super(lesCases, entiers);
+    public AlgoCocktail() {
+        super();
+        this.nomAlgo = "Tri Cocktail";
     }
 
     @Override

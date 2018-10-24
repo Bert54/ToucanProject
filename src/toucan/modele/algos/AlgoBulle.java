@@ -11,11 +11,10 @@ public class AlgoBulle extends Algo {
 
     /**
      * Constructeur d'un algorithme de tri à bulles
-     * @param lesCases cases du Toucan
-     * @param entiers tableau des entiers
      */
-    public AlgoBulle(LesCases lesCases, int... entiers) {
-        super(lesCases, entiers);
+    public AlgoBulle() {
+        super();
+        this.nomAlgo = "Tri à Bulles";
     }
 
     @Override
