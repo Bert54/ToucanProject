@@ -31,47 +31,47 @@ public class MenuControleur implements Observer {
 
     @FXML
     public void setAlgoBulle() {
-        this.toucan.setAlgoActuel(new AlgoBulle());
+        this.toucan.setAlgoActuel(new AlgoBulle(this.toucan));
     }
 
     @FXML
     public void setAlgoTest() {
-        this.toucan.setAlgoActuel(new AlgoTest());
+        this.toucan.setAlgoActuel(new AlgoTest(this.toucan));
     }
 
     @FXML
     public void setAlgoStupide() {
-        this.toucan.setAlgoActuel(new AlgoStupide());
+        this.toucan.setAlgoActuel(new AlgoStupide(this.toucan));
     }
 
     @FXML
     public void setAlgoInsertion() {
-        this.toucan.setAlgoActuel(new AlgoInsertion());
+        this.toucan.setAlgoActuel(new AlgoInsertion(this.toucan));
     }
 
     @FXML
     public void setAlgoSelection() {
-        this.toucan.setAlgoActuel(new AlgoSelection());
+        this.toucan.setAlgoActuel(new AlgoSelection(this.toucan));
     }
 
     @FXML
     public void setAlgoCocktail() {
-        this.toucan.setAlgoActuel(new AlgoCocktail());
+        this.toucan.setAlgoActuel(new AlgoCocktail(this.toucan));
     }
 
     @FXML
     public void setAlgoPeigne() {
-        this.toucan.setAlgoActuel(new AlgoPeigne());
+        this.toucan.setAlgoActuel(new AlgoPeigne(this.toucan));
     }
 
     @FXML
     public void setAlgoDecCirc() {
-        this.toucan.setAlgoActuel(new AlgoSelection());
+        this.toucan.setAlgoActuel(new AlgoDecalageCirculaire(this.toucan));
     }
 
     @FXML
     public void setAlgoShell() {
-        this.toucan.setAlgoActuel(new AlgoShell());
+        this.toucan.setAlgoActuel(new AlgoShell(this.toucan));
     }
 
     @Override

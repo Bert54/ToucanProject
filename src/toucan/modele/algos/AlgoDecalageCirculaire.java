@@ -3,14 +3,15 @@ package toucan.modele.algos;
 import javafx.concurrent.Task;
 import toucan.modele.GestionThreads;
 import toucan.modele.LesCases;
+import toucan.modele.Toucan;
 
 import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
 
 public class AlgoDecalageCirculaire extends Algo {
 
-    public AlgoDecalageCirculaire() {
-        super();
+    public AlgoDecalageCirculaire(Toucan mod) {
+        super(mod);
         this.nomAlgo = "Décalage Circulaire";
         this.caseTempForcee = true;
     }
@@ -34,8 +35,7 @@ public class AlgoDecalageCirculaire extends Algo {
 
                         executerAux(AFFECTATIONVCASE, lesCases.nbCases() - 1);
                         tabEntiers[lesCases.nbCases() - 1] = x;
-
-                        Thread.sleep(2);
+                        toucan.prevenirVues();
                     }
 
                     return null;

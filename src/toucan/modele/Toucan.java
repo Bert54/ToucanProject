@@ -18,9 +18,9 @@ public class Toucan extends Observable {
 
     private int[] tabEntiers;
     private Algo algoTri;
-    private StatutAnimation statutAnimation = StatutAnimation.NON_INITIALISEE;; // permet de definir l'etat actuel de l'animation
+    private StatutAnimation statutAnimation = StatutAnimation.NON_INITIALISEE; // permet de definir l'etat actuel de l'animation
     private LesCases lesCases;
-    public int coeffDuree = 5;
+    private int coeffDuree = 5;
 
     /**
      * Constructeur en connaissant le nombre de cases
@@ -46,7 +46,7 @@ public class Toucan extends Observable {
                 setPosition(i, 10, CASETEMPORDONNE);
             }
         }
-        this.algoTri = new AlgoBulle();
+        this.algoTri = new AlgoBulle(this);
     }
 
     /**
@@ -146,7 +146,7 @@ public class Toucan extends Observable {
         }
         this.algoTri.setTab(this.lesCases, this.tabEntiers);
         this.algoTri.trier();
-        prevenirVues();
+        //prevenirVues();
     }
 
     /**

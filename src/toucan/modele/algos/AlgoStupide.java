@@ -3,6 +3,7 @@ package toucan.modele.algos;
 import javafx.concurrent.Task;
 import toucan.modele.GestionThreads;
 import toucan.modele.LesCases;
+import toucan.modele.Toucan;
 
 import java.util.Random;
 
@@ -14,8 +15,8 @@ public class AlgoStupide  extends Algo {
     /**
      * Constructeur d'un algorithme stupide
      */
-    public AlgoStupide() {
-        super();
+    public AlgoStupide(Toucan mod) {
+        super(mod);
         this.nomAlgo = "Tri Stupide";
     }
 
@@ -48,11 +49,8 @@ public class AlgoStupide  extends Algo {
                         else {
                             executerAux(AFFECTATION, rVal1, rVal2);
                         }
-
-                        Thread.sleep(2);
-
+                        toucan.prevenirVues();
                     }
-
                     return null;
                 }
             };

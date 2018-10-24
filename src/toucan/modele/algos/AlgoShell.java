@@ -3,6 +3,7 @@ package toucan.modele.algos;
 import javafx.concurrent.Task;
 import toucan.modele.GestionThreads;
 import toucan.modele.LesCases;
+import toucan.modele.Toucan;
 
 import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
@@ -12,8 +13,8 @@ public class AlgoShell extends Algo {
     /**
      * Constructeur d'un algorithme de tri de shell
      */
-    public AlgoShell() {
-        super();
+    public AlgoShell(Toucan mod) {
+        super(mod);
         this.nomAlgo = "Tri de Shell";
         this.caseTempForcee = true;
     }
@@ -45,7 +46,7 @@ public class AlgoShell extends Algo {
                             tabEntiers[j] = valeur;
                             executerAux(AFFECTATIONVCASE, j);
                         }
-                        Thread.sleep(2);
+                        Thread.sleep(0);
                     }
 
                     return null;

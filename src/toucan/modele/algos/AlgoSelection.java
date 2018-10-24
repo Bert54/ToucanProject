@@ -3,6 +3,7 @@ package toucan.modele.algos;
 import javafx.concurrent.Task;
 import toucan.modele.GestionThreads;
 import toucan.modele.LesCases;
+import toucan.modele.Toucan;
 
 import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
@@ -12,8 +13,8 @@ public class AlgoSelection extends Algo {
     /**
      * Constructeur d'un algorithme de tri par selection
      */
-    public AlgoSelection() {
-        super();
+    public AlgoSelection(Toucan mod) {
+        super(mod);
         this.nomAlgo = "Tri par Sélection";
     }
 
@@ -51,7 +52,7 @@ public class AlgoSelection extends Algo {
                             tabEntiers[i] = tabEntiers[min];
                             tabEntiers[min] = temp;
                         }
-                        Thread.sleep(2);
+                        Thread.sleep(0);
                     }
 
                     return null;

@@ -3,6 +3,7 @@ package toucan.modele.algos;
 import javafx.concurrent.Task;
 import toucan.modele.GestionThreads;
 import toucan.modele.LesCases;
+import toucan.modele.Toucan;
 
 import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
@@ -12,8 +13,8 @@ public class AlgoBulle extends Algo {
     /**
      * Constructeur d'un algorithme de tri à bulles
      */
-    public AlgoBulle() {
-        super();
+    public AlgoBulle(Toucan mod) {
+        super(mod);
         this.nomAlgo = "Tri à Bulles";
     }
 
@@ -47,7 +48,8 @@ public class AlgoBulle extends Algo {
                             }
                         }
                         n = n-1 ;
-                        Thread.sleep(2);
+                        toucan.prevenirVues();
+                        Thread.sleep(0);
                     }
                     return null;
                 }

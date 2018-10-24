@@ -3,6 +3,7 @@ package toucan.modele.algos;
 import javafx.concurrent.Task;
 import toucan.modele.GestionThreads;
 import toucan.modele.LesCases;
+import toucan.modele.Toucan;
 
 import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
@@ -12,8 +13,8 @@ public class AlgoTest extends Algo {
     /**
      * Constructeur d'un algorithme de test
      */
-    public AlgoTest() {
-        super();
+    public AlgoTest(Toucan mod) {
+        super(mod);
         this.nomAlgo = "Algo Test";
     }
 

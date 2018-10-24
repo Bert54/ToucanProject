@@ -3,6 +3,7 @@ package toucan.modele.algos;
 import javafx.concurrent.Task;
 import toucan.modele.GestionThreads;
 import toucan.modele.LesCases;
+import toucan.modele.Toucan;
 
 import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
@@ -12,8 +13,8 @@ public class AlgoPeigne extends Algo{
     /**
      * Constructeur d'un algorithme de tri a peigne
      */
-    public AlgoPeigne() {
-        super();
+    public AlgoPeigne(Toucan mod) {
+        super(mod);
         this.nomAlgo = "Tri à Peigne";
     }
 
@@ -25,7 +26,6 @@ public class AlgoPeigne extends Algo{
 
                 @Override
                 protected Void call() throws Exception {
-
                     int gap = tabEntiers.length;
                     boolean encore = true;
                     int temp;
@@ -51,7 +51,7 @@ public class AlgoPeigne extends Algo{
                                     executerAux(AFFECTATION, i, i + gap);
                                 }
                             }
-                            Thread.sleep(2);
+                            Thread.sleep(0);
                         }
                     }
 

@@ -1,6 +1,7 @@
 package toucan.modele.algos;
 
 import toucan.modele.LesCases;
+import toucan.modele.Toucan;
 import toucan.modele.animation.*;
 
 import java.util.HashMap;
@@ -10,13 +11,14 @@ public abstract class Algo {
     protected HashMap<AttributAnimation, IAnimation> animationsCases;
     protected LesCases lesCases;
     protected String nomAlgo;
+    protected Toucan toucan;
     protected boolean caseTempForcee;
     protected int[] tabEntiers;
 
     /**
      * Constructeur d'un algorithme (inutilisable pour le moment)
      */
-    public Algo() {
+    public Algo(Toucan mod) {
         this.animationsCases = new HashMap<>(); // Contient les types d'animation possibles, chacunes referencees par un AttributAnimation
         this.animationsCases.put(AttributAnimation.AFFECTATION, AffectationCaseCase.getInstance());
         this.animationsCases.put(AttributAnimation.COMPARAISON, ComparaisonCaseCase.getInstance());
@@ -24,6 +26,7 @@ public abstract class Algo {
         this.animationsCases.put(AttributAnimation.AFFECTATIONVCASE, AffectationValCase.getInstance());
         this.animationsCases.put(AttributAnimation.AFFECTATIONECRASEMENTCASECASE, AffectationEcrasementCaseCase.getInstance());
         this.nomAlgo = "";
+        this.toucan = mod;
         this.caseTempForcee = false;
     }
 
