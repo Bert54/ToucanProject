@@ -116,8 +116,7 @@ public class ControlesControleur implements Observer {
      */
     @FXML
     public void setVitesse() {
-        System.out.println("cc");
-        this.toucan.setVitesse((int)sliderVitesse.getValue());
+        this.toucan.setVitesse((int)sliderVitesse.getValue(), (int)sliderVitesse.getMax()+1);
     }
 
     @FXML
@@ -127,7 +126,6 @@ public class ControlesControleur implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-
         Runnable command = new Runnable() {
             @Override
             public void run() {
@@ -136,28 +134,33 @@ public class ControlesControleur implements Observer {
                         playPauseImage.setImage(imagePause);
                         varTempCheckBox.setDisable(true);
                         boutonStop.setDisable(true);
+                        sliderVitesse.setDisable(true);
                         break;
                     case FINIE:
                         playPauseImage.setImage(imageReset);
                         varTempCheckBox.setDisable(true);
                         boutonStop.setDisable(true);
+                        sliderVitesse.setDisable(true);
                         break;
                     case EN_COURS_PAUSE:
                         playPauseImage.setImage(imagePlay);
                         varTempCheckBox.setDisable(true);
                         boutonStop.setDisable(false);
+                        sliderVitesse.setDisable(true);
                         break;
                     case NON_INITIALISEE:
                         playPauseImage.setImage(imagePlay);
                         boutonStop.setDisable(true);
                         algoVariableTempDetection();
+                        sliderVitesse.setDisable(false);
                 }
                 updateLabel();
             }
         };
         if (Platform.isFxApplicationThread()) {
             command.run();
-        } else {
+        }
+        else {
             Platform.runLater(command);
         }
     }

@@ -195,16 +195,20 @@ public class Toucan extends Observable {
         return this.lesCases.variableTempActivee();
     }
 
-    public void setVitesse(int nouveauCoeff) {
-        if (200 - nouveauCoeff == 0) {
-            this.coeffDuree = 1;
-        }
-        else {
-            this.coeffDuree = 200 / ( 200 - nouveauCoeff);
-        }
-        System.out.println(coeffDuree);
+    /**
+     * Setter sur la vitesse des animations
+     * @param nouveauCoeff nouvelle vitesse
+     * @param valMax valeur maximale du slider
+     */
+    public void setVitesse(int nouveauCoeff, int valMax) {
+        this.coeffDuree = valMax - nouveauCoeff;
     }
 
+    /**
+     * Getter sur la vitesse des animations
+     * @return le vitesse de l'animation (format administrateur, entre 1 et 10)
+     * 1 étant la vitesse le plus rapide
+     */
     public int getVitesse() {
         return this.coeffDuree;
     }

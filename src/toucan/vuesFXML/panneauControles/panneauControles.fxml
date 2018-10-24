@@ -65,9 +65,10 @@
             </VBox>
             <VBox prefHeight="109.0" prefWidth="251.0">
                <children>
-                  <Slider fx:id="sliderVitesse" max="200.0" onDragDone="#setVitesse" showTickLabels="true" showTickMarks="true" value="100.0">
+                  <Label text="Vitesse de l'animation" />
+                  <Slider fx:id="sliderVitesse" majorTickUnit="1.0" max="10.0" min="1.0" onMouseReleased="#setVitesse" showTickLabels="true" showTickMarks="true" value="5.0">
                      <VBox.margin>
-                        <Insets right="10.0" top="20.0" />
+                        <Insets right="10.0" />
                      </VBox.margin>
                   </Slider>
                   <CheckBox fx:id="varTempCheckBox" alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#toggleVariableTemp" prefHeight="45.0" prefWidth="188.0" text="Visualisation variable temporaire" wrapText="true">
