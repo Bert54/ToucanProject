@@ -10,6 +10,7 @@ public enum AttributAlgo {
     ALGOCOCKTAIL,
     ALGOPEIGNE,
     ALGOSHELL,
+    ALGODECALAGECIRC;
 }
 
  /**

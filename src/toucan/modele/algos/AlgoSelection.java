@@ -1,7 +1,10 @@
 package toucan.modele.algos;
 
+import javafx.concurrent.Task;
+import toucan.modele.GestionThreads;
 import toucan.modele.LesCases;
 
+import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
 
 public class AlgoSelection extends Algo {
@@ -17,31 +20,50 @@ public class AlgoSelection extends Algo {
 
     @Override
     public void trier() {
-        int min;
-        int temp;
-        for (int i = 0 ; i < this.tabEntiers.length - 1 ; i++) {
-            min = i;
-            for (int j = min ; j < this.tabEntiers.length ; j++) {
-                if (min != j) {
-                    this.executerAux(COMPARAISON, min, j);
+
+        try {
+            Task<Void> task = new Task<Void>() {
+
+                @Override
+                protected Void call() throws Exception {
+
+                    int min;
+                    int temp;
+                    for (int i = 0 ; i < tabEntiers.length - 1 ; i++) {
+                        min = i;
+                        for (int j = min ; j < tabEntiers.length ; j++) {
+                            if (min != j) {
+                                executerAux(COMPARAISON, min, j);
+                            }
+                            if (tabEntiers[j] < tabEntiers[min]) {
+                                min = j;
+                            }
+                        }
+                        if (min != i) {
+                            if (lesCases.variableTempActivee()) {
+                                executerAux(AFFECTATIONCVAL, i);
+                                executerAux(AFFECTATIONECRASEMENTCASECASE, min, i);
+                                executerAux(AFFECTATIONVCASE, min);
+                            }
+                            else {
+                                executerAux(AFFECTATION, min, i);
+                            }
+                            temp = tabEntiers[i];
+                            tabEntiers[i] = tabEntiers[min];
+                            tabEntiers[min] = temp;
+                        }
+                        Thread.sleep(2);
+                    }
+
+                    return null;
                 }
-                if (this.tabEntiers[j] < this.tabEntiers[min]) {
-                    min = j;
-                }
-            }
-            if (min != i) {
-                if (this.lesCases.variableTempActivee()) {
-                    this.executerAux(AFFECTATIONCVAL, i);
-                    this.executerAux(AFFECTATIONECRASEMENTCASECASE, min, i);
-                    this.executerAux(AFFECTATIONVCASE, min);
-                }
-                else {
-                    this.executerAux(AFFECTATION, min, i);
-                }
-                temp = this.tabEntiers[i];
-                this.tabEntiers[i] = this.tabEntiers[min];
-                this.tabEntiers[min] = temp;
-            }
+            };
+
+            GestionThreads.getInstance().lancer(task);
+            Thread.sleep(0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
     }
 }

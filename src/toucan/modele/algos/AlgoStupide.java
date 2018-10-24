@@ -1,9 +1,12 @@
 package toucan.modele.algos;
 
+import javafx.concurrent.Task;
+import toucan.modele.GestionThreads;
 import toucan.modele.LesCases;
 
 import java.util.Random;
 
+import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
 
 // N'utiliser ce tri qu'avec 5 cases ou moins.
@@ -21,26 +24,46 @@ public class AlgoStupide  extends Algo {
 
     @Override
     public void trier() {
-        Random random = new Random();
-        int temp;
-        int rVal1;
-        int rVal2;
-        while (!estTrie()) {
-            rVal1 = random.nextInt(this.tabEntiers.length - 1);
-            do {
-                rVal2 = random.nextInt(this.tabEntiers.length - 1);
-            } while(rVal1 == rVal2);
-            temp = tabEntiers[rVal1];
-            tabEntiers[rVal1] = tabEntiers[rVal2];
-            tabEntiers[rVal2] = temp;
-            if (this.lesCases.variableTempActivee()) {
-                this.executerAux(AFFECTATIONCVAL, rVal1);
-                this.executerAux(AFFECTATIONECRASEMENTCASECASE, rVal2, rVal1);
-                this.executerAux(AFFECTATIONVCASE, rVal2);
-            }
-            else {
-                this.executerAux(AFFECTATION, rVal1, rVal2);
-            }
+
+        try {
+            Task<Void> task = new Task<Void>() {
+
+                @Override
+                protected Void call() throws Exception {
+
+                    Random random = new Random();
+                    int temp;
+                    int rVal1;
+                    int rVal2;
+                    while (!estTrie()) {
+                        rVal1 = random.nextInt(tabEntiers.length - 1);
+                        do {
+                            rVal2 = random.nextInt(tabEntiers.length - 1);
+                        } while(rVal1 == rVal2);
+                        temp = tabEntiers[rVal1];
+                        tabEntiers[rVal1] = tabEntiers[rVal2];
+                        tabEntiers[rVal2] = temp;
+                        if (lesCases.variableTempActivee()) {
+                            executerAux(AFFECTATIONCVAL, rVal1);
+                            executerAux(AFFECTATIONECRASEMENTCASECASE, rVal2, rVal1);
+                            executerAux(AFFECTATIONVCASE, rVal2);
+                        }
+                        else {
+                            executerAux(AFFECTATION, rVal1, rVal2);
+                        }
+
+                        Thread.sleep(2);
+
+                    }
+
+                    return null;
+                }
+            };
+
+            GestionThreads.getInstance().lancer(task);
+            Thread.sleep(0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

@@ -2,6 +2,7 @@ package toucan.vuesFXML.panneauAnimation;
 
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -50,30 +51,39 @@ public class PanneauAnimation implements Observer {
         });
     }
 
-    public void run() {
-        dessiner() ;
-    }
-
     @Override
     public void update(Observable o, Object arg) {
-        switch (this.toucan.getStatutAnimation()) {
-            case NON_INITIALISEE:      //Initialise les animations des cases
-                try {
-                    this.initialize();
-                } catch (Exception e) {
-                    e.printStackTrace();
+
+        Runnable command = new Runnable() {
+
+            @Override
+            public void run() {
+                switch (toucan.getStatutAnimation()) {
+                    case NON_INITIALISEE:      //Initialise les animations des cases
+                        try {
+                            initialize();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        dessiner();
+                        break;
+                    case EN_COURS_ACTIF:       //Joue l'animation
+                        mouv.play();
+                        break;
+                    case EN_COURS_PAUSE:      // Met en pause l'animation
+                        mouv.pause();
+                        break;
+                    default:                  // (StatutAnimation.FINIT) Stoppe l'animation lorsqu'il n'y a plus de mouvements
+                        mouv.setRate(-1) ;
+                        mouv.stop();
                 }
-                this.run();
-                break;
-            case EN_COURS_ACTIF:       //Joue l'animation
-                this.mouv.play();
-                break;
-            case EN_COURS_PAUSE:      // Met en pause l'animation
-                this.mouv.pause();
-                break;
-            default:                  // (StatutAnimation.FINIT) Stoppe l'animation lorsqu'il n'y a plus de mouvements
-                mouv.setRate(-1) ;
-                mouv.stop();
+            }
+
+        };
+        if (Platform.isFxApplicationThread()) {
+            command.run();
+        } else {
+            Platform.runLater(command);
         }
     }
 

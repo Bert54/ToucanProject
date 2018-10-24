@@ -1,5 +1,6 @@
 package toucan.modele;
 
+import javafx.concurrent.Task;
 import toucan.modele.algos.*;
 
 import java.util.Observable;
@@ -66,6 +67,7 @@ public class Toucan extends Observable {
     public void setStatutAnimation(int s) {
         switch (s) {
             case 0:
+                GestionThreads.getInstance().detruireTout();
                 this.statutAnimation = StatutAnimation.NON_INITIALISEE;
                 break;
             case 1:
@@ -169,6 +171,9 @@ public class Toucan extends Observable {
                 break;
             case ALGOSHELL:
                 this.algoTri = new AlgoShell(this.lesCases, this.tabEntiers);
+                break;
+            case ALGODECALAGECIRC:
+                this.algoTri = new AlgoDecalageCirculaire(this.lesCases, this.tabEntiers);
                 break;
         }
         this.algoTri.trier();

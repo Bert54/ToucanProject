@@ -1,5 +1,6 @@
 package toucan.vuesFXML.panneauControles;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -88,6 +89,7 @@ public class ControlesControleur implements Observer {
             this.majEnCours = true; // Permet d'eviter une boucle infinie
             switch (this.toucan.getAlgoActuel()) {
                 case ALGOINSERTION:
+                case ALGODECALAGECIRC:
                 case ALGOSHELL:
                     this.varTempCheckBox.setSelected(true);
                     this.toggleVariableTemp();
@@ -130,6 +132,9 @@ public class ControlesControleur implements Observer {
             case ALGOSHELL:
                 this.nomAlgoLabel.setText("Tri de Shell");
                 break;
+            case ALGODECALAGECIRC:
+                this.nomAlgoLabel.setText("Tri Décalage Circulaire");
+                break;
         }
     }
 
@@ -153,27 +158,38 @@ public class ControlesControleur implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        switch (this.toucan.getStatutAnimation()) {
-            case EN_COURS_ACTIF:
-                this.playPauseImage.setImage(this.imagePause);
-                this.varTempCheckBox.setDisable(true);
-                this.boutonStop.setDisable(true);
-                break;
-            case FINIE:
-                this.playPauseImage.setImage(this.imageReset);
-                this.varTempCheckBox.setDisable(true);
-                this.boutonStop.setDisable(true);
-                break;
-            case EN_COURS_PAUSE:
-                this.playPauseImage.setImage(this.imagePlay);
-                this.varTempCheckBox.setDisable(true);
-                this.boutonStop.setDisable(false);
-                break;
-            case NON_INITIALISEE:
-                this.playPauseImage.setImage(this.imagePlay);
-                this.boutonStop.setDisable(true);
-                this.algoVariableTempDetection();
+
+        Runnable command = new Runnable() {
+            @Override
+            public void run() {
+                switch (toucan.getStatutAnimation()) {
+                    case EN_COURS_ACTIF:
+                        playPauseImage.setImage(imagePause);
+                        varTempCheckBox.setDisable(true);
+                        boutonStop.setDisable(true);
+                        break;
+                    case FINIE:
+                        playPauseImage.setImage(imageReset);
+                        varTempCheckBox.setDisable(true);
+                        boutonStop.setDisable(true);
+                        break;
+                    case EN_COURS_PAUSE:
+                        playPauseImage.setImage(imagePlay);
+                        varTempCheckBox.setDisable(true);
+                        boutonStop.setDisable(false);
+                        break;
+                    case NON_INITIALISEE:
+                        playPauseImage.setImage(imagePlay);
+                        boutonStop.setDisable(true);
+                        algoVariableTempDetection();
+                }
+                updateLabel();
+            }
+        };
+        if (Platform.isFxApplicationThread()) {
+            command.run();
+        } else {
+            Platform.runLater(command);
         }
-        this.updateLabel();
     }
 }

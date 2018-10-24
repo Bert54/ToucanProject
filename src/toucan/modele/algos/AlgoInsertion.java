@@ -1,7 +1,10 @@
 package toucan.modele.algos;
 
+import javafx.concurrent.Task;
+import toucan.modele.GestionThreads;
 import toucan.modele.LesCases;
 
+import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
 
 public class AlgoInsertion extends Algo {
@@ -17,19 +20,38 @@ public class AlgoInsertion extends Algo {
 
     @Override
     public void trier() {
-        int mem;
-        int j;
-        for (int i = 1 ; i < this.tabEntiers.length ; i++) {
-            mem = this.tabEntiers[i];
-            this.executerAux(AFFECTATIONCVAL, i);
-            j = i - 1;
-            while (j >= 0 && this.tabEntiers[j] > mem) {
-                this.tabEntiers[j + 1] = this.tabEntiers[j];
-                this.executerAux(AFFECTATIONECRASEMENTCASECASE, j, j + 1);
-                j--;
-            }
-            this.tabEntiers[j + 1] = mem;
-            this.executerAux(AFFECTATIONVCASE, j + 1);
+
+        try {
+            Task<Void> task = new Task<Void>() {
+
+                @Override
+                protected Void call() throws Exception {
+
+                    int mem;
+                    int j;
+                    for (int i = 1 ; i < tabEntiers.length ; i++) {
+                        mem = tabEntiers[i];
+                        executerAux(AFFECTATIONCVAL, i);
+                        j = i - 1;
+                        while (j >= 0 && tabEntiers[j] > mem) {
+                            tabEntiers[j + 1] = tabEntiers[j];
+                            executerAux(AFFECTATIONECRASEMENTCASECASE, j, j + 1);
+                            j--;
+                        }
+                        tabEntiers[j + 1] = mem;
+                        executerAux(AFFECTATIONVCASE, j + 1);
+                        Thread.sleep(2);
+                    }
+
+                    return null;
+                }
+            };
+
+            GestionThreads.getInstance().lancer(task);
+            Thread.sleep(0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
     }
 }

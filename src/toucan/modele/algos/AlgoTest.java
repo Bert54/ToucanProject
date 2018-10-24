@@ -1,7 +1,10 @@
 package toucan.modele.algos;
 
+import javafx.concurrent.Task;
+import toucan.modele.GestionThreads;
 import toucan.modele.LesCases;
 
+import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
 
 public class AlgoTest extends Algo {
@@ -17,11 +20,28 @@ public class AlgoTest extends Algo {
 
     @Override
     public void trier() {
-        this.executerAux(AFFECTATIONCVAL, 0);
-        this.executerAux(AFFECTATIONECRASEMENTCASECASE, 0, 1);
-        this.executerAux(AFFECTATIONECRASEMENTCASECASE, 3, 6);
-        this.executerAux(AFFECTATIONECRASEMENTCASECASE, 7, 2);
-        this.executerAux(AFFECTATIONVCASE, 4);
+
+        try {
+            Task<Void> task = new Task<Void>() {
+
+                @Override
+                protected Void call() throws Exception {
+
+                    executerAux(AFFECTATIONCVAL, 0);
+                    executerAux(AFFECTATIONECRASEMENTCASECASE, 0, 1);
+                    executerAux(AFFECTATIONECRASEMENTCASECASE, 3, 6);
+                    executerAux(AFFECTATIONECRASEMENTCASECASE, 7, 2);
+                    executerAux(AFFECTATIONVCASE, 4);
+
+                    return null;
+                }
+            };
+
+            GestionThreads.getInstance().lancer(task);
+            Thread.sleep(0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 }

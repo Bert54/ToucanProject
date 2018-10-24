@@ -3,6 +3,7 @@ package toucan.vuesFXML.panneauMenu;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
+import toucan.modele.GestionThreads;
 import toucan.modele.StatutAnimation;
 import toucan.modele.Toucan;
 import toucan.modele.algos.AttributAlgo;
@@ -24,6 +25,7 @@ public class MenuControleur implements Observer {
 
     @FXML
     public void fermerProgramme() {
+        GestionThreads.getInstance().detruireTout();
         Platform.exit() ;
     }
 
@@ -63,17 +65,35 @@ public class MenuControleur implements Observer {
     }
 
     @FXML
+    public void setAlgoDecCirc() {
+        this.toucan.setAlgoActuel(AttributAlgo.ALGODECALAGECIRC);
+    }
+
+    @FXML
     public void setAlgoShell() {
         this.toucan.setAlgoActuel(AttributAlgo.ALGOSHELL);
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        if (this.toucan.getStatutAnimation() == StatutAnimation.NON_INITIALISEE) {
-            this.menuSelectionAlgo.setDisable(false);
-        }
-        else {
-            this.menuSelectionAlgo.setDisable(true);
+
+        Runnable command = new Runnable() {
+
+            @Override
+            public void run() {
+                if (toucan.getStatutAnimation() == StatutAnimation.NON_INITIALISEE) {
+                    menuSelectionAlgo.setDisable(false);
+                }
+                else {
+                    menuSelectionAlgo.setDisable(true);
+                }
+            }
+
+        };
+        if (Platform.isFxApplicationThread()) {
+            command.run();
+        } else {
+            Platform.runLater(command);
         }
     }
 }

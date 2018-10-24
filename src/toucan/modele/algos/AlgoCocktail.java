@@ -1,7 +1,10 @@
 package toucan.modele.algos;
 
+import javafx.concurrent.Task;
+import toucan.modele.GestionThreads;
 import toucan.modele.LesCases;
 
+import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
 import static toucan.modele.animation.AttributAnimation.AFFECTATIONVCASE;
 
@@ -19,47 +22,65 @@ public class AlgoCocktail extends Algo {
 
     @Override
     public void trier() {
-        boolean encore = true;
-        int debut = 0;
-        int fin = lesCases.nbCases() - 1;
-        while(encore == true){
-            encore = false;
-            for(int j = debut ; j < fin ; j++){
-                this.executerAux(COMPARAISON, j, j+1);
-                if (this.tabEntiers[j] > this.tabEntiers[j+1]) {
-                    int var = this.tabEntiers[j];
-                    this.tabEntiers[j] = this.tabEntiers[j + 1];
-                    this.tabEntiers[j + 1] = var;
-                    if (this.lesCases.variableTempActivee()) {
-                        this.executerAux(AFFECTATIONCVAL, j);
-                        this.executerAux(AFFECTATIONECRASEMENTCASECASE, j + 1, j);
-                        this.executerAux(AFFECTATIONVCASE, j + 1);
+
+        try {
+            Task<Void> task = new Task<Void>() {
+
+                @Override
+                protected Void call() throws Exception {
+
+                    boolean encore = true;
+                    int debut = 0;
+                    int fin = lesCases.nbCases() - 1;
+                    while(encore == true){
+                        encore = false;
+                        for(int j = debut ; j < fin ; j++){
+                            executerAux(COMPARAISON, j, j+1);
+                            if (tabEntiers[j] > tabEntiers[j+1]) {
+                                int var = tabEntiers[j];
+                                tabEntiers[j] = tabEntiers[j + 1];
+                                tabEntiers[j + 1] = var;
+                                if (lesCases.variableTempActivee()) {
+                                    executerAux(AFFECTATIONCVAL, j);
+                                    executerAux(AFFECTATIONECRASEMENTCASECASE, j + 1, j);
+                                    executerAux(AFFECTATIONVCASE, j + 1);
+                                }
+                                else {
+                                    executerAux(AFFECTATION, j, j + 1);
+                                }
+                                encore = true ;
+                            }
+                        }
+                        fin--;
+                        for(int j = fin ; j >= debut ; j--){
+                            executerAux(COMPARAISON, j, j+1);
+                            if (tabEntiers[j] > tabEntiers[j+1]) {
+                                int var = tabEntiers[j] ;
+                                tabEntiers[j] = tabEntiers[j+1] ;
+                                tabEntiers[j+1] = var ;
+                                if (lesCases.variableTempActivee()) {
+                                    executerAux(AFFECTATIONCVAL, j);
+                                    executerAux(AFFECTATIONECRASEMENTCASECASE, j + 1, j);
+                                    executerAux(AFFECTATIONVCASE, j + 1);
+                                }
+                                else {
+                                    executerAux(AFFECTATION, j, j + 1);
+                                }
+                                encore = true ;
+                            }
+                        }
+                        debut++;
+                        Thread.sleep(2);
                     }
-                    else {
-                        this.executerAux(AFFECTATION, j, j + 1);
-                    }
-                    encore = true ;
+
+                    return null;
                 }
-            }
-            fin--;
-            for(int j = fin ; j >= debut ; j--){
-                this.executerAux(COMPARAISON, j, j+1);
-                if (this.tabEntiers[j] > this.tabEntiers[j+1]) {
-                    int var = this.tabEntiers[j] ;
-                    this.tabEntiers[j] = this.tabEntiers[j+1] ;
-                    this.tabEntiers[j+1] = var ;
-                    if (this.lesCases.variableTempActivee()) {
-                        this.executerAux(AFFECTATIONCVAL, j);
-                        this.executerAux(AFFECTATIONECRASEMENTCASECASE, j + 1, j);
-                        this.executerAux(AFFECTATIONVCASE, j + 1);
-                    }
-                    else {
-                        this.executerAux(AFFECTATION, j, j + 1);
-                    }
-                    encore = true ;
-                }
-            }
-            debut++;
+            };
+
+            GestionThreads.getInstance().lancer(task);
+            Thread.sleep(0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
