@@ -15,15 +15,16 @@ public class ContourAnimation extends Rectangle {
 
     protected Case laCase ;
     protected Color[] lesCouleurs ;
+    protected int coeffDuree;
 
     /**
      * Constructeur
      * @param c la case du modele dont on anime le contour
      * @param lesCouleurs tableau des couleurs
      */
-    public ContourAnimation(Case c, Color[] lesCouleurs) {
+    public ContourAnimation(Case c, Color[] lesCouleurs, int duree) {
         super(c.getPositionInitialeX(), c.getPositionInitialeY(), CASELONGUEUR, CASELONGUEUR) ;
-
+        this.coeffDuree = duree;
         laCase = c ;
         this.lesCouleurs = lesCouleurs ;
 
@@ -49,7 +50,7 @@ public class ContourAnimation extends Rectangle {
         st.setDelay(Duration.ZERO);
 
         // déplacement
-        TranslateTransition tt = new TranslateTransition(Duration.millis(temps * coeffduree), this);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(temps * coeffDuree), this);
         tt.setToX(depX); // distance à parcourir
         tt.setToY(depY);
         tt.setDelay(Duration.ZERO) ;

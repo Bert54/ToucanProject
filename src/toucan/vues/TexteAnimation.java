@@ -18,15 +18,16 @@ public class TexteAnimation extends Text {
     protected Color[] lesCouleurs ;
     protected Double H ;
     protected Double W ;
+    protected int coeffDuree;
 
     /**
      * Constructeur
      * @param c la case du modele dont on anime la valeur
      * @param lesCouleurs tableau des couleurs
      */
-    public TexteAnimation(Case c, Color[] lesCouleurs) {
+    public TexteAnimation(Case c, Color[] lesCouleurs, int duree) {
         super("" + c.getValeurInitiale());
-
+        this.coeffDuree = duree;
         laCase = c ;
         this.lesCouleurs = lesCouleurs ;
 
@@ -73,7 +74,7 @@ public class TexteAnimation extends Text {
         });
 
         // le deplacement ...
-        TranslateTransition tt = new TranslateTransition(Duration.millis(temps * coeffduree), this);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(temps * coeffDuree), this);
         tt.setToX(depX);
         tt.setToY(depY);
         tt.setDelay(Duration.ZERO) ;

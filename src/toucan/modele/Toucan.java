@@ -20,7 +20,7 @@ public class Toucan extends Observable {
     private Algo algoTri;
     private StatutAnimation statutAnimation = StatutAnimation.NON_INITIALISEE;; // permet de definir l'etat actuel de l'animation
     private LesCases lesCases;
-    public int coeffduree = 100;
+    public int coeffDuree = 10;
 
     /**
      * Constructeur en connaissant le nombre de cases
@@ -193,6 +193,19 @@ public class Toucan extends Observable {
      */
     public boolean variableTempActivee() {
         return this.lesCases.variableTempActivee();
+    }
+
+    public void setVitesse(int nouveauCoeff) {
+        if (200 - nouveauCoeff == 0) {
+            this.coeffDuree = 1;
+        }
+        else {
+            this.coeffDuree = 200 / ( 200 - nouveauCoeff);
+        }
+    }
+
+    public int getVitesse() {
+        return this.coeffDuree;
     }
 
     @Override
