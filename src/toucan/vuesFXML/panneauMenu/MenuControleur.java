@@ -18,11 +18,14 @@ public class MenuControleur implements Observer {
     @FXML
     public Menu menuSelectionAlgo;
 
-    public MenuControleur(Toucan t) {
-        this.toucan = t;
+    public MenuControleur(Toucan toucan) {
+        this.toucan = toucan;
         this.toucan.addObserver(this);
     }
 
+    /**
+     * Detruit les threads et ferme le programme
+     */
     @FXML
     public void fermerProgramme() {
         GestionThreads.getInstance().detruireTout();

@@ -20,7 +20,7 @@ public class PanneauAnimation implements Observer {
     private LesCasesAnimation lesCasesAnimation;
     protected Toucan toucan;
     private SequentialTransition mouv;
-    private ArrayList<ParallelTransition> lesEtapesConstructeur;
+    private ArrayList<ParallelTransition> lesEtapesConstructeur; // On stock la construction de l'animation ici
     private int derniereEtapeAnimee;
     private Duration duration;
 
@@ -28,11 +28,10 @@ public class PanneauAnimation implements Observer {
     private BorderPane panneau ;
 
     /**
-     * Constructeur
-     * @param modele modele contenant les cases
+     * Construtoucan modele contenant les cases
      */
-    public PanneauAnimation(Toucan modele) {
-        this.toucan = modele;
+    public PanneauAnimation(Toucan toucan) {
+        this.toucan = toucan;
         this.toucan.addObserver(this);
         this.lesEtapesConstructeur = new ArrayList<>();
         this.derniereEtapeAnimee = 0;
@@ -54,22 +53,21 @@ public class PanneauAnimation implements Observer {
      * animations et reprend l'animation la ou elle etait par le biais du champ 'duration'.
      */
     protected void dessiner() {
-        if (this.derniereEtapeAnimee != 0) {
+        if (this.derniereEtapeAnimee != 0) { // Recupere la position en temps de l'animation en cours si il y a une
             this.duration = this.mouv.getCurrentTime();
             mouv.stop();
         }
         for (int i = this.derniereEtapeAnimee ; i < toucan.getNbMaxEtapes() ; i++) {
-            //lesEtapes[i] = lesCasesAnimation.animerLesCases(i+1) ;
-            this.lesEtapesConstructeur.add(lesCasesAnimation.animerLesCases(i+1)) ;
+            this.lesEtapesConstructeur.add(lesCasesAnimation.animerLesCases(i+1)) ; // Construction de l'animation
             this.derniereEtapeAnimee++;
         }
         ParallelTransition[] lesEtapes = new ParallelTransition[this.lesEtapesConstructeur.size()];
-        lesEtapes = this.lesEtapesConstructeur.toArray(lesEtapes);
-        mouv = new SequentialTransition(lesEtapes) ;
-        if (this.derniereEtapeAnimee != 0) {
+        lesEtapes = this.lesEtapesConstructeur.toArray(lesEtapes); // Creation de l'animation a jouer
+        mouv = new SequentialTransition(lesEtapes) ; // Injection de l'animation
+        if (this.derniereEtapeAnimee != 0) { // Reprend l'animation la ou elle s'est arretee si on a rajoute des etapes
             mouv.jumpTo(this.duration);
         }
-        else{
+        else { // Nouvelle animation
             mouv.setDelay(Duration.ZERO);
         }
         mouv.setOnFinished(new EventHandler<ActionEvent>() {

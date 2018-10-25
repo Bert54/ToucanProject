@@ -17,7 +17,7 @@ public class AffectationCaseCase implements IAnimation {
     private static final int COULEURANIMATION = 1; // Couleur de cette animation en particulier ; 1 = rose
 
     /**
-     * Execution d'une animation d'affectation entre 2 cases
+     * Execution d'une animation d'echange de variables entre 2 cases
      * @param lesCases Liste des cases
      * @param lesIndices Indices des cases a animer
      */

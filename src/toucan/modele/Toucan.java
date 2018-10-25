@@ -146,8 +146,7 @@ public class Toucan extends Observable {
         }
         this.algoTri.setTab(this.lesCases, this.tabEntiers);
         this.algoTri.trier();
-        Thread.sleep(30);
-        //System.out.println(this.toString());
+        Thread.sleep(300);
     }
 
     /**
@@ -216,6 +215,6 @@ public class Toucan extends Observable {
 
     @Override
     public String toString() {
-        return "Toucan \n" + lesCases;
+        return "Toucan : \n" + "Vitesse : " + this.coeffDuree + ", Etat de l'animation : " + this.statutAnimation + "\n\n" + lesCases + GestionThreads.getInstance() + "\n" + this.algoTri;
     }
 }

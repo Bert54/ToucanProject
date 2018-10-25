@@ -16,7 +16,7 @@ public class ControlesControleur implements Observer {
     private Image imagePause;
     private Image imageReset;
     private boolean majEnCours;
-    public Toucan toucan;
+    private Toucan toucan;
 
     @FXML
     public Button boutonPlayPause;
@@ -34,10 +34,10 @@ public class ControlesControleur implements Observer {
     /**
      * Constructeur de la vue. ImagePlay, imagePause et ImageReset sont definies ici, permettant
      * ainsi d'eviter de devoir les reinstancier a chaque mise a jour de la vue
-     * @param mod Modele
+     * @param toucan Modele
      */
-    public ControlesControleur(Toucan mod) {
-        this.toucan = mod;
+    public ControlesControleur(Toucan toucan) {
+        this.toucan = toucan;
         this.toucan.addObserver(this);
         this.imagePlay = new Image(getClass().getResource("/toucan/ressources/play.jpg").toString());
         this.imagePause = new Image(getClass().getResource("/toucan/ressources/pause.jpg").toString());

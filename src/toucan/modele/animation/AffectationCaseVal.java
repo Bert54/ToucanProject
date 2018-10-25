@@ -17,6 +17,11 @@ public class AffectationCaseVal implements IAnimation {
 
     private static final int COULEURANIMATION = 3; // Couleur de cette animation en particulier ; 3 = ???
 
+    /**
+     * Execution d'une animation d'affectation de la variable emporaire par la variable temporaire; les cases en trop sont ignorees
+     * @param lesCases Liste des cases
+     * @param lesIndices Indices de la case a animer
+     */
     @Override
     public void executer(LesCases lesCases, int... lesIndices) {
         if (lesIndices.length > 0) {

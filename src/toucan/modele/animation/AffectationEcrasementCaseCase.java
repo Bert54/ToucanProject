@@ -17,6 +17,11 @@ public class AffectationEcrasementCaseCase implements IAnimation {
 
     private static final int COULEURANIMATION = 3; // Couleur de cette animation en particulier ; 5 = ???
 
+    /**
+     * Execution d'une animation d'affectation d'une case du tableau par une autre case; les cases en trop sont ignorees
+     * @param lesCases Liste des cases
+     * @param lesIndices Indices des cases a animer
+     */
     @Override
     public void executer(LesCases lesCases, int... lesIndices) {
         if (lesIndices.length >= 2) {

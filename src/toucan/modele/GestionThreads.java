@@ -12,18 +12,25 @@ public class GestionThreads {
         return instance;
     }
 
-    ArrayList<Thread> threads;
+    private ArrayList<Thread> threads;
 
     public GestionThreads() {
         this.threads = new ArrayList<>();
     }
 
+    /**
+     * Stock et lance un thread
+     * @param task le thread a stocker et a lancer
+     */
     public void lancer(Task task) {
         Thread thread = new Thread(task);
         this.threads.add(thread);
         thread.start();
     }
 
+    /**
+     * Arrete et detruit tous les threads
+     */
     public void detruireTout() {
         for (Thread t : this.threads) {
             t.interrupt();
@@ -31,4 +38,15 @@ public class GestionThreads {
         this.threads.clear();
     }
 
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder("");
+        string.append("Threads : \n");
+        int i = 1;
+        for (Thread t : this.threads) {
+            string.append("Thread " + i +" --> Nom : "+ t.getName() + ", ID : " + t.getId() + ", Etat : " + t.getState() + "\n");
+            i++;
+        }
+        return string.toString();
+    }
 }

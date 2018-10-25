@@ -6,6 +6,9 @@ import toucan.modele.Toucan;
 
 public class ToucanControleur {
 
+    /**
+     * Detruit les threads et ferme le programme
+     */
     public void quitter() {
         GestionThreads.getInstance().detruireTout();
         Platform.exit() ;

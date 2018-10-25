@@ -16,7 +16,7 @@ public abstract class Algo {
     protected int[] tabEntiers;
 
     /**
-     * Constructeur d'un algorithme (inutilisable pour le moment)
+     * Constructeur d'un algorithme (algo inutilisable sans avoir appele la methode setTab() )
      */
     public Algo(Toucan mod) {
         this.animationsCases = new HashMap<>(); // Contient les types d'animation possibles, chacunes referencees par un AttributAnimation
@@ -65,4 +65,16 @@ public abstract class Algo {
     protected void executerAux(AttributAnimation attrAnim, int... lesIndices) {
         this.animationsCases.get(attrAnim).executer(this.lesCases, lesIndices);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+        string.append("Algorithme : " + "\nNom : " + this.nomAlgo + ", Variable temporaire forcée : " + this.caseTempForcee);
+        string.append("\nTableau : ");
+        for (int i = 0 ; i < this.tabEntiers.length ; i++) {
+            string.append(this.tabEntiers[i] + " ");
+        }
+        return string.toString();
+    }
+
 }

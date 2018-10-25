@@ -38,16 +38,16 @@ public class AlgoShell extends Algo {
                             int valeur = tabEntiers[i];
                             executerAux(AFFECTATIONCVAL, i);
                             int j = i;
+                            executerAux(COMPARAISONVALCASE, j - n);
                             while((j > (n - 1)) && (tabEntiers[j - n] > valeur)) {
                                 tabEntiers[j] = tabEntiers[j - n];
                                 executerAux(AFFECTATIONECRASEMENTCASECASE, j - n, j);
+                                executerAux(COMPARAISONVALCASE, j - n);
                                 j = j - n;
                             }
                             tabEntiers[j] = valeur;
                             executerAux(AFFECTATIONVCASE, j);
                         }
-                        Thread.sleep(5);
-                        toucan.prevenirVues();
                     }
 
                     return null;

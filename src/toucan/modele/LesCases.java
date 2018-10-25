@@ -134,7 +134,8 @@ public class LesCases {
 
         int maxEtapes = getMaxEtapes() ;
         StringBuilder sb = new StringBuilder() ;
-        sb.append("Cases : \n") ;
+        sb.append("Les Cases : \nVariable temporaire activée : " + this.variableTemp + ", Nombre d'étapes : " + this.nbEtapes + "\n\n");
+        sb.append("Cases contenues : \n\n") ;
         for (int i = 0 ; i < nbCases() ; i++) {
             Case c = lesCases.get(i);
             sb.append("Case " + i + " : " + c.toString()) ;
