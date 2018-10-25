@@ -52,15 +52,17 @@ public class AlgoSelection extends Algo {
                             tabEntiers[i] = tabEntiers[min];
                             tabEntiers[min] = temp;
                         }
-                        Thread.sleep(0);
+                        Thread.sleep(5);
+                        toucan.prevenirVues();
                     }
 
                     return null;
                 }
             };
 
+            Thread.sleep(5);
+            toucan.prevenirVues();
             GestionThreads.getInstance().lancer(task);
-            Thread.sleep(0);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

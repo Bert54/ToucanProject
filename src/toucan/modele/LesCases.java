@@ -134,36 +134,11 @@ public class LesCases {
 
         int maxEtapes = getMaxEtapes() ;
         StringBuilder sb = new StringBuilder() ;
-
-        sb.append("\t\t\t\t\t\t") ;
-        for (int i = 0 ; i < nbCases() ; i++) {
-            sb.append("Case " + i + "\t\t\t\t");
-        }
-
-        sb.append("\n") ;
-
-        sb.append("position initiale : \t") ;
+        sb.append("Cases : \n") ;
         for (int i = 0 ; i < nbCases() ; i++) {
             Case c = lesCases.get(i);
-            sb.append(String.format("(%3d,%3d) [%2d]\t\t", c.getPositionInitialeX(), c.getPositionInitialeY(), c.getValeurInitiale())) ;
+            sb.append("Case " + i + " : " + c.toString()) ;
         }
-        sb.append("\n") ;
-
-        sb.append("déplacements :\n") ;
-
-        for (int etape = 1 ; etape <= maxEtapes ; etape++) {
-            sb.append("\t\t\t\t" + etape + "\t\t");
-
-            for (int i = 0; i < nbCases(); i++) {
-                Case c = lesCases.get(i);
-                int x = c.getDeplacementX(etape);
-                int y = c.getDeplacementY(etape);
-                int valeur = c.getValeur(etape);
-                sb.append(String.format("(%3d,%3d) [%2d]\t\t", x, y, valeur)) ;
-            }
-            sb.append("\n");
-        }
-
         return sb.toString() ;
     }
 

@@ -25,6 +25,7 @@ public abstract class Algo {
         this.animationsCases.put(AttributAnimation.AFFECTATIONCVAL, AffectationCaseVal.getInstance());
         this.animationsCases.put(AttributAnimation.AFFECTATIONVCASE, AffectationValCase.getInstance());
         this.animationsCases.put(AttributAnimation.AFFECTATIONECRASEMENTCASECASE, AffectationEcrasementCaseCase.getInstance());
+        this.animationsCases.put(AttributAnimation.COMPARAISONVALCASE, ComparaisonValCase.getInstance());
         this.nomAlgo = "";
         this.toucan = mod;
         this.caseTempForcee = false;

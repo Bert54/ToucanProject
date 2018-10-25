@@ -32,13 +32,14 @@ public class AlgoTest extends Algo {
                     executerAux(AFFECTATIONECRASEMENTCASECASE, 3, 6);
                     executerAux(AFFECTATIONECRASEMENTCASECASE, 7, 2);
                     executerAux(AFFECTATIONVCASE, 4);
-
+                    Thread.sleep(5);
+                    toucan.prevenirVues();
                     return null;
                 }
             };
-
+            Thread.sleep(5);
+            toucan.prevenirVues();
             GestionThreads.getInstance().lancer(task);
-            Thread.sleep(0);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -48,15 +48,15 @@ public class AlgoBulle extends Algo {
                             }
                         }
                         n = n-1 ;
+                        Thread.sleep(5);
                         toucan.prevenirVues();
-                        Thread.sleep(0);
                     }
                     return null;
                 }
             };
-
+            Thread.sleep(5);
+            toucan.prevenirVues();
             GestionThreads.getInstance().lancer(task);
-            Thread.sleep(0);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

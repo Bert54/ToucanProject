@@ -228,6 +228,13 @@ public class Case {
 
     @Override
     public String toString() {
-        return "Case{}";
+        StringBuilder string = new StringBuilder("");
+        string.append("Valeur initial : " + this.valeurInit + ", position (x, y) initial : (" + this.absInit + ", " + this.ordInit + "), couleur initial : " + this.couleur + "\n");
+        string.append("Etapes :\n");
+        for (int key : this.hmEtapes.keySet()){
+            string.append(this.hmEtapes.get(key).toString() + "\n");
+        }
+        string.append("\n\n");
+        return string.toString();
     }
 }

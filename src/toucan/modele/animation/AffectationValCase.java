@@ -22,7 +22,7 @@ public class AffectationValCase implements IAnimation {
         if (lesIndices.length > 0) {
             int maxEtapes = lesCases.getMaxEtapes();
             Case c = lesCases.getCase(lesIndices[0]);
-            Case cTemp = lesCases.getCase(lesCases.nbCases()); //La case temporaire
+            Case cTemp = lesCases.getCase(lesCases.nbCases()); // La case temporaire
             lesCases.creerEtape(lesCases.nbCases(), maxEtapes + 1, Toucan.EST, CASELONGUEUR * (lesIndices[0]), this.COULEURANIMATION);
             lesCases.creerEtape(lesIndices[0], maxEtapes + 1, Toucan.EST, 0, this.COULEURANIMATION);
             lesCases.creerEtape(lesCases.nbCases(), maxEtapes + 2, Toucan.NORD, CASETEMPORDONNE-CASELONGUEUR, this.COULEURANIMATION);

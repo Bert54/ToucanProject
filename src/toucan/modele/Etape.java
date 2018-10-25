@@ -62,4 +62,11 @@ public class Etape {
     public int getCouleur() {
         return this.couleur;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder("");
+        string.append("Numéro étape " + this.numero + " : valeur : " + this.valCase + ", déplacement(x, y) : (" + this.deplacementX + ", " + this.deplacementY + "), couleur : " + this.couleur);
+        return string.toString();
+    }
 }

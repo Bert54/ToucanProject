@@ -137,7 +137,7 @@ public class Toucan extends Observable {
     /**
      * Creation des mouvements des cases ainsi que creation execution de l'algorithme choisit
      */
-    public void creerLesMouvements() {
+    public void creerLesMouvements() throws InterruptedException {
         this.lesCases.resetMaxEtape();
         lesCases.viderEtapes();
         this.tabEntiers = new int[this.nbCases()];
@@ -146,7 +146,8 @@ public class Toucan extends Observable {
         }
         this.algoTri.setTab(this.lesCases, this.tabEntiers);
         this.algoTri.trier();
-        //prevenirVues();
+        Thread.sleep(30);
+        //System.out.println(this.toString());
     }
 
     /**

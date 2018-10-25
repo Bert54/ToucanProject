@@ -35,15 +35,15 @@ public class AlgoDecalageCirculaire extends Algo {
 
                         executerAux(AFFECTATIONVCASE, lesCases.nbCases() - 1);
                         tabEntiers[lesCases.nbCases() - 1] = x;
+                        Thread.sleep(5);
                         toucan.prevenirVues();
                     }
-
                     return null;
                 }
             };
-
+            Thread.sleep(5);
+            toucan.prevenirVues();
             GestionThreads.getInstance().lancer(task);
-            sleep(0);
         } catch (InterruptedException e) {
             e.printStackTrace();
 

@@ -17,7 +17,7 @@ public class ComparaisonCaseCase implements IAnimation {
     private static final int COULEURANIMATION = 2; // Couleur de cette animation en particulier ; 2 = jaune
 
     /**
-     * Execution d'une animation de comparaison ; les cases en trop sont ignorees
+     * Execution d'une animation de comparaison entre 2 cases du tableau ; les cases en trop sont ignorees
      * @param lesCases Liste des cases
      * @param lesIndices Indices des cases a animer
      */

@@ -57,7 +57,7 @@ public class ControlesControleur implements Observer {
      * l'animation
      */
     @FXML
-    public void toggleAnimation() {
+    public void toggleAnimation() throws InterruptedException {
         switch (this.toucan.getStatutAnimation()) {
             case NON_INITIALISEE:   // Creation des mouvements (codee en dur pour le moment, sera changee plus tard)
                 this.toucan.creerLesMouvements();
