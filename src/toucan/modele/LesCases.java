@@ -31,10 +31,10 @@ public class LesCases {
 
     /**
      * Setter sur le statut d'activation de la variable temporaire
-     * @param status le nouveau status
+     * @param statut le nouveau statut
      */
-    public void setVariableTemp(boolean status) {
-        this.variableTemp = status;
+    public void setVariableTemp(boolean statut) {
+        this.variableTemp = statut;
     }
 
     /**

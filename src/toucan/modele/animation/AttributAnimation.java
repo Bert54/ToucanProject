@@ -11,5 +11,5 @@ public enum AttributAnimation {
 }
 
 /**
-    Enumeration permettant de designer une IAnimation par un attribut definie ici
+    Enumeration permettant de designer une IAnimation par un attribut defini ici
  */

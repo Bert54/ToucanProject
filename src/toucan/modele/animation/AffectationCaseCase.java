@@ -8,10 +8,10 @@ import static toucan.modele.Toucan.CASELONGUEUR;
 
 public class AffectationCaseCase implements IAnimation {
 
-    private static AffectationCaseCase affInstancee = new AffectationCaseCase();
+    private static AffectationCaseCase affInstance = new AffectationCaseCase();
 
     public static AffectationCaseCase getInstance() {
-        return affInstancee;
+        return affInstance;
     }
 
     private static final int COULEURANIMATION = 1; // Couleur de cette animation en particulier ; 1 = rose

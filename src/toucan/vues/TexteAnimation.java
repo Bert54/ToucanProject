@@ -43,9 +43,9 @@ public class TexteAnimation extends Text {
     }
 
     /**
-     * animation du texte au centre de la case
+     * Animation du texte au centre de la case
      * @param etape numero de l'etape a animer
-     * @return la transition saquentielle permettant d'animer le texte au centre de la case
+     * @return la transition sequentielle permettant d'animer le texte au centre de la case
      */
     public SequentialTransition animer(int etape) {
         int depX = laCase.getDeplacementX(etape) ;

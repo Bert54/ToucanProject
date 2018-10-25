@@ -24,14 +24,6 @@ public class Etape {
     }
 
     /**
-     * Getter sur le numero de l etape
-     * @return numero associe a l etape
-     */
-    public int getNumero() {
-        return numero;
-    }
-
-    /**
      * Getter sur la valeur possedee par la case
      * @return la valeur de la case
      */

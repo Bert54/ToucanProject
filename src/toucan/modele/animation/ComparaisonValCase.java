@@ -20,7 +20,7 @@ public class ComparaisonValCase implements IAnimation {
     /**
      * Execution d'une animation de comparaison entre une case du tableau et la variable temporaire ; les cases en trop sont ignorees
      * @param lesCases Liste des cases
-     * @param lesIndices Indices de la case a animer
+     * @param lesIndices Indice de la case a animer
      */
     @Override
     public void executer(LesCases lesCases, int... lesIndices) {

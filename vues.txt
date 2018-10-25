@@ -1,0 +1,137 @@
+@startuml
+package "vues" {
+
+class Toucan extends Observable {
+  {field} public static final int NORD
+  {field} public static final int SUD
+  {field} public static final int EST
+  {field} public static final int OUEST
+  {field} public static final int STABLE
+  {field} public static final int CASELONGUEUR
+  {field} public static final int CASETEMPORDONNE
+  {field} public static final int NOMBREALEATOIREMAX
+  {field} private int[] tabEntiers
+  {field} private int coeffDuree
+  public Toucan(int nbCases)
+  public void prevenirVues()
+  public void setStatutAnimation(int s)
+  public StatutAnimation getStatutAnimation()
+  public void setValeurInitiale(int noCase, int val)
+  public int getValeurInitiale(int noCase)
+  public void setPosition(int noCase, int x, int y)
+  public String getAlgoActuel()
+  public void creerLesMouvements()
+  public int nbCases()
+  public Case getCase(int numCase)
+  public int getNbMaxEtapes()
+  public void setVariableTemp(boolean status)
+  public boolean varTempForceActif()
+  public boolean variableTempActivee()
+  public void setVitesse(int nouveauCoeff, int valMax)
+  public int getVitesse()
+  public String toString()
+}
+
+  class CaseAnimation {
+    {field} protected static Color[] lesCouleurs
+    public CaseAnimation(BorderPane panneau, Case c, int duree)
+    public ParallelTransition animerUneCase(int noEtape)
+    public boolean existeAnimation(int etape)
+  }
+  CaseAnimation -- "1" ContourAnimation
+  CaseAnimation -- "1" TexteAnimation
+  CaseAnimation -- "1" Case
+
+  class ContourAnimation extends Rectangle {
+    {field} protected Color[] lesCouleurs
+    {field} protected int coeffDuree
+    public ContourAnimation(Case c, Color[] lesCouleurs, int duree)
+    public SequentialTransition animer(int etape)
+  }
+  ContourAnimation -- "1" Case
+
+  class TexteAnimation extends Text {
+    {field} protected Color[] lesCouleurs
+    {field} protected Double H
+    {field} protected Double W
+    {field} protected int coeffDuree
+    public TexteAnimation(Case c, Color[] lesCouleurs, int duree)
+    public SequentialTransition animer(int etape)
+  }
+  TexteAnimation -- "1" Case
+
+  class LesCasesAnimation {
+    public LesCasesAnimation(BorderPane panneau, Toucan modele)
+    public ParallelTransition animerLesCases(int noEtape)
+  }
+  LesCasesAnimation -- "1" Toucan
+  LesCasesAnimation --"*" CaseAnimation
+  
+}
+  
+package vuesFXML {
+  package "PanneauAnimation" {
+    class PanneauAnimation implements Observer {
+      {field} private SequentialTransition mouv
+      {field} private BorderPane panneau
+      public PanneauAnimation(Toucan toucan)
+      public void initialize()
+      public void dessiner()
+      public void update(Observable o, Object arg)
+    }
+    PanneauAnimation -- "1" Toucan
+    PanneauAnimation -- "1" LesCasesAnimation
+  }
+  
+  package "panneauControles" {
+    class ControlesControleur implements Observer {
+      {field} private Image imagePlay
+      {field} private Image imagePause
+      {field} private Image imageReset
+      {field} private boolean majEnCours
+      {field} public Button boutonPlayPause
+      {field} public ImageView playPauseImage
+      {field} public Button boutonStop
+      {field} public Label nomAlgoLabel
+      {field} public CheckBox varTempCheckBox
+      {field} public Slider sliderVitesse
+      public ControlesControleur(Toucan toucan)
+      public void initialize()
+      public void toggleAnimation()
+      public algoVariableTempDetection()
+      public void updateLabel()
+      public void toggleVariableTemp()
+      public void setVitesse()
+      public void reinitialiseAnimation()
+      public void update(Observable o, Object arg)
+    }
+    ControlesControleur -- "1" Toucan
+  }
+  
+  package "panneauMenu" {
+    class MenuControleur implements Observer {
+	{field} public Menu menuSelectionAlgo
+	public MenuControleur(Toucan toucan)
+	public void fermerProgramme()
+	public void setAlgoBulle()
+	public void setAlgoTest()
+	public void setAlgoStupide
+	public void setAlgoInsertion()
+	public void setAlgoSelection()
+	public void setAlgoCocktail()
+	public void setAlgoPeigne()
+	public void setAlgoDecCirc()
+	public void setAlgoShell()
+	public void update(Observable o, Object arg)
+    }
+    MenuControleur -- "1" Toucan
+  }
+  
+  package "toucan" {
+    class ToucanControleur {
+      void quiter()
+    }
+  }
+
+}
+@enduml

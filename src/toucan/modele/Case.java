@@ -132,6 +132,14 @@ public class Case {
         this.ajouterEtape(etape, val, 0, dep, couleur);
     }
 
+    /**
+     * Ajouter une etape a la case
+     * @param etape numero de l'etape
+     * @param val nouvelle valeur de case
+     * @param depX valeur du deplacement en abscisse
+     * @param depY valeur du deplacement en ordonnee
+     * @param couleur couleur de la case
+     */
     public void ajouterEtape(int etape, int val, int depX, int depY, int couleur) {
         if (etape > this.maxEtape) {
             this.setLastEtape(etape);
@@ -140,7 +148,7 @@ public class Case {
     }
 
     /**
-     * Getter sur le deplacement pour une certaine etape
+     * Getter sur le deplacement en abscisse pour une certaine etape
      * @param etape numero de l etape
      * @return valeur du deplacement
      */
@@ -152,7 +160,7 @@ public class Case {
     }
 
     /**
-     * Getter sur le deplacement pour une certaine etape
+     * Getter sur le deplacement en ordonnee pour une certaine etape
      * @param etape numero de l etape
      * @return valeur du deplacement
      */
@@ -165,7 +173,7 @@ public class Case {
 
     /**
      * Getter sur la couleur initiale de la case
-     * @return le numéro associe a la couleur initiale de la case
+     * @return le numero associe a la couleur initiale de la case
      */
     public int getCouleurInitiale() {
         return couleur ;
@@ -173,7 +181,7 @@ public class Case {
 
     /**
      * Getter sur la couleur de la case a une etape donnee
-     * @param etape Etape a laquelle la couleur doit etre recuperee
+     * @param etape etape a laquelle la couleur doit etre recuperee
      * @return la couleur associee a l'etape donnee
      */
     public int getCouleur(int etape) {

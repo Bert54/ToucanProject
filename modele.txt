@@ -1,0 +1,241 @@
+@startuml
+
+package "modele" {
+
+  class Toucan extends Observable {
+    {field} public static final int NORD
+    {field} public static final int SUD
+    {field} public static final int EST
+    {field} public static final int OUEST
+    {field} public static final int STABLE
+    {field} public static final int CASELONGUEUR
+    {field} public static final int CASETEMPORDONNE
+    {field} public static final int NOMBREALEATOIREMAX
+    {field} private int[] tabEntiers
+    {field} private int coeffDuree
+    public Toucan(int nbCases)
+    public void prevenirVues()
+    public void setStatutAnimation(int s)
+    public StatutAnimation getStatutAnimation()
+    public void setValeurInitiale(int noCase, int val)
+    public int getValeurInitiale(int noCase)
+    public void setPosition(int noCase, int x, int y)
+    public String getAlgoActuel()
+    public void creerLesMouvements()
+    public int nbCases()
+    public Case getCase(int numCase)
+    public int getNbMaxEtapes()
+    public void setVariableTemp(boolean status)
+    public boolean varTempForceActif()
+    public boolean variableTempActivee()
+    public void setVitesse(int nouveauCoeff, int valMax)
+    public int getVitesse()
+    public String toString()
+  }
+  Toucan -- "1" LesCases
+  Toucan -- "1" StatutAnimation
+  Toucan -- "1" Algo
+
+
+  class LesCases {
+    {field} private int nbEtape
+    {field} private variableTemp
+    public LesCases()
+    public LesCases(int taille)
+    public setVariableTempActivee()
+    public void creerEtape(int c, int etape, int dir, int dep)
+    public void resetMaxEtape()
+    public int nbCases()
+    public int getMaxEtapes()
+    public Case getCase(int indice)
+    public void viderEtapes()
+    public String toString()
+  }
+  LesCases -- "*" Case
+
+  class Case {
+    {field} private int ValeurInit
+    {field} private int absInit
+    {field} private int ordInit
+    {field} private int couleur
+    {field} private int maxEtape
+    public Case()
+    public void setValeur(int val)
+    public int getValeurInitiale()
+    public int getValeur(int etape)
+    public void modifValeur(int etape, int newVal, int couleur)
+    public void setPositions(int x, int y)
+    public int getPositionInitialeX()
+    public int getPositionInitialeY()
+    public void gauche (int etape, int dep, int couleur)
+    public void droite (int etape, int dep, int couleur)
+    public void monter (int etape, int dep, int couleur)
+    public void descendre (int etape, int dep, int couleur)
+    public int getDeplacementX(int etape)
+    public int getDeplacementY(int etape)
+    public int getCouleurInitiale()
+    public int geCouleur(int etape)
+    public boolean existeAnimation(int etape)
+    public void setLastEtape(int l)
+    public int getLastEtape()
+    public void viderEtapes()
+    public String toString()
+  }
+  Case -- "*" Etape
+
+  class Etape {
+    {field} int numero
+    {field} int valCase
+    {field} int deplacementX
+    {field} int deplacementY
+    {field] int couleur
+    public Etape(int num, int val, int depX, int depY, int coul)
+    public int getNumero()
+    public int getValeur()
+    public int getDeplacementX()
+    public int getDeplacementY()
+    public int getCouleur()
+    public String toString()
+  }
+
+  class GestionThreads <<(S, #FF7700) Singleton>> {
+    {field} private static GestionThreads instance
+    {field} public static GestionThreads getInstance()
+    public GestionThreads()
+    public void lancer(Task task)
+    public detruireTout()
+    public String toString()
+  }
+  GestionThreads -- "*" Thread
+
+  enum StatutAnimation {
+    NON_INITIALISEE
+    EN_COURS_ACTIF
+    EN_COURS_PAUSE
+    FINIE
+  }
+
+
+  package "animation" {
+    enum AttributAnimation {
+      COMPARAISON
+      COMPARAISONVALCASE
+      AFFECTATION
+      AFFECTATIONVCASE
+      AFFECTATIONCVAL
+      AFFECTATIONECRASEMENTCASECASE
+    }
+
+    class AffectationCaseCase <<(S, #FF7700) Singleton>> implements IAnimation {
+      {field} private static AffectationCaseCase affInstance
+      {field} public static AffectationCaseCase getInstance()
+      {field} private static final int COULEURANIMATION
+      void executer(LesCases lesCases, int... lesIndices)
+    }
+
+    class AffectationCaseVal <<(S, #FF7700) Singleton>> implements IAnimation {
+      {field} private static AffectationCaseVal affInstance
+      {field} public static AffectationCaseVal getInstance()
+      {field} private static final int COULEURANIMATION
+      void executer(LesCases lesCases, int... lesIndices)
+    }
+    
+    class AffectationEcrasementCaseCase <<(S, #FF7700) Singleton>> implements IAnimation {
+      {field} private static AffectationEcrasementCaseCase affInstance
+      {field} public static AffectationEcrasementCaseCase getInstance()
+      {field} private static final int COULEURANIMATION
+      void executer(LesCases lesCases, int... lesIndices)
+    }
+    
+    class AffectationValCase <<(S, #FF7700) Singleton>> implements IAnimation {
+      {field} private static AffectationValCase affInstance
+      {field} public static AffectationValCase getInstance()
+      {field} private static final int COULEURANIMATION
+      void executer(LesCases lesCases, int... lesIndices)
+    }
+
+    class ComparaisonCaseCase <<(S, #FF7700) Singleton>> implements IAnimation {
+      {field} private static ComparaisonCaseCase compInstance
+      {field} public static ComparaisonCaseCase getInstance()
+      {field} private static final int COULEURANIMATION
+      void executer(LesCases lesCases, int... lesIndices)
+    }
+    
+    class ComparaisonValCase <<(S, #FF7700) Singleton>> implements IAnimation {
+      {field} private static ComparaisonValCase compInstance
+      {field} public static ComparaisonValCase getInstance()
+      {field} private static final int COULEURANIMATION
+      void executer(LesCases lesCases, int... lesIndices)
+    }
+
+    interface IAnimation {
+      void executer(LesCases lesCases, int... lesIndices)
+    }
+  }
+
+  package "algos" {
+    abstract class Algo {
+      {field} protected int[] tabEntiers
+      {field} protected String nomAlgo;
+      {field} protected boolean caseTempForcee;
+      public Algo()
+      public void setTab(LesCases lesCases, int... entiers)
+      public abstract void trier()
+      public String getNomAlgo()
+      public boolean variableForceeActive()
+      protected void executerAux(AttributAnimation attrAnim, int... lesIndices)
+      public String toString()
+    }
+    Algo -- "1" LesCases
+    Algo -- "*" IAnimation
+    
+    class AlgoBulle extends Algo {
+      public AlgoBulle()
+      public void trier()
+    }
+    
+    class AlgoCocktail extends Algo {
+      public AlgoCocktail()
+      public void trier()
+    }
+    
+    class AlgoDecalageCirculaire extends Algo {
+      public AlgoDecalageCirculaire()
+      public void trier()
+    }
+    
+    class AlgoInsertion extends Algo {
+      public AlgoInsertion()
+      public void trier()
+    }
+    
+    class AlgoPeigne extends Algo {
+      public AlgoPeigne()
+      public void trier()
+    }
+    
+    class AlgoSelection extends Algo {
+      public AlgoSelection()
+      public void trier()
+    }
+    
+    class AlgoShell extends Algo {
+      public AlgoShell()
+      public void trier()
+    }
+    
+    class AlgoStupide extends Algo {
+      public AlgoStupide()
+      public void trier()
+      public boolean estTrie()
+    }
+    
+    class AlgoTest extends Algo {
+      public AlgoTest()
+      public void trier()
+    }
+    
+  }
+
+}
+@enduml

@@ -59,7 +59,7 @@ public class Main extends Application {
 
         primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.setResizable(false);
-        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/toucan/ressources/toucan.jpg"))); // Ne fonctionne pas sour les systemes linux apparemment. Dommage.
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/toucan/ressources/toucan.jpg"))); // Ne fonctionne pas sur les systemes linux apparemment. Dommage.
         primaryStage.show();
     }
 

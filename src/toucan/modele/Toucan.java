@@ -27,7 +27,7 @@ public class Toucan extends Observable {
      * @param nbCases nombre de cases du toucan
      */
     public Toucan(int nbCases) {
-        assert (nbCases >= 0) : "Nombre de cases invalides";
+        assert (nbCases >= 0) : "Nombre de cases invalide";
         Random random = new Random();
         int newVal;
         this.lesCases = new LesCases(nbCases);
@@ -88,7 +88,7 @@ public class Toucan extends Observable {
     }
 
     /**
-     * Setter sur la valeur de chaque case
+     * Setter sur la valeur d'une case
      * @param noCase numero de la case
      * @param val valeur de la case
      */
@@ -127,7 +127,7 @@ public class Toucan extends Observable {
 
     /**
      * Getter sur le choix de l'algorithme
-     * @return l'algorithme actuellement utilisé
+     * @return l'algorithme actuellement utilise
      */
     public String getAlgoActuel() {
         return this.algoTri.getNomAlgo();
@@ -135,7 +135,7 @@ public class Toucan extends Observable {
 
 
     /**
-     * Creation des mouvements des cases ainsi que creation execution de l'algorithme choisit
+     * Creation des mouvements des cases ainsi que la creation de l'execution de l'algorithme choisi
      */
     public void creerLesMouvements() throws InterruptedException {
         this.lesCases.resetMaxEtape();
@@ -158,17 +158,17 @@ public class Toucan extends Observable {
     }
 
     /**
-     * Getter sur une case par son numéro
-     * @param numCase numéro de la case
-     * @return La case associée au numéro
+     * Getter sur une case par son numero
+     * @param numCase numero de la case
+     * @return La case associee au numero
      */
     public Case getCase(int numCase) {
         return this.lesCases.getCase(numCase);
     }
 
     /**
-     * Getter sur le nombre maximal d'étapes
-     * @return le nombre maximal d'étapes
+     * Getter sur le nombre maximal d'etapes
+     * @return le nombre maximal d'etapes
      */
     public int getNbMaxEtapes() {
         return this.lesCases.getMaxEtapes();
@@ -176,13 +176,17 @@ public class Toucan extends Observable {
 
     /**
      * Setter sur le statut d'activation de la variable temporaire
-     * @param status le nouveau status
+     * @param statut le nouveau statut
      */
-    public void setVariableTemp(boolean status) {
-        this.lesCases.setVariableTemp(status);
+    public void setVariableTemp(boolean statut) {
+        this.lesCases.setVariableTemp(statut);
         this.prevenirVues();
     }
 
+    /**
+     * Indique sur la variable temporaire est obligatoire
+     * @return vrai si la variable temporaire est obligatoire
+     */
     public boolean varTempForceActif() {
         return this.algoTri.variableForceeActive();
     }

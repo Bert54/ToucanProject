@@ -5,14 +5,13 @@ import toucan.modele.LesCases;
 import toucan.modele.Toucan;
 
 import static toucan.modele.Toucan.CASELONGUEUR;
-import static toucan.modele.Toucan.CASETEMPORDONNE;
 
 public class AffectationEcrasementCaseCase implements IAnimation {
 
-    private static AffectationEcrasementCaseCase affECaseInstancee = new AffectationEcrasementCaseCase();
+    private static AffectationEcrasementCaseCase affECaseInstance = new AffectationEcrasementCaseCase();
 
     public static AffectationEcrasementCaseCase getInstance() {
-        return affECaseInstancee;
+        return affECaseInstance;
     }
 
     private static final int COULEURANIMATION = 3; // Couleur de cette animation en particulier ; 5 = ???

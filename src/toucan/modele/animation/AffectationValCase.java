@@ -9,18 +9,18 @@ import static toucan.modele.Toucan.CASETEMPORDONNE;
 
 public class AffectationValCase implements IAnimation {
 
-    private static AffectationValCase affValInstancee = new AffectationValCase();
+    private static AffectationValCase affValInstance = new AffectationValCase();
 
     public static AffectationValCase getInstance() {
-        return affValInstancee;
+        return affValInstance;
     }
 
     private static final int COULEURANIMATION = 3; // Couleur de cette animation en particulier ; 4 = ???
 
     /**
-     * Execution d'une animation d'affectation d'une case du tableau par la variable temporaire; les cases en trop sont ignorees
+     * Execution d'une animation d'affectation d'une case du tableau par la variable temporaire. Les cases en trop sont ignorees
      * @param lesCases Liste des cases
-     * @param lesIndices Indices des cases a animer
+     * @param lesIndices Indices de la case a animer
      */
     @Override
     public void executer(LesCases lesCases, int... lesIndices) {

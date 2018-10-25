@@ -2,10 +2,8 @@ package toucan.modele.algos;
 
 import javafx.concurrent.Task;
 import toucan.modele.GestionThreads;
-import toucan.modele.LesCases;
 import toucan.modele.Toucan;
 
-import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
 
 public class AlgoBulle extends Algo {
@@ -29,6 +27,7 @@ public class AlgoBulle extends Algo {
                     boolean encore = true ;
                     int n = lesCases.nbCases() ;
                     while (encore) {
+                        Thread.sleep(2);
                         encore = false ;
                         for (int j = 0 ; j < n - 1; j++) {
                             executerAux(COMPARAISON, j, j+1);

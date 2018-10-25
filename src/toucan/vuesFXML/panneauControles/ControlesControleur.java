@@ -33,7 +33,7 @@ public class ControlesControleur implements Observer {
 
     /**
      * Constructeur de la vue. ImagePlay, imagePause et ImageReset sont definies ici, permettant
-     * ainsi d'eviter de devoir les reinstancier a chaque mise a jour de la vue
+     * ainsi d'eviter a devoir les reinstancier a chaque mise a jour de la vue
      * @param toucan Modele
      */
     public ControlesControleur(Toucan toucan) {
@@ -45,6 +45,10 @@ public class ControlesControleur implements Observer {
         this.majEnCours = false;
     }
 
+    /**
+     * Initialisation des elements de l'interface
+     * @throws Exception
+     */
     @FXML
     public void initialize() throws Exception {
         this.updateLabel();
@@ -53,8 +57,7 @@ public class ControlesControleur implements Observer {
     }
 
     /**
-     * Methode associee au bouton permettant d'instancier les mouvements, de jouer l'animation ou de mettre en pause
-     * l'animation
+     * Methode associee au bouton permettant d'instancier les mouvements, de jouer l'animation ou de mettre en pause l'animation
      */
     @FXML
     public void toggleAnimation() throws InterruptedException {
@@ -75,7 +78,7 @@ public class ControlesControleur implements Observer {
     }
 
     /**
-     * Permet de forcer le mode de visualisation avec variable temporaire si l'algorithme actif du modele l'oblige
+     * Force le mode de visualisation avec variable temporaire si l'algorithme actif du modele l'oblige
      */
     public void algoVariableTempDetection() {
         if (!this.majEnCours) {
@@ -100,7 +103,7 @@ public class ControlesControleur implements Observer {
     }
 
     /**
-     * Change le mode de mode de visualitation de l'animation
+     * Change le mode de visualitation de l'animation dans le modele
      */
     @FXML
     public void toggleVariableTemp() {
@@ -120,6 +123,9 @@ public class ControlesControleur implements Observer {
         this.toucan.setVitesse((int)sliderVitesse.getValue(), (int)sliderVitesse.getMax()+1);
     }
 
+    /**
+     * Reinitialise les animations
+     */
     @FXML
     public void reinitialiseAnimation() {
         this.toucan.setStatutAnimation(0);

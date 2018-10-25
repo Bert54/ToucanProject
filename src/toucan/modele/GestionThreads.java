@@ -19,7 +19,7 @@ public class GestionThreads {
     }
 
     /**
-     * Stock et lance un thread
+     * Stocke et lance un thread
      * @param task le thread a stocker et a lancer
      */
     public void lancer(Task task) {

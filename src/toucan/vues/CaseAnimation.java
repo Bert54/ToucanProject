@@ -19,9 +19,9 @@ public class CaseAnimation {
 
     /**
      * Constructeur
-     * @param panneau le panneau contenant les deux éléments graphiques constituant la représentation d'une case :
-     *                le contour d'un carré et un texte
-     * @param c la case du modèle à animer
+     * @param panneau le panneau contenant les deux elements graphiques constituant la representation d'une case :
+     *                le contour d'un carre et un texte
+     * @param c la case du modele a animer
      */
     public CaseAnimation(BorderPane panneau, Case c, int duree) {
         laCase = c ;
@@ -36,9 +36,9 @@ public class CaseAnimation {
     }
 
     /**
-     * animation de la case et de sa valeur
-     * @param noEtape numéro de l'étape à animer
-     * @return la transition parallèle permettant d'animer la case
+     * Animation de la case et de sa valeur
+     * @param noEtape numero de l'etape a animer
+     * @return la transition parallele permettant d'animer la case
      */
     public ParallelTransition animerUneCase(int noEtape) {
         // System.out.println("dans CaseAnimation " + noEtape);
@@ -51,9 +51,9 @@ public class CaseAnimation {
     }
 
     /**
-     * Gettr sur l'existance d'une animation
+     * Getter sur l'existence d'une animation
      * @param etape numero de l'etape
-     * @return true si une animation existe, false sinon
+     * @return vrai si une animation existe
      */
     public boolean existeAnimation(int etape) {
         return laCase.existeAnimation(etape) ;

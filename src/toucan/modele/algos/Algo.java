@@ -34,7 +34,7 @@ public abstract class Algo {
     /**
      * Rend l'algo utilisable en lui donnant les cases a trier
      * @param lesCases cases du Toucan
-     * @param entiers tableaux des entiers
+     * @param entiers tableau des entiers
      */
     public void setTab(LesCases lesCases, int... entiers) {
         this.lesCases = lesCases;
@@ -48,18 +48,26 @@ public abstract class Algo {
      */
     public abstract void trier();
 
+    /**
+     * Getter sur le nom de l'algorithme choisi
+     * @return l'algorithme choisi
+     */
     public String getNomAlgo() {
         return this.nomAlgo;
     }
 
+    /**
+     * Indique si la variable temporaire est obligatoire
+     * @return vrai si la variable temporaire est obligatoire
+     */
     public boolean variableForceeActive() {
         return this.caseTempForcee;
     }
 
 
     /**
-     * Fonction auxiliaire pour la creation d'un mouvement, permet de determiner quel type de mouvement
-     * @param attrAnim Type de mouvement definie dans AttributAnimation
+     * Fonction auxiliaire pour la creation d'un mouvement, permet de determiner le type de mouvement
+     * @param attrAnim Type de mouvement defini dans AttributAnimation
      * @param lesIndices Indices des cases
      */
     protected void executerAux(AttributAnimation attrAnim, int... lesIndices) {

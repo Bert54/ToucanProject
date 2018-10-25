@@ -2,12 +2,10 @@ package toucan.modele.algos;
 
 import javafx.concurrent.Task;
 import toucan.modele.GestionThreads;
-import toucan.modele.LesCases;
 import toucan.modele.Toucan;
 
 import java.util.Random;
 
-import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
 
 public class AlgoStupide  extends Algo {
@@ -64,8 +62,8 @@ public class AlgoStupide  extends Algo {
     }
 
     /**
-     * Verifie que la tableau est trie (propre au tri stupide).
-     * @return Tableau trie ou tableau non triee
+     * Verifie que la tableau est trie (propre au tri stupide)
+     * @return vrai si le tableau trie
      */
     public boolean estTrie() {
         boolean trier = true;

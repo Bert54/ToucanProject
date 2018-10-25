@@ -20,7 +20,7 @@ public class PanneauAnimation implements Observer {
     private LesCasesAnimation lesCasesAnimation;
     protected Toucan toucan;
     private SequentialTransition mouv;
-    private ArrayList<ParallelTransition> lesEtapesConstructeur; // On stock la construction de l'animation ici
+    private ArrayList<ParallelTransition> lesEtapesConstructeur; // stockage de la construction de l'animation
     private int derniereEtapeAnimee;
     private Duration duration;
 
@@ -28,7 +28,8 @@ public class PanneauAnimation implements Observer {
     private BorderPane panneau ;
 
     /**
-     * Construtoucan modele contenant les cases
+     * Construction du panneau d'animation
+     * @param toucan modele contenant les cases
      */
     public PanneauAnimation(Toucan toucan) {
         this.toucan = toucan;
@@ -38,6 +39,10 @@ public class PanneauAnimation implements Observer {
         this.duration = new Duration(0.00);
     }
 
+    /**
+     * Initialisation des elements pour l'animation des cases
+     * @throws Exception
+     */
     @FXML
     public void initialize() {
         lesCasesAnimation = new LesCasesAnimation(panneau, toucan);
@@ -47,13 +52,13 @@ public class PanneauAnimation implements Observer {
     }
 
     /**
-     * Si c'est la premiere fois que cette méthode est appelee dans un meme tri, alors elle cree une nouvelle animation
-     * Sinon, elle reprend l'animation existante et lui ajoute les nouveaux etapes qui n'existaient pas auparavant.
-     * Lorsqu'elle ajoute de nouvelles animations a une liste d'animations existantes, elle recree la liste avec les nouvelles
+     * Si c'est la premiere fois que cette methode est appelee dans un meme tri, alors elle cree une nouvelle animation.
+     * Sinon, elle reprend l'animation existante et lui ajoute les nouvelles etapes qui n'existaient pas auparavant.
+     * Lorsqu'elle ajoute de nouvelles animations a une liste d'animations existante, elle recree la liste avec les nouvelles
      * animations et reprend l'animation la ou elle etait par le biais du champ 'duration'.
      */
     protected void dessiner() {
-        if (this.derniereEtapeAnimee != 0) { // Recupere la position en temps de l'animation en cours si il y a une
+        if (this.derniereEtapeAnimee != 0) { // Recupere la position en temps de l'animation en cours (si il y a une)
             this.duration = this.mouv.getCurrentTime();
             mouv.stop();
         }
@@ -71,6 +76,7 @@ public class PanneauAnimation implements Observer {
             mouv.setDelay(Duration.ZERO);
         }
         mouv.setOnFinished(new EventHandler<ActionEvent>() {
+
             @Override
             public void handle(ActionEvent event) {
                 derniereEtapeAnimee = 0;
@@ -101,7 +107,7 @@ public class PanneauAnimation implements Observer {
                     case EN_COURS_PAUSE:      // Met en pause l'animation
                         mouv.pause();
                         break;
-                    default:                  // (StatutAnimation.FINIT) Stoppe l'animation lorsqu'il n'y a plus de mouvements
+                    default:                  // (StatutAnimation.FINIE) Stoppe l'animation lorsqu'il n'y a plus de mouvements
                         mouv.setRate(-1) ;
                         mouv.stop();
                         duration = new Duration(0.00);

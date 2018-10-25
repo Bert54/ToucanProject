@@ -2,10 +2,8 @@ package toucan.modele.algos;
 
 import javafx.concurrent.Task;
 import toucan.modele.GestionThreads;
-import toucan.modele.LesCases;
 import toucan.modele.Toucan;
 
-import static java.lang.Thread.sleep;
 import static toucan.modele.animation.AttributAnimation.*;
 
 public class AlgoInsertion extends Algo {

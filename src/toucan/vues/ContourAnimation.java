@@ -34,8 +34,8 @@ public class ContourAnimation extends Rectangle {
     }
 
     /**
-     * animation de la forme carree representant la case
-     * @param etape numero de l'etape à animer
+     * Animation de la forme carree representant la case
+     * @param etape numero de l'etape a animer
      * @return la transition sequentielle permettant d'animer la forme carree
      */
     public SequentialTransition animer(int etape) {

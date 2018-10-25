@@ -18,6 +18,10 @@ public class MenuControleur implements Observer {
     @FXML
     public Menu menuSelectionAlgo;
 
+    /**
+     * Constructeur
+     * @param toucan modele
+     */
     public MenuControleur(Toucan toucan) {
         this.toucan = toucan;
         this.toucan.addObserver(this);
@@ -32,46 +36,81 @@ public class MenuControleur implements Observer {
         Platform.exit() ;
     }
 
+    /**
+     * Selection du tri à bulles
+     */
     @FXML
     public void setAlgoBulle() {
         this.toucan.setAlgoActuel(new AlgoBulle(this.toucan));
     }
 
+
+    /**
+     * Selection d'un algo de test... non performant
+     */
     @FXML
     public void setAlgoTest() {
         this.toucan.setAlgoActuel(new AlgoTest(this.toucan));
     }
 
+
+    /**
+     * Selection du tri stupide
+     */
     @FXML
     public void setAlgoStupide() {
         this.toucan.setAlgoActuel(new AlgoStupide(this.toucan));
     }
 
+
+    /**
+     * Selection du tri par insertion
+     */
     @FXML
     public void setAlgoInsertion() {
         this.toucan.setAlgoActuel(new AlgoInsertion(this.toucan));
     }
 
+
+    /**
+     * Selection du tri par selection
+     */
     @FXML
     public void setAlgoSelection() {
         this.toucan.setAlgoActuel(new AlgoSelection(this.toucan));
     }
 
+
+    /**
+     * Selection du tri cocktail
+     */
     @FXML
     public void setAlgoCocktail() {
         this.toucan.setAlgoActuel(new AlgoCocktail(this.toucan));
     }
 
+
+    /**
+     * Selection du tri a peigne
+     */
     @FXML
     public void setAlgoPeigne() {
         this.toucan.setAlgoActuel(new AlgoPeigne(this.toucan));
     }
 
+
+    /**
+     * Selection de l'algorithme de decalage circulaire
+     */
     @FXML
     public void setAlgoDecCirc() {
         this.toucan.setAlgoActuel(new AlgoDecalageCirculaire(this.toucan));
     }
 
+
+    /**
+     * Selection du tri de shell
+     */
     @FXML
     public void setAlgoShell() {
         this.toucan.setAlgoActuel(new AlgoShell(this.toucan));
