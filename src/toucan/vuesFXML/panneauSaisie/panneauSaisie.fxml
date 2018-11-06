@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="400.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="400.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="toucan.vuesFXML.panneauSaisie.SaisieControleur">
+   <right>
+      <TextArea fx:id="algoSaisie" maxHeight="720.0" maxWidth="370.0" minHeight="720.0" minWidth="370.0" onInputMethodTextChanged="#updateCodeAlgoPerso" onKeyPressed="#updateCodeAlgoPerso" onKeyReleased="#updateCodeAlgoPerso" onKeyTyped="#updateCodeAlgoPerso" prefHeight="720.0" prefWidth="370.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets right="210.0" top="415.0" />
+         </BorderPane.margin></TextArea>
+   </right>
+</BorderPane>

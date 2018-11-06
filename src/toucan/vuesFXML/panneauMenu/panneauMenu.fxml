@@ -7,7 +7,7 @@
 
 <Pane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="toucan.vuesFXML.panneauMenu.MenuControleur">
    <children>
-      <MenuBar focusTraversable="false" pickOnBounds="false" prefHeight="29.0" prefWidth="600.0">
+      <MenuBar focusTraversable="false" pickOnBounds="false" prefHeight="29.0" prefWidth="1000.0">
         <menus>
           <Menu style="-fx-border-style: solid; -fx-border-width: 0px 1px 0px 0px; -fx-border-color: #848484;" text="Menu  ">
             <items>
@@ -24,6 +24,7 @@
                 <MenuItem onAction="#setAlgoShell" text="Tri de Shell" />
                 <MenuItem onAction="#setAlgoDecCirc" text="Décalage Circulaire" />
                 <MenuItem onAction="#setAlgoStupide" text="Tri Stupide" />
+                <MenuItem onAction="#setAlgoPerso" text="Algo Personnel" />
                 <!-- <MenuItem onAction="#setAlgoTest" text="Algo Test" /> -->
             </items>
           </Menu>

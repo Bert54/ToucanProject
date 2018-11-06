@@ -1,6 +1,7 @@
 package toucan.vuesFXML.panneauMenu;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
 import toucan.modele.GestionThreads;
@@ -114,6 +115,11 @@ public class MenuControleur implements Observer {
     @FXML
     public void setAlgoShell() {
         this.toucan.setAlgoActuel(new AlgoShell(this.toucan));
+    }
+
+    @FXML
+    public void setAlgoPerso() {
+        this.toucan.setAlgoActuel(new AlgoFacade(this.toucan));
     }
 
     @Override

@@ -13,6 +13,7 @@ import toucan.modele.Toucan;
 import toucan.vuesFXML.panneauAnimation.PanneauAnimation;
 import toucan.vuesFXML.panneauControles.ControlesControleur;
 import toucan.vuesFXML.panneauMenu.MenuControleur;
+import toucan.vuesFXML.panneauSaisie.SaisieControleur;
 import toucan.vuesFXML.toucan.ToucanControleur;
 
 import java.util.Collection;
@@ -57,7 +58,15 @@ public class Main extends Application {
         loader.setControllerFactory(instantiatedClass -> { return menu ; });
         root.getChildren().addAll(((Node)loader.load()));
 
-        primaryStage.setScene(new Scene(root, 600, 600));
+        //Le panneau de saisie du code personnalise
+        loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/toucan/vuesFXML/panneauSaisie/panneauSaisie.fxml"));
+        SaisieControleur saisie = new SaisieControleur(modele);
+        loader.setControllerFactory(instantiatedClass -> { return saisie ; });
+        BorderPane east = loader.load();
+        root.setRight(east);
+
+        primaryStage.setScene(new Scene(root, 1000, 800));
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/toucan/ressources/toucan.jpg"))); // Ne fonctionne pas sur les systemes linux apparemment. Dommage.
         primaryStage.show();

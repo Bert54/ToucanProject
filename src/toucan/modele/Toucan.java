@@ -21,6 +21,7 @@ public class Toucan extends Observable {
     private StatutAnimation statutAnimation = StatutAnimation.NON_INITIALISEE; // permet de definir l'etat actuel de l'animation
     private LesCases lesCases;
     private int coeffDuree = 5;
+    private String codeUtilisateur;
 
     /**
      * Constructeur en connaissant le nombre de cases
@@ -46,7 +47,8 @@ public class Toucan extends Observable {
                 setPosition(i, 10, CASETEMPORDONNE);
             }
         }
-        this.algoTri = new AlgoBulle(this);
+        this.algoTri = new AlgoFacade(this);
+        this.codeUtilisateur = "";
     }
 
     /**
@@ -216,6 +218,23 @@ public class Toucan extends Observable {
     public int getVitesse() {
         return this.coeffDuree;
     }
+
+    /**
+     * Remplace l'ancien code utilisateur par un nouveau
+     * @param code Le nouveau code
+     */
+    public void setCodeUtilisateur(String code) {
+        this.codeUtilisateur = code;
+    }
+
+    /**
+     * Recupere le code utilisateur
+     * @return le code utilisateur
+     */
+    public String getCodeUtilisateur() {
+        return this.codeUtilisateur;
+    }
+
 
     @Override
     public String toString() {

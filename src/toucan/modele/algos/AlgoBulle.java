@@ -27,7 +27,6 @@ public class AlgoBulle extends Algo {
                     boolean encore = true ;
                     int n = lesCases.nbCases() ;
                     while (encore) {
-                        Thread.sleep(2);
                         encore = false ;
                         for (int j = 0 ; j < n - 1; j++) {
                             executerAux(COMPARAISON, j, j+1);
