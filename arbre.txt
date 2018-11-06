@@ -1,0 +1,37 @@
+@startuml
+
+package "arbre" {
+
+  abstract class ArbreAbstrait {
+    public String getCodeDecore()
+  }
+  
+  abstract class Instruction extends ArbreAbstrait {
+    public String getCodeDecore()
+  }
+  
+  class BlocDInstruction extends ArbreAbstrait {
+    public String getCodeDecore()
+  }
+  BlocDInstruction -- "*" Instruction
+  
+  abstract class Affectation extends Instruction {
+    public String getCodeDecore()
+  }
+  
+  class AffectVarCase extends Affectation {
+    public String getCodeDecore()
+  }
+  
+  class AffectCaseVar extends Affectation {
+    public String getCodeDecore()
+  }
+  
+  class AffectCaseCase extends Affectation {
+    public String getCodeDecore()
+  }
+  
+}
+
+AlgoFacade -- "1" ArbreAbstrait
+@enduml

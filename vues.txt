@@ -70,6 +70,7 @@ class Toucan extends Observable {
 }
   
 package vuesFXML {
+
   package "PanneauAnimation" {
     class PanneauAnimation implements Observer {
       {field} private SequentialTransition mouv
@@ -110,21 +111,34 @@ package vuesFXML {
   
   package "panneauMenu" {
     class MenuControleur implements Observer {
-	{field} public Menu menuSelectionAlgo
-	public MenuControleur(Toucan toucan)
-	public void fermerProgramme()
-	public void setAlgoBulle()
-	public void setAlgoTest()
-	public void setAlgoStupide
-	public void setAlgoInsertion()
-	public void setAlgoSelection()
-	public void setAlgoCocktail()
-	public void setAlgoPeigne()
-	public void setAlgoDecCirc()
-	public void setAlgoShell()
-	public void update(Observable o, Object arg)
+      {field} public Menu menuSelectionAlgo
+      public MenuControleur(Toucan toucan)
+      public void fermerProgramme()
+      public void setAlgoBulle()
+      public void setAlgoTest()
+      public void setAlgoStupide
+      public void setAlgoInsertion()
+      public void setAlgoSelection()
+      public void setAlgoCocktail()
+      public void setAlgoPeigne()
+      public void setAlgoDecCirc()
+      public void setAlgoShell()
+      public void setAlgoPerso()
+      public void update(Observable o, Object arg)
     }
     MenuControleur -- "1" Toucan
+  }
+  
+  package "panneauSaisie" {
+    class SaisieControleur implements Observer {
+      {field}public TextArea algoSaisie
+      public SaisieControleur(Toucan toucan)
+      public void initialize()
+      public void updateCodeAlgoPerso()
+      public void textBoxDesactivee()
+      public void update(Observable o, Object arg)
+    }
+    SaisieControleur -- "1" Toucan
   }
   
   package "toucan" {

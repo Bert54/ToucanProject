@@ -13,6 +13,7 @@ package "modele" {
     {field} public static final int NOMBREALEATOIREMAX
     {field} private int[] tabEntiers
     {field} private int coeffDuree
+    {field} private String codeUtilisateur
     public Toucan(int nbCases)
     public void prevenirVues()
     public void setStatutAnimation(int s)
@@ -20,7 +21,9 @@ package "modele" {
     public void setValeurInitiale(int noCase, int val)
     public int getValeurInitiale(int noCase)
     public void setPosition(int noCase, int x, int y)
+    public void setAlgoActuel(Algo algo)
     public String getAlgoActuel()
+    public void instancierAlgoTableau(Algo algo)
     public void creerLesMouvements()
     public int nbCases()
     public Case getCase(int numCase)
@@ -30,6 +33,8 @@ package "modele" {
     public boolean variableTempActivee()
     public void setVitesse(int nouveauCoeff, int valMax)
     public int getVitesse()
+    public void setCodeUtilisateur(String code)
+    public String getCodeUtilisateur()
     public String toString()
   }
   Toucan -- "1" LesCases
@@ -103,7 +108,7 @@ package "modele" {
     {field} public static GestionThreads getInstance()
     public GestionThreads()
     public void lancer(Task task)
-    public detruireTout()
+    public void detruireTout()
     public String toString()
   }
   GestionThreads -- "*" Thread
@@ -175,10 +180,10 @@ package "modele" {
 
   package "algos" {
     abstract class Algo {
-      {field} protected int[] tabEntiers
       {field} protected String nomAlgo;
       {field} protected boolean caseTempForcee;
-      public Algo()
+      {field} protected int[] tab
+      public Algo(Toucan mod)
       public void setTab(LesCases lesCases, int... entiers)
       public abstract void trier()
       public String getNomAlgo()
@@ -190,48 +195,53 @@ package "modele" {
     Algo -- "*" IAnimation
     
     class AlgoBulle extends Algo {
-      public AlgoBulle()
+      public AlgoBulle(Toucan mod)
       public void trier()
     }
     
     class AlgoCocktail extends Algo {
-      public AlgoCocktail()
+      public AlgoCocktail(Toucan mod)
       public void trier()
     }
     
     class AlgoDecalageCirculaire extends Algo {
-      public AlgoDecalageCirculaire()
+      public AlgoDecalageCirculaire(Toucan mod)
+      public void trier()
+    }
+    
+    class AlgoFacade extends Algo {
+      public AlgoFacade(Toucan mod)
       public void trier()
     }
     
     class AlgoInsertion extends Algo {
-      public AlgoInsertion()
+      public AlgoInsertion(Toucan mod)
       public void trier()
     }
     
     class AlgoPeigne extends Algo {
-      public AlgoPeigne()
+      public AlgoPeigne(Toucan mod)
       public void trier()
     }
     
     class AlgoSelection extends Algo {
-      public AlgoSelection()
+      public AlgoSelection(Toucan mod)
       public void trier()
     }
     
     class AlgoShell extends Algo {
-      public AlgoShell()
+      public AlgoShell(Toucan mod)
       public void trier()
     }
     
     class AlgoStupide extends Algo {
-      public AlgoStupide()
+      public AlgoStupide(Toucan mod)
       public void trier()
       public boolean estTrie()
     }
     
     class AlgoTest extends Algo {
-      public AlgoTest()
+      public AlgoTest(Toucan mod)
       public void trier()
     }
     

@@ -22,17 +22,20 @@ public class KitJava {
         return instance;
     }
 
-    private KitJava() {
-        compiler = ToolProvider.getSystemJavaCompiler();
-        fileManager = new ClassFileManager(compiler.getStandardFileManager(null, null, null));
-    }
-
     protected String laClasse = "";
     protected static String nomClasse = "AlgoPerso";
     protected static String nomPackage = "toucan.modele.algos";
 
     protected JavaCompiler compiler ;
     protected ClassFileManager fileManager ;
+
+    /**
+     * Constructeur
+     */
+    private KitJava() {
+        compiler = ToolProvider.getSystemJavaCompiler();
+        fileManager = new ClassFileManager(compiler.getStandardFileManager(null, null, null));
+    }
 
     public void construireClasse(String code) {
 
@@ -68,8 +71,12 @@ public class KitJava {
         try {
             sortieErreur.close() ;
         } catch (IOException ex) {
-            Logger.getLogger(TestOutils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KitJava.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println("-------------------------------------");
+        System.out.println("sortie d'erreur de la compilation : ") ;
+        System.out.println(sortieErreur);
+        System.out.println("-------------------------------------");
     }
 
     private Iterable<JavaSource> getJavaSourceFromString(String fileName, String code) {
@@ -94,22 +101,23 @@ public class KitJava {
             instance.trier();
 
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(TestOutils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KitJava.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            Logger.getLogger(TestOutils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KitJava.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(TestOutils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KitJava.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchMethodException ex) {
-            Logger.getLogger(TestOutils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KitJava.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SecurityException ex) {
-            Logger.getLogger(TestOutils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KitJava.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalArgumentException ex) {
-            Logger.getLogger(TestOutils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KitJava.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvocationTargetException ex) {
-            Logger.getLogger(TestOutils.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KitJava.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    @Override
     public String toString() {
         return this.laClasse;
     }

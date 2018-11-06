@@ -1,0 +1,43 @@
+@startuml
+
+package "outils" {
+
+  class ClassFileManager extends ForwardingJavaFileManager {
+    public ClassFileManager(StandardJavaFileManager standardManager)
+    public ClassLoader getClassLoader(JavaFileManager.Location location)
+    public JavaFileObject getJavaFileForOutput(JavaFileManager.Location location,
+	  String className, Kind kind, FileObject sibling)
+  }
+  ClassFileManager -- "1" JavaClassObject
+  
+  class JavaClassObject extends SimpleJavaFileObject {
+    {field} protected final ByteArrayOutputStream bos = new ByteArrayOutputStream()
+    public JavaClassObject(String name, Kind kind)
+    public byte[] getBytes()
+    public OutputStream openOutputStream()
+  }
+  
+  class JavaSource extends SimpleJavaFileObject {
+    {field}protected final String code
+    public JavaSource(String name, String code)
+    public CharSequence getCharContent(boolean ignoreEncodingErrors)
+  }
+  
+  class KitJava <<(S, #FF7700) Singleton>> {
+    {field} private static KitJava instance
+    {field} public static KitJava getInstance()
+    {field} protected String laClasse
+    {field} protected static String nomClasse
+    {field} protected static String nomPackage
+    {field} protected JavaCompiler compiler
+    public KitJava()
+    public void construireClasse(String code)
+    public void compiler()
+    private Iterable<JavaSource> getJavaSourceFromString(String fileName, String code)
+    public void executer(Toucan toucan)
+    public String toString()
+  }
+  KitJava -- "1" ClassFileManager
+  
+}
+@enduml

@@ -17,6 +17,7 @@ public class AlgoFacade extends Algo {
     @Override
     public void trier() {
         KitJava.getInstance().construireClasse(toucan.getCodeUtilisateur());
+        System.out.println(KitJava.getInstance().toString());   // Affiche les erreurs de l'utilisateur sur la sortie standard
         KitJava.getInstance().compiler();
         KitJava.getInstance().executer(toucan);
         toucan.prevenirVues();
