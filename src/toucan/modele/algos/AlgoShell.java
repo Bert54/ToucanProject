@@ -27,23 +27,23 @@ public class AlgoShell extends Algo {
                 protected Void call() throws Exception {
 
                     int n = 0;
-                    while (n < tabEntiers.length) {
+                    while (n < tab.length) {
                         n = 3 * n + 1;
                     }
                     while(n != 0) {
                         n /= 3;
-                        for (int i = n ; i < tabEntiers.length ; i++) {
-                            int valeur = tabEntiers[i];
+                        for (int i = n; i < tab.length ; i++) {
+                            int valeur = tab[i];
                             executerAux(AFFECTATIONCVAL, i);
                             int j = i;
                             executerAux(COMPARAISONVALCASE, j - n);
-                            while((j > (n - 1)) && (tabEntiers[j - n] > valeur)) {
-                                tabEntiers[j] = tabEntiers[j - n];
+                            while((j > (n - 1)) && (tab[j - n] > valeur)) {
+                                tab[j] = tab[j - n];
                                 executerAux(AFFECTATIONECRASEMENTCASECASE, j - n, j);
                                 executerAux(COMPARAISONVALCASE, j - n);
                                 j = j - n;
                             }
-                            tabEntiers[j] = valeur;
+                            tab[j] = valeur;
                             executerAux(AFFECTATIONVCASE, j);
                         }
                     }

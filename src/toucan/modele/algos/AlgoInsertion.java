@@ -28,16 +28,16 @@ public class AlgoInsertion extends Algo {
 
                     int mem;
                     int j;
-                    for (int i = 1 ; i < tabEntiers.length ; i++) {
-                        mem = tabEntiers[i];
+                    for (int i = 1; i < tab.length ; i++) {
+                        mem = tab[i];
                         executerAux(AFFECTATIONCVAL, i);
                         j = i - 1;
-                        while (j >= 0 && tabEntiers[j] > mem) {
-                            tabEntiers[j + 1] = tabEntiers[j];
+                        while (j >= 0 && tab[j] > mem) {
+                            tab[j + 1] = tab[j];
                             executerAux(AFFECTATIONECRASEMENTCASECASE, j, j + 1);
                             j--;
                         }
-                        tabEntiers[j + 1] = mem;
+                        tab[j + 1] = mem;
                         executerAux(AFFECTATIONVCASE, j + 1);
                         Thread.sleep(5);
                         toucan.prevenirVues();

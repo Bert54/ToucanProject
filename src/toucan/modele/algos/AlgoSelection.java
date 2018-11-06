@@ -27,13 +27,13 @@ public class AlgoSelection extends Algo {
 
                     int min;
                     int temp;
-                    for (int i = 0 ; i < tabEntiers.length - 1 ; i++) {
+                    for (int i = 0; i < tab.length - 1 ; i++) {
                         min = i;
-                        for (int j = min ; j < tabEntiers.length ; j++) {
+                        for (int j = min; j < tab.length ; j++) {
                             if (min != j) {
                                 executerAux(COMPARAISON, min, j);
                             }
-                            if (tabEntiers[j] < tabEntiers[min]) {
+                            if (tab[j] < tab[min]) {
                                 min = j;
                             }
                         }
@@ -46,9 +46,9 @@ public class AlgoSelection extends Algo {
                             else {
                                 executerAux(AFFECTATION, min, i);
                             }
-                            temp = tabEntiers[i];
-                            tabEntiers[i] = tabEntiers[min];
-                            tabEntiers[min] = temp;
+                            temp = tab[i];
+                            tab[i] = tab[min];
+                            tab[min] = temp;
                         }
                         Thread.sleep(5);
                         toucan.prevenirVues();

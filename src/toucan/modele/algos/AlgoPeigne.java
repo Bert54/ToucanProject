@@ -24,7 +24,7 @@ public class AlgoPeigne extends Algo{
 
                 @Override
                 protected Void call() throws Exception {
-                    int gap = tabEntiers.length;
+                    int gap = tab.length;
                     boolean encore = true;
                     int temp;
                     while (encore || gap > 1) {
@@ -33,13 +33,13 @@ public class AlgoPeigne extends Algo{
                         if (gap < 1) {
                             gap = 1;
                         }
-                        for (int i = 0 ; i < (tabEntiers.length) - gap; i++) {
+                        for (int i = 0; i < (tab.length) - gap; i++) {
                             executerAux(COMPARAISON, i, i+ gap);
-                            if (tabEntiers[i] > tabEntiers[i + gap]){
+                            if (tab[i] > tab[i + gap]){
                                 encore = true;
-                                temp = tabEntiers[i];
-                                tabEntiers[i] = tabEntiers[i + gap];
-                                tabEntiers[i + gap] = temp;
+                                temp = tab[i];
+                                tab[i] = tab[i + gap];
+                                tab[i + gap] = temp;
                                 if (lesCases.variableTempActivee()) {
                                     executerAux(AFFECTATIONCVAL, i);
                                     executerAux(AFFECTATIONECRASEMENTCASECASE, i + gap, i);

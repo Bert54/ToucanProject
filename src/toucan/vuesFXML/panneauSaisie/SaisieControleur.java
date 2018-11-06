@@ -24,14 +24,21 @@ public class SaisieControleur implements Observer {
 
     @FXML
     public void initialize() throws Exception {
+        this.updateCodeAlgoPerso();
         this.textBoxDesactivee();
     }
 
+    /**
+     * Met a jour le code de l'utilisateur dans le modele
+     */
     @FXML
     public void updateCodeAlgoPerso() {
         this.toucan.setCodeUtilisateur(this.algoSaisie.getText());
     }
 
+    /**
+     * Active le champ de saisie de code personnel si l'algo actif est l'algo personnel et que l'animation n'est pas lancee
+     */
     public void textBoxDesactivee() {
         if (toucan.getAlgoActuel().equals("Algo Personnel") && toucan.getStatutAnimation() == StatutAnimation.NON_INITIALISEE) {
             this.algoSaisie.setDisable(false);

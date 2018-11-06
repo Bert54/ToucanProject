@@ -33,10 +33,10 @@ public class AlgoCocktail extends Algo {
                         encore = false;
                         for(int j = debut ; j < fin ; j++){
                             executerAux(COMPARAISON, j, j+1);
-                            if (tabEntiers[j] > tabEntiers[j+1]) {
-                                int var = tabEntiers[j];
-                                tabEntiers[j] = tabEntiers[j + 1];
-                                tabEntiers[j + 1] = var;
+                            if (tab[j] > tab[j+1]) {
+                                int var = tab[j];
+                                tab[j] = tab[j + 1];
+                                tab[j + 1] = var;
                                 if (lesCases.variableTempActivee()) {
                                     executerAux(AFFECTATIONCVAL, j);
                                     executerAux(AFFECTATIONECRASEMENTCASECASE, j + 1, j);
@@ -51,10 +51,10 @@ public class AlgoCocktail extends Algo {
                         fin--;
                         for(int j = fin ; j >= debut ; j--){
                             executerAux(COMPARAISON, j, j+1);
-                            if (tabEntiers[j] > tabEntiers[j+1]) {
-                                int var = tabEntiers[j] ;
-                                tabEntiers[j] = tabEntiers[j+1] ;
-                                tabEntiers[j+1] = var ;
+                            if (tab[j] > tab[j+1]) {
+                                int var = tab[j] ;
+                                tab[j] = tab[j+1] ;
+                                tab[j+1] = var ;
                                 if (lesCases.variableTempActivee()) {
                                     executerAux(AFFECTATIONCVAL, j);
                                     executerAux(AFFECTATIONECRASEMENTCASECASE, j + 1, j);

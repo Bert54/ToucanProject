@@ -66,7 +66,7 @@ public class Main extends Application {
         BorderPane east = loader.load();
         root.setRight(east);
 
-        primaryStage.setScene(new Scene(root, 1000, 800));
+        primaryStage.setScene(new Scene(root, 1030, 800));
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/toucan/ressources/toucan.jpg"))); // Ne fonctionne pas sur les systemes linux apparemment. Dommage.
         primaryStage.show();

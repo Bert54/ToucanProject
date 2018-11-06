@@ -47,7 +47,7 @@ public class Toucan extends Observable {
                 setPosition(i, 10, CASETEMPORDONNE);
             }
         }
-        this.algoTri = new AlgoFacade(this);
+        this.algoTri = new AlgoBulle(this);
         this.codeUtilisateur = "";
     }
 
@@ -135,6 +135,13 @@ public class Toucan extends Observable {
         return this.algoTri.getNomAlgo();
     }
 
+    /**
+     * Instancie le tableau interne d'un algorithme
+     * @param algo l'algorithme dont le tableau doit etre instancie
+     */
+    public void instancierAlgoTableau(Algo algo) {
+        algo.setTab(this.lesCases, this.tabEntiers);
+    }
 
     /**
      * Creation des mouvements des cases ainsi que la creation de l'execution de l'algorithme choisi
@@ -146,7 +153,7 @@ public class Toucan extends Observable {
         for(int i = 0 ; i < this.nbCases() ; i++){
             this.tabEntiers[i] = getValeurInitiale(i);
         }
-        this.algoTri.setTab(this.lesCases, this.tabEntiers);
+        this.instancierAlgoTableau(this.algoTri);
         this.algoTri.trier();
         Thread.sleep(300);
     }

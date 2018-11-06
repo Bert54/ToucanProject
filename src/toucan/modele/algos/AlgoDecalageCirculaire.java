@@ -25,14 +25,14 @@ public class AlgoDecalageCirculaire extends Algo {
 
                     for (int k = 0; k < 100000 ; k++) {
                         executerAux(AFFECTATIONCVAL, 0);
-                        int x = tabEntiers[0];
+                        int x = tab[0];
                         for (int i = 0; i < lesCases.nbCases() - 1; i++) {
                             executerAux(AFFECTATIONECRASEMENTCASECASE, i + 1, i);
-                            tabEntiers[i] = tabEntiers[i + 1];
+                            tab[i] = tab[i + 1];
                         }
 
                         executerAux(AFFECTATIONVCASE, lesCases.nbCases() - 1);
-                        tabEntiers[lesCases.nbCases() - 1] = x;
+                        tab[lesCases.nbCases() - 1] = x;
                         Thread.sleep(5);
                         toucan.prevenirVues();
                     }

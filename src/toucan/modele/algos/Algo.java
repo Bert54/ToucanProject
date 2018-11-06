@@ -13,7 +13,7 @@ public abstract class Algo {
     protected String nomAlgo;
     protected Toucan toucan;
     protected boolean caseTempForcee;
-    protected int[] tabEntiers;
+    protected int[] tab;
 
     /**
      * Constructeur d'un algorithme (algo inutilisable sans avoir appele la methode setTab() )
@@ -38,8 +38,8 @@ public abstract class Algo {
      */
     public void setTab(LesCases lesCases, int... entiers) {
         this.lesCases = lesCases;
-        this.tabEntiers = new int[entiers.length];
-        this.tabEntiers = entiers.clone();
+        this.tab = new int[entiers.length];
+        this.tab = entiers.clone();
     }
 
 
@@ -79,8 +79,8 @@ public abstract class Algo {
         StringBuilder string = new StringBuilder();
         string.append("Algorithme : " + "\nNom : " + this.nomAlgo + ", Variable temporaire forcée : " + this.caseTempForcee);
         string.append("\nTableau : ");
-        for (int i = 0 ; i < this.tabEntiers.length ; i++) {
-            string.append(this.tabEntiers[i] + " ");
+        for (int i = 0; i < this.tab.length ; i++) {
+            string.append(this.tab[i] + " ");
         }
         return string.toString();
     }

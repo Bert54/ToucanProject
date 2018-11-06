@@ -32,13 +32,13 @@ public class AlgoStupide  extends Algo {
                     int rVal1;
                     int rVal2;
                     while (!estTrie()) {
-                        rVal1 = random.nextInt(tabEntiers.length - 1);
+                        rVal1 = random.nextInt(tab.length - 1);
                         do {
-                            rVal2 = random.nextInt(tabEntiers.length - 1);
+                            rVal2 = random.nextInt(tab.length - 1);
                         } while(rVal1 == rVal2);
-                        temp = tabEntiers[rVal1];
-                        tabEntiers[rVal1] = tabEntiers[rVal2];
-                        tabEntiers[rVal2] = temp;
+                        temp = tab[rVal1];
+                        tab[rVal1] = tab[rVal2];
+                        tab[rVal2] = temp;
                         if (lesCases.variableTempActivee()) {
                             executerAux(AFFECTATIONCVAL, rVal1);
                             executerAux(AFFECTATIONECRASEMENTCASECASE, rVal2, rVal1);
@@ -67,9 +67,9 @@ public class AlgoStupide  extends Algo {
      */
     public boolean estTrie() {
         boolean trier = true;
-        for (int i = 0; i < this.tabEntiers.length - 1 ; i++) {
+        for (int i = 0; i < this.tab.length - 1 ; i++) {
             this.executerAux(COMPARAISON, i, i+1);
-            if (this.tabEntiers[i] > this.tabEntiers[i+1]) {
+            if (this.tab[i] > this.tab[i+1]) {
                 trier = false;
             }
         }

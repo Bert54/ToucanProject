@@ -11,11 +11,21 @@ public class AlgoFacade extends Algo {
     public AlgoFacade(Toucan mod) {
         super(mod);
         this.nomAlgo = "Algo Personnel";
+        this.caseTempForcee = true;
     }
 
     @Override
     public void trier() {
         KitJava.getInstance().construireClasse(toucan.getCodeUtilisateur());
-        System.out.println(KitJava.getInstance().toString());
+        KitJava.getInstance().compiler();
+        KitJava.getInstance().executer(toucan);
+        toucan.prevenirVues();
     }
 }
+
+/**
+ * Pour construire les animations de l'algo perso depuis l'IG, il faut utiliser la methode executerAux(AttributAnimation attrAnim, int... lesIndices),
+ * avec attrAnim, un type d'animation defini dans toucan.modele.animation.AttributAnimation et lesIndices les cases concernées (ici, seule 1 ou
+ * 2 cases sont concernees).
+ */
+
