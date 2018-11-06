@@ -1,5 +1,6 @@
 package toucan.modele.algos;
 
+import toucan.arbre.*;
 import toucan.modele.Toucan;
 import toucan.outils.KitJava;
 
@@ -16,7 +17,14 @@ public class AlgoFacade extends Algo {
 
     @Override
     public void trier() {
-        KitJava.getInstance().construireClasse(toucan.getCodeUtilisateur());
+        BlocDInstruction arbre = new BlocDInstruction();
+        arbre.ajouter(new Declaration("int", "temp"));
+        arbre.ajouter(new AffectCaseCase(3, 6));
+        arbre.ajouter(new AffectCaseVar(0));
+        arbre.ajouter(new AffectEcrasementCaseCase(7, 0));
+        arbre.ajouter(new AffectVarCase(7));
+        //KitJava.getInstance().construireClasse(toucan.getCodeUtilisateur());
+        KitJava.getInstance().construireClasse(arbre.getCodeDecore());
         System.out.println(KitJava.getInstance().toString());   // Affiche les erreurs de l'utilisateur sur la sortie standard
         KitJava.getInstance().compiler();
         KitJava.getInstance().executer(toucan);
