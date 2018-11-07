@@ -14,7 +14,7 @@ public class AffectEcrasementCaseCase extends Affectation {
     public String getCodeDecore() {
         StringBuilder string = new StringBuilder("");
         string.append("executerAux(AFFECTATIONECRASEMENTCASECASE, "+ premier + ", " + deuxieme + ");\n");
-        string.append("tab[" + premier +"] = tab[" + deuxieme +"];\n");
+        string.append("tab[" + deuxieme +"] = tab[" + premier +"];\n");
         return string.toString();
     }
 }

@@ -17,12 +17,22 @@ public class AlgoFacade extends Algo {
 
     @Override
     public void trier() {
-        BlocDInstruction arbre = new BlocDInstruction();
+        BlocDInstructions arbre = new BlocDInstructions();
         arbre.ajouter(new Declaration("int", "temp"));
-        arbre.ajouter(new AffectCaseCase(3, 6));
-        arbre.ajouter(new AffectCaseVar(0));
-        arbre.ajouter(new AffectEcrasementCaseCase(7, 0));
-        arbre.ajouter(new AffectVarCase(7));
+        BlocDInstructions alors = new BlocDInstructions();
+        BlocDInstructions sinon = new BlocDInstructions();
+        alors.ajouter(new AffectCaseCase(3, 6));
+        alors.ajouter(new AffectCaseCase(3, 5));
+        alors.ajouter(new AffectCaseCase(2, 7));
+        sinon.ajouter(new AffectCaseVar(0));
+        sinon.ajouter(new AffectEcrasementCaseCase(7, 0));
+        sinon.ajouter(new AffectVarCase(7));
+        arbre.ajouter(new CompaCaseCase(2, "<", 5, alors, sinon));
+        BlocDInstructions sinonAlors = new BlocDInstructions();
+        BlocDInstructions sinonSinon = new BlocDInstructions();
+        sinonAlors.ajouter(new AffectCaseCase(1,2));
+        sinonSinon.ajouter(new AffectCaseCase(7,6));
+        arbre.ajouter(new CompaCaseVar(8, "<", sinonAlors, sinonSinon));
         //KitJava.getInstance().construireClasse(toucan.getCodeUtilisateur());
         KitJava.getInstance().construireClasse(arbre.getCodeDecore());
         System.out.println(KitJava.getInstance().toString());   // Affiche les erreurs de l'utilisateur sur la sortie standard

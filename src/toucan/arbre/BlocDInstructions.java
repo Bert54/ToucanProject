@@ -2,11 +2,11 @@ package toucan.arbre;
 
 import java.util.ArrayList;
 
-public class BlocDInstruction extends ArbreAbstrait {
+public class BlocDInstructions extends ArbreAbstrait {
 
     private ArrayList<Instruction> instructions;
 
-    public BlocDInstruction() {
+    public BlocDInstructions() {
         this.instructions = new ArrayList<>();
     }
 
