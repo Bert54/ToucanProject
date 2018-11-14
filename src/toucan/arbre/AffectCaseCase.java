@@ -2,21 +2,33 @@ package toucan.arbre;
 
 public class AffectCaseCase extends Affectation {
 
-    int premier;
-    int deuxieme;
+    private String opeGauche;
+    private String opeDroite;
 
-    public AffectCaseCase(int p, int d) {
-        this.premier = p;
-        this.deuxieme = d;
+    /**
+     * Constructeur d'affectation entre 2 operandes
+     * @param p operande gauche
+     * @param d operande droite
+     * @param var le booleen qui determine si on a un operande avec une variable utilisateur ou avec un calcul
+     */
+    public AffectCaseCase(String p, String d, boolean var) {
+        this.opeGauche = p;
+        this.opeDroite = d;
+        this.variableUtil = var;
     }
 
     @Override
     public String getCodeDecore() {
         StringBuilder string = new StringBuilder("");
-        string.append("executerAux(AFFECTATION, "+ premier + ", " + deuxieme + ");\n");
-        string.append("temp = tab[" + premier +"];\n");
-        string.append("tab[" + premier +"] = tab[" + deuxieme +"];\n");
-        string.append("tab[" + deuxieme +"] = temp;\n");
+        if (this.variableUtil) {
+            string.append("executerAux(AFFECTATION, "+ this.removeTabinString(opeGauche) + ", " + this.removeTabinString(opeDroite) + ");\n");
+        }
+        else {
+            string.append("executerAux(AFFECTATION, "+ opeGauche.replaceAll("[^0-9]", "") + ", " + opeDroite.replaceAll("[^0-9]", "") + ");\n");
+        }
+        string.append("temp = " + opeGauche +";\n");
+        string.append(opeGauche +" = " + opeDroite +";\n");
+        string.append(opeDroite +" = temp;\n");
         return string.toString();
     }
 }

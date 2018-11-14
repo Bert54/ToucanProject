@@ -19,21 +19,25 @@ public class AlgoFacade extends Algo {
     public void trier() {
         BlocDInstructions arbre = new BlocDInstructions();
         arbre.ajouter(new Declaration("int", "temp"));
+        arbre.ajouter(new Declaration("int", "abc"));
+        arbre.ajouter(new AffectEcrasementCaseCase("abc", "2", false, true));
+        arbre.ajouter(new AffectEcrasementCaseCase("abc", "abc+3", false, true));
+        arbre.ajouter(new AffectCaseCase("tab[9]", "tab[abc]", true));
         BlocDInstructions alors = new BlocDInstructions();
         BlocDInstructions sinon = new BlocDInstructions();
-        alors.ajouter(new AffectCaseCase(3, 6));
-        alors.ajouter(new AffectCaseCase(3, 5));
-        alors.ajouter(new AffectCaseCase(2, 7));
-        sinon.ajouter(new AffectCaseVar(0));
-        sinon.ajouter(new AffectEcrasementCaseCase(7, 0));
-        sinon.ajouter(new AffectVarCase(7));
-        arbre.ajouter(new CompaCaseCase(2, "<", 5, alors, sinon));
+        alors.ajouter(new AffectCaseCase("tab[6]", "tab[3+2]", true));
+        alors.ajouter(new AffectCaseCase("tab[5]", "tab[3]", false));
+        alors.ajouter(new AffectCaseCase("tab[7]", "tab[2]", false));
+        sinon.ajouter(new AffectCaseVar("tab[0]", false));
+        sinon.ajouter(new AffectEcrasementCaseCase("tab[0]", "tab[7]", true, false));
+        sinon.ajouter(new AffectVarCase("tab[7]", false));
+        arbre.ajouter(new CompaCaseCase("tab[2]", "<", "tab[5]", alors, sinon, false));
         BlocDInstructions sinonAlors = new BlocDInstructions();
         BlocDInstructions sinonSinon = new BlocDInstructions();
-        sinonAlors.ajouter(new AffectCaseCase(1,2));
-        sinonSinon.ajouter(new AffectCaseCase(7,6));
-        arbre.ajouter(new CompaCaseVar(8, "<", sinonAlors, sinonSinon));
-        //KitJava.getInstance().construireClasse(toucan.getCodeUtilisateur());
+        sinonAlors.ajouter(new AffectCaseCase("tab[2]","tab[1]", false));
+        sinonSinon.ajouter(new AffectCaseCase("tab[6-5]","tab[7]", true));
+        arbre.ajouter(new CompaVarCase("<", "tab[8]", sinonAlors, sinonSinon, false));
+        //KitJava.getInstance().construireClasse(toucan.getCodeUtilisateur())
         KitJava.getInstance().construireClasse(arbre.getCodeDecore());
         System.out.println(KitJava.getInstance().toString());   // Affiche les erreurs de l'utilisateur sur la sortie standard
         KitJava.getInstance().compiler();
