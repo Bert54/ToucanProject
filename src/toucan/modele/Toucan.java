@@ -29,12 +29,21 @@ public class Toucan extends Observable {
      */
     public Toucan(int nbCases) {
         assert (nbCases >= 0) : "Nombre de cases invalide";
+        this.lesCases = new LesCases(nbCases);
+        genererCases();
+        this.algoTri = new AlgoBulle(this);
+        this.codeUtilisateur = "";
+    }
+
+    /**
+     * Genere aleatoirement les valeurs du tableau
+     */
+    public void genererCases() {
         Random random = new Random();
         int newVal;
-        this.lesCases = new LesCases(nbCases);
         int abs = 10;
-        for (int i = 0; i < nbCases+1; i++) {
-            if (i < nbCases) {
+        for (int i = 0; i < this.lesCases.nbCases()+1; i++) {
+            if (i < this.lesCases.nbCases()) {
                 setPosition(i, abs, CASELONGUEUR);
                 abs += CASELONGUEUR;
                 newVal = random.nextInt(NOMBREALEATOIREMAX + 1); // Generation d'une valeur aleatoire pour la case i
@@ -47,8 +56,7 @@ public class Toucan extends Observable {
                 setPosition(i, 10, CASETEMPORDONNE);
             }
         }
-        this.algoTri = new AlgoBulle(this);
-        this.codeUtilisateur = "";
+        prevenirVues();
     }
 
     /**

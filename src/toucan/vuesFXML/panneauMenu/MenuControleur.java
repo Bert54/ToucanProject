@@ -1,9 +1,9 @@
 package toucan.vuesFXML.panneauMenu;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import toucan.modele.GestionThreads;
 import toucan.modele.StatutAnimation;
 import toucan.modele.Toucan;
@@ -15,7 +15,8 @@ import java.util.Observer;
 public class MenuControleur implements Observer {
 
     private Toucan toucan;
-
+    @FXML
+    public MenuItem menuItemGenerationValeurs;
     @FXML
     public Menu menuSelectionAlgo;
 
@@ -35,6 +36,14 @@ public class MenuControleur implements Observer {
     public void fermerProgramme() {
         GestionThreads.getInstance().detruireTout();
         Platform.exit() ;
+    }
+
+    /**
+     * Genere aleatoirement les valeurs du tableau
+     */
+    @FXML
+    public void GenererValeurs() {
+        this.toucan.genererCases();
     }
 
     /**
@@ -129,11 +138,13 @@ public class MenuControleur implements Observer {
 
             @Override
             public void run() {
-                if (toucan.getStatutAnimation() == StatutAnimation.NON_INITIALISEE) {
-                    menuSelectionAlgo.setDisable(false);
+                if (toucan.getStatutAnimation() == StatutAnimation.NON_INITIALISEE) {   // Si un algorithme est lancé,
+                    menuSelectionAlgo.setDisable(false);                                // impossibilité de changer l'algorithme
+                    menuItemGenerationValeurs.setDisable(false);                        // et de regénérer les valeurs
                 }
                 else {
                     menuSelectionAlgo.setDisable(true);
+                    menuItemGenerationValeurs.setDisable(true);
                 }
             }
 

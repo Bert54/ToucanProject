@@ -111,9 +111,11 @@ package vuesFXML {
   
   package "panneauMenu" {
     class MenuControleur implements Observer {
+      {field} public MenuItem menuItemGenerationValeurs
       {field} public Menu menuSelectionAlgo
       public MenuControleur(Toucan toucan)
       public void fermerProgramme()
+      public void GenererValeurs()
       public void setAlgoBulle()
       public void setAlgoTest()
       public void setAlgoStupide

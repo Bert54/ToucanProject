@@ -5,6 +5,11 @@ public class Declaration extends Instruction {
     private String nom;
     private String type;
 
+    /**
+     * Constructeur d'une declaration
+     * @param type type de la variable
+     * @param nom nom de la variable
+     */
     public Declaration(String type, String nom) {
         this.nom = nom;
         this.type = type;

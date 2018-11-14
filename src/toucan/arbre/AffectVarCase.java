@@ -2,7 +2,7 @@ package toucan.arbre;
 
 public class AffectVarCase extends Affectation {
 
-    private String premier;
+    private String opeDroite;
 
     /**
      * Constructeur d'une affectation entre la variable temporaire et un operande
@@ -10,7 +10,7 @@ public class AffectVarCase extends Affectation {
      * @param var le booleen qui determine si on a un operande avec une variable utilisateur ou avec un calcul
      */
     public AffectVarCase(String p, boolean var) {
-        this.premier = p;
+        this.opeDroite = p;
         this.variableUtil = var;
     }
 
@@ -18,12 +18,12 @@ public class AffectVarCase extends Affectation {
     public String getCodeDecore() {
         StringBuilder string = new StringBuilder("");
         if (this.variableUtil) {
-            string.append("executerAux(AFFECTATIONVCASE, " + removeTabinString(premier) + ");\n");
+            string.append("executerAux(AFFECTATIONVCASE, " + removeTabinString(opeDroite) + ");\n");
         }
         else {
-            string.append("executerAux(AFFECTATIONVCASE, " + premier.replaceAll("[^0-9]", "") + ");\n");
+            string.append("executerAux(AFFECTATIONVCASE, " + opeDroite.replaceAll("[^0-9]", "") + ");\n");
         }
-        string.append(premier +" = temp;\n");
+        string.append(opeDroite +" = temp;\n");
         return string.toString();
     }
 }

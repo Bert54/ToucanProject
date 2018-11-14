@@ -3,31 +3,82 @@
 package "arbre" {
 
   abstract class ArbreAbstrait {
-    public String getCodeDecore()
+    public abstract String getCodeDecore()
   }
   
   abstract class Instruction extends ArbreAbstrait {
-    public String getCodeDecore()
   }
   
   class BlocDInstruction extends ArbreAbstrait {
+    public BlocDInstruction()
     public String getCodeDecore()
+    public void ajouter(Instruction i)
   }
   BlocDInstruction -- "*" Instruction
   
   abstract class Affectation extends Instruction {
+  }
+  
+  class Declaration extends Instruction {
+    public Declaration(String type, String nom)
     public String getCodeDecore()
   }
   
   class AffectVarCase extends Affectation {
+    {field} private String opeDroite
+    public AffectVarCase(String p, boolean var)
     public String getCodeDecore()
   }
   
   class AffectCaseVar extends Affectation {
+    {field} private String opeGauche
+    public AffectCaseVar(String p, boolean var)
     public String getCodeDecore()
   }
   
   class AffectCaseCase extends Affectation {
+    {field} private String opeGauche
+    {field} private String opeDroite
+    public AffectCaseCase(String p, String d, boolean var)
+    public String getCodeDecore()
+  }
+  
+  class AffectEcrasementCaseCase extends Affectation {
+    {field} private String opeGauche
+    {field} private String opeDroite
+    {field} private boolean execAnimation
+    public AffectEcrasementCaseCase(String p, String d, boolean var)
+    public String getCodeDecore()
+  }
+  
+  class Conditionnelle extends Instruction {
+  }
+  
+  class CompaCaseCase extends Conditionnelle {
+    {field} private String opeGauche
+    {field} private String comparateur
+    {field} private String opeDroite
+    {field} private BlocDInstructions instructionsAlors
+    {field} private BlocDInstructions instructionsSinon
+    public CompaCaseCase(String opeGauche, String compa, String opeDroite, BlocDInstructions alors, BlocDInstructions sinon, boolean var)
+    public String getCodeDecore()
+  }
+  
+  class CompaCaseVar extends Conditionnelle {
+    {field} private String opeGauche
+    {field} private String comparateur
+    {field} private BlocDInstructions instructionsAlors
+    {field} private BlocDInstructions instructionsSinon
+    public CompaCaseVar(String compa, String opeDroite, BlocDInstructions alors, BlocDInstructions sinon, boolean var)
+    public String getCodeDecore()
+  }
+  
+  class CompaVarCase extends Conditionnelle {
+    {field} private String comparateur
+    {field} private String opeDroite
+    {field} private BlocDInstructions instructionsAlors
+    {field} private BlocDInstructions instructionsSinon
+    public CompaVarCase(String opeGauche, String compa, BlocDInstructions alors, BlocDInstructions sinon, boolean var)
     public String getCodeDecore()
   }
   

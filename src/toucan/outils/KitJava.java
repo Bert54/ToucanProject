@@ -37,6 +37,10 @@ public class KitJava {
         fileManager = new ClassFileManager(compiler.getStandardFileManager(null, null, null));
     }
 
+    /**
+     * Construction de la classe AlgoPerso dont le code est saisissable par l'utilisateur dans la zone de texte
+     * @param code code saisi par l'utilisateur
+     */
     public void construireClasse(String code) {
 
         StringBuilder codeACompiler = new StringBuilder("");
@@ -62,6 +66,9 @@ public class KitJava {
         this.laClasse = codeACompiler.toString();
     }
 
+    /**
+     * Compilation du code utilisateur
+     */
     public void compiler() {
         StringWriter sortieErreur = new StringWriter();
 
@@ -83,6 +90,10 @@ public class KitJava {
         return Collections.singletonList(new JavaSource(fileName, code));
     }
 
+    /**
+     * Execution du code utilisateur
+     * @param toucan modele
+     */
     public void executer(Toucan toucan) {
         try {
             String nomExecutable = nomPackage + "." + nomClasse ;
@@ -121,6 +132,7 @@ public class KitJava {
     public String toString() {
         return this.laClasse;
     }
+
 
     public static void main(String[] args) {
         /**StringBuilder string = new StringBuilder();

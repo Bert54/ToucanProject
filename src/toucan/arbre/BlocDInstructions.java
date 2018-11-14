@@ -6,6 +6,9 @@ public class BlocDInstructions extends ArbreAbstrait {
 
     private ArrayList<Instruction> instructions;
 
+    /**
+     * Constructeur
+     */
     public BlocDInstructions() {
         this.instructions = new ArrayList<>();
     }

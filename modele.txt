@@ -15,6 +15,7 @@ package "modele" {
     {field} private int coeffDuree
     {field} private String codeUtilisateur
     public Toucan(int nbCases)
+    public void genererCases()
     public void prevenirVues()
     public void setStatutAnimation(int s)
     public StatutAnimation getStatutAnimation()
