@@ -1,4 +1,20 @@
 @startuml
+
+  Interface Observer {
+  }
+  
+  class Observable {
+  }
+  
+  class Case {
+  }
+  
+  class Text {
+  }
+  
+  class Rectangle {
+  }
+
 package "vues" {
 
 class Toucan extends Observable {
@@ -96,12 +112,17 @@ package vuesFXML {
       {field} public Label nomAlgoLabel
       {field} public CheckBox varTempCheckBox
       {field} public Slider sliderVitesse
+      {field} public labelExecTime
+      {field} public labelExecTimeValue
+      {field} public CheckBox viewAlgotimeEll
       public ControlesControleur(Toucan toucan)
       public void initialize()
       public void toggleAnimation()
-      public algoVariableTempDetection()
+      public void algoVariableTempDetection()
+      public void updateExecTimeLabel()
       public void updateLabel()
       public void toggleVariableTemp()
+      public void toggleAlgorithmExecTimeView()
       public void setVitesse()
       public void reinitialiseAnimation()
       public void update(Observable o, Object arg)
@@ -112,10 +133,12 @@ package vuesFXML {
   package "panneauMenu" {
     class MenuControleur implements Observer {
       {field} public MenuItem menuItemGenerationValeurs
+      {field} public MenuItme MenuItemChangeSize
       {field} public Menu menuSelectionAlgo
       public MenuControleur(Toucan toucan)
       public void fermerProgramme()
       public void GenererValeurs()
+      public void changeArraySize()
       public void setAlgoBulle()
       public void setAlgoTest()
       public void setAlgoStupide

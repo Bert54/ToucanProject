@@ -24,6 +24,7 @@ public class TexteAnimation extends Text {
      * Constructeur
      * @param c la case du modele dont on anime la valeur
      * @param lesCouleurs tableau des couleurs
+     * @param duree vitesse de l'animation
      */
     public TexteAnimation(Case c, Color[] lesCouleurs, int duree) {
         super("" + c.getValeurInitiale());

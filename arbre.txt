@@ -1,45 +1,36 @@
 @startuml
 
 package "arbre" {
-
-  abstract class ArbreAbstrait {
-    public abstract String getCodeDecore()
-  }
-  
-  abstract class Instruction extends ArbreAbstrait {
-  }
-  
-  class BlocDInstruction extends ArbreAbstrait {
-    public BlocDInstruction()
-    public String getCodeDecore()
-    public void ajouter(Instruction i)
-  }
-  BlocDInstruction -- "*" Instruction
   
   abstract class Affectation extends Instruction {
   }
   
-  class Declaration extends Instruction {
-    public Declaration(String type, String nom)
-    public String getCodeDecore()
+  class AffectationCaseCaseVarTemp {
+    {field} private opeGauche
+    {field} private opeDroite
+    public AffectationCaseCaseVarTemp(String p, String d, boolean var)
+    publicgetCodeDecore()
+  }
+  AffectationCaseCaseVarTemp ---|> Affectation
+  
+  class AffectationSimple extends Affectation {
+    {field} private opeGauche
+    {field} private opeDroite
+    public AffectationSimple(String p, String d)
+    publicgetCodeDecore()
   }
   
-  class AffectVarCase extends Affectation {
+  class AffectCaseCase {
+    {field} private String opeGauche
     {field} private String opeDroite
-    public AffectVarCase(String p, boolean var)
+    public AffectCaseCase(String p, String d, boolean var)
     public String getCodeDecore()
   }
+  AffectCaseCase ---|> Affectation
   
   class AffectCaseVar extends Affectation {
     {field} private String opeGauche
     public AffectCaseVar(String p, boolean var)
-    public String getCodeDecore()
-  }
-  
-  class AffectCaseCase extends Affectation {
-    {field} private String opeGauche
-    {field} private String opeDroite
-    public AffectCaseCase(String p, String d, boolean var)
     public String getCodeDecore()
   }
   
@@ -51,10 +42,24 @@ package "arbre" {
     public String getCodeDecore()
   }
   
-  class Conditionnelle extends Instruction {
+  class AffectVarCase extends Affectation {
+    {field} private String opeDroite
+    public AffectVarCase(String p, boolean var)
+    public String getCodeDecore()
+  }
+
+  abstract class ArbreAbstrait {
+    public abstract String getCodeDecore()
   }
   
-  class CompaCaseCase extends Conditionnelle {
+  class BlocDInstruction extends ArbreAbstrait {
+    public BlocDInstruction()
+    public String getCodeDecore()
+    public void ajouter(Instruction i)
+  }
+  BlocDInstruction -- "*" Instruction
+  
+  class CompaCaseCase {
     {field} private String opeGauche
     {field} private String comparateur
     {field} private String opeDroite
@@ -63,6 +68,7 @@ package "arbre" {
     public CompaCaseCase(String opeGauche, String compa, String opeDroite, BlocDInstructions alors, BlocDInstructions sinon, boolean var)
     public String getCodeDecore()
   }
+  CompaCaseCase ---|> Conditionnelle
   
   class CompaCaseVar extends Conditionnelle {
     {field} private String opeGauche
@@ -73,6 +79,17 @@ package "arbre" {
     public String getCodeDecore()
   }
   
+  class ComparaisonSimple {
+    {field} private String operandeGauche
+    {field} private String comparateur
+    {field} private String operandeGauche
+    {field} private BlocDInstructions instructionsAlors
+    {field} private BlocDInstructions instructionsSinon
+    public CompaCaseVar(String opGauche, String compa, String opeDroite, BlocDInstructions alors, BlocDInstructions sinon, boolean var)
+    public String getCodeDecore()
+  }
+  ComparaisonSimple ---|> Conditionnelle
+  
   class CompaVarCase extends Conditionnelle {
     {field} private String comparateur
     {field} private String opeDroite
@@ -80,6 +97,27 @@ package "arbre" {
     {field} private BlocDInstructions instructionsSinon
     public CompaVarCase(String opeGauche, String compa, BlocDInstructions alors, BlocDInstructions sinon, boolean var)
     public String getCodeDecore()
+  }
+  
+  class Conditionnelle extends Instruction {
+  }
+  
+  class Declaration extends Instruction {
+    {field} protected String nom
+    {field} protected String type
+    public Declaration(String type, String nom)
+    public String getCodeDecore()
+  }
+  
+  class DeclarationAvecAffectation extends Instruction {
+    {field} private String type
+    {field} private String nom
+    {field} private String newVal
+    public DeclarationAvecAffectation(String type, String nom, String newVal)
+    public String getCodeDecore()
+  }
+  
+  abstract class Instruction extends ArbreAbstrait {
   }
   
 }

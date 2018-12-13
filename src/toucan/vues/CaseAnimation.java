@@ -22,6 +22,7 @@ public class CaseAnimation {
      * @param panneau le panneau contenant les deux elements graphiques constituant la representation d'une case :
      *                le contour d'un carre et un texte
      * @param c la case du modele a animer
+     * @param duree vitesse de l'animation
      */
     public CaseAnimation(BorderPane panneau, Case c, int duree) {
         laCase = c ;
@@ -41,7 +42,6 @@ public class CaseAnimation {
      * @return la transition parallele permettant d'animer la case
      */
     public ParallelTransition animerUneCase(int noEtape) {
-        // System.out.println("dans CaseAnimation " + noEtape);
         SequentialTransition ptShape = rect.animer(noEtape);
         SequentialTransition ptText = text.animer(noEtape);
 

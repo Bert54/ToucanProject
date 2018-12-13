@@ -88,7 +88,6 @@ public class PanneauAnimation implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-
         Runnable command = new Runnable() {
 
             @Override
@@ -117,6 +116,7 @@ public class PanneauAnimation implements Observer {
             }
 
         };
+
         if (Platform.isFxApplicationThread()) {
             command.run();
         } else {

@@ -25,8 +25,8 @@ public class LesCasesAnimation {
         int nbCases = toucan.nbCases();
         lesCases = new ArrayList<>(nbCases+1);
         for (int i = 0 ; i < nbCases + 1; i++) {
-
-            if (i == nbCases && this.toucan.variableTempActivee()) { // Si on a active la case temporaire, on l'affiche
+            if (i == nbCases && this.toucan.variableTempActivee()) {
+                // Si on a active la case temporaire, on l'affiche
                 lesCases.add(new CaseAnimation(panneau, this.toucan.getCase(i), this.toucan.getVitesse()));
             }
             else if (i < nbCases) {

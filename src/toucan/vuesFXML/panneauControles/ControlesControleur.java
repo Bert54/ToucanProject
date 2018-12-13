@@ -103,7 +103,7 @@ public class ControlesControleur implements Observer {
     }
 
     /**
-     * Met à jour le bael qui affiche le temps d'exécution de l'algorithme sélectionné
+     * Met à jour le label qui affiche le temps d'exécution de l'algorithme sélectionné
      */
     public void updateExecTimeLabel() {
         if (this.toucan.getExecTime() != -1.00) {

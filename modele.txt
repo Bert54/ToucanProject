@@ -13,8 +13,10 @@ package "modele" {
     {field} public static final int NOMBREALEATOIREMAX
     {field} private int[] tabEntiers
     {field} private int coeffDuree
+    {field} private double execTime
     {field} private String codeUtilisateur
     public Toucan(int nbCases)
+    public void setArraySize(int length)
     public void genererCases()
     public void prevenirVues()
     public void setStatutAnimation(int s)
@@ -36,6 +38,9 @@ package "modele" {
     public int getVitesse()
     public void setCodeUtilisateur(String code)
     public String getCodeUtilisateur()
+    public void setExecTime(double newVal)
+    public double getExecTime()
+    public void resetExecTime()
     public String toString()
   }
   Toucan -- "1" LesCases
@@ -152,6 +157,7 @@ package "modele" {
       {field} private static final int COULEURANIMATION
       void executer(LesCases lesCases, int... lesIndices)
     }
+    AffectationEcrasementCaseCase ...|> IAnimation
     
     class AffectationValCase <<(S, #FF7700) Singleton>> implements IAnimation {
       {field} private static AffectationValCase affInstance
@@ -181,8 +187,8 @@ package "modele" {
 
   package "algos" {
     abstract class Algo {
-      {field} protected String nomAlgo;
-      {field} protected boolean caseTempForcee;
+      {field} protected String nomAlgo
+      {field} protected boolean caseTempForcee
       {field} protected int[] tab
       public Algo(Toucan mod)
       public void setTab(LesCases lesCases, int... entiers)
@@ -193,17 +199,19 @@ package "modele" {
       public String toString()
     }
     Algo -- "1" LesCases
-    Algo -- "*" IAnimation
+    Algo --- "*" IAnimation
     
-    class AlgoBulle extends Algo {
+    class AlgoBulle {
       public AlgoBulle(Toucan mod)
       public void trier()
     }
+    AlgoBulle ---|> Algo
     
-    class AlgoCocktail extends Algo {
+    class AlgoCocktail {
       public AlgoCocktail(Toucan mod)
       public void trier()
     }
+    AlgoCocktail ---|> Algo
     
     class AlgoDecalageCirculaire extends Algo {
       public AlgoDecalageCirculaire(Toucan mod)
