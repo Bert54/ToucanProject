@@ -84,10 +84,11 @@ public class KitJava {
         } catch (IOException ex) {
             Logger.getLogger(KitJava.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("-------------------------------------");
+        // Affichage des erreurs
+        /*System.out.println("-------------------------------------");
         System.out.println("sortie d'erreur de la compilation : ") ;
         System.out.println(sortieErreur);
-        System.out.println("-------------------------------------");
+        System.out.println("-------------------------------------");*/
     }
 
     private Iterable<JavaSource> getJavaSourceFromString(String fileName, String code) {
@@ -100,8 +101,9 @@ public class KitJava {
      */
     public void executer(Toucan toucan) {
         try {
-            String nomExecutable = nomPackage + "." + nomClasse ;
-            System.out.println("nom exécutable : " + nomExecutable);
+            // Affichage du nom de l'algo
+            /*String nomExecutable = nomPackage + "." + nomClasse ;
+            System.out.println("nom exécutable : " + nomExecutable);*/
 
 //            Object instance = fileManager.getClassLoader(javax.tools.StandardLocation.CLASS_PATH).loadClass("toucan.outils.Essai").newInstance();
 //            ((IEssai)instance).setX(23) ;
