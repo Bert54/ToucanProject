@@ -25,7 +25,7 @@ public class AlgoInsertion extends Algo {
 
                 @Override
                 protected Void call() throws Exception {
-
+                    long startTime = System.nanoTime();
                     int mem;
                     int j;
                     for (int i = 1; i < tab.length ; i++) {
@@ -42,7 +42,8 @@ public class AlgoInsertion extends Algo {
                         Thread.sleep(5);
                         toucan.prevenirVues();
                     }
-
+                    long endTime = System.nanoTime();
+                    toucan.setExecTime(endTime - startTime);
                     return null;
                 }
             };

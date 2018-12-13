@@ -6,7 +6,7 @@
 
 <BorderPane maxHeight="400.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="400.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="toucan.vuesFXML.panneauSaisie.SaisieControleur">
    <right>
-      <TextArea fx:id="algoSaisie" maxHeight="720.0" maxWidth="410.0" minHeight="720.0" minWidth="410.0" onInputMethodTextChanged="#updateCodeAlgoPerso" onKeyPressed="#updateCodeAlgoPerso" onKeyReleased="#updateCodeAlgoPerso" onKeyTyped="#updateCodeAlgoPerso" prefHeight="720.0" prefWidth="410.0" text="executerAux(AFFECTATION, 0, 1);&#10;tab[0] = tab[1] ;&#10;executerAux(AFFECTATION, 2, 6);&#10;tab[2] = tab[6] ;&#10;executerAux(AFFECTATION, 7, 3);&#10;tab[7] = tab[3];&#10;executerAux(COMPARAISON, 5, 7);&#10;executerAux(COMPARAISONVALCASE, 5);&#10;executerAux(AFFECTATIONCVAL, 6);&#10;executerAux(AFFECTATIONECRASEMENTCASECASE, 6, 8);&#10;executerAux(AFFECTATIONVCASE, 6);&#10;tab[8] = tab[6];" BorderPane.alignment="CENTER">
+      <TextArea fx:id="algoSaisie" maxHeight="720.0" maxWidth="410.0" minHeight="720.0" minWidth="410.0" onInputMethodTextChanged="#updateCodeAlgoPerso" onKeyPressed="#updateCodeAlgoPerso" onKeyReleased="#updateCodeAlgoPerso" onKeyTyped="#updateCodeAlgoPerso" prefHeight="720.0" prefWidth="410.0" text="/* Début du code */&#10;&#10;int a; // Déclarations et affectations&#10;int b = 1;&#10;int c = 5;&#10;a = 4 - 1 * 2;&#10;temp = 10;&#10;tab[3] = tab[4]; // Manipulation de tab&#10;tab[a] = tab[b+1];&#10;tab[c] = tab[c-a];&#10;&#10;&#10;long projetToucan = 20;&#10;&#10;&#10;/* FIn du code */" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets right="180.0" top="415.0" />
          </BorderPane.margin></TextArea>

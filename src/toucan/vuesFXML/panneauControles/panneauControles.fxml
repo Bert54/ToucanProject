@@ -15,7 +15,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="toucan.vuesFXML.panneauControles.ControlesControleur">
    <bottom>
-      <HBox prefHeight="131.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="199.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="175.0" prefWidth="405.0">
                <children>
@@ -63,7 +63,7 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="109.0" prefWidth="251.0">
+            <VBox alignment="CENTER" prefHeight="160.0" prefWidth="313.0">
                <children>
                   <Label text="Vitesse de l'Animation" />
                   <Slider fx:id="sliderVitesse" majorTickUnit="1.0" max="10.0" min="1.0" onMouseDragged="#setVitesse" showTickLabels="true" showTickMarks="true" value="5.0">
@@ -73,7 +73,12 @@
                   </Slider>
                   <CheckBox fx:id="varTempCheckBox" alignment="CENTER_RIGHT" mnemonicParsing="false" onMouseClicked="#toggleVariableTemp" prefHeight="45.0" prefWidth="188.0" text="Visualisation variable temporaire" wrapText="true">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets right="33.0" top="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
+                  <CheckBox fx:id="viewAlgoTimeEll" mnemonicParsing="false" onAction="#toggleAlgorithmExecTimeView" text="Visualisation temps exécution">
+                     <VBox.margin>
+                        <Insets />
                      </VBox.margin>
                   </CheckBox>
                </children>
@@ -81,4 +86,23 @@
          </children>
       </HBox>
    </bottom>
+   <left>
+      <HBox alignment="CENTER" maxHeight="200.0" maxWidth="598.0" minHeight="200.0" minWidth="400.0" prefHeight="200.0" prefWidth="598.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="labelExecTime" text="Temps exécution hors animations : ">
+               <font>
+                  <Font name="Serif Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelExecTimeValue" text="NaN">
+               <font>
+                  <Font name="Serif Italic" size="15.0" />
+               </font>
+            </Label>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </left>
 </BorderPane>

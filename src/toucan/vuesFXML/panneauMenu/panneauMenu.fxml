@@ -11,8 +11,9 @@
         <menus>
           <Menu style="-fx-border-style: solid; -fx-border-width: 0px 1px 0px 0px; -fx-border-color: #848484;" text="Menu  ">
             <items>
-                  <MenuItem fx:id="menuItemGenerationValeurs" mnemonicParsing="false" onAction="#GenererValeurs" text="Générer valeurs" />
-              <MenuItem onAction="#fermerProgramme" text="Fermer" />
+                <MenuItem fx:id="menuItemGenerationValeurs" mnemonicParsing="false" onAction="#GenererValeurs" text="Générer nouvelles valeurs" />
+                <MenuItem fx:id="menuItemChangeSize" mnemonicParsing="false" onAction="#changeArraySize" text="Changer la taille du tableau" />
+                <MenuItem onAction="#fermerProgramme" text="Fermer" />
             </items>
           </Menu>
           <Menu fx:id="menuSelectionAlgo" style="-fx-border-style: solid; -fx-border-width: 0px 1px 0px 0px; -fx-border-color: #848484;" text="Algorithmes">

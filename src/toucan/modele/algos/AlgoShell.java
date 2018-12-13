@@ -25,7 +25,7 @@ public class AlgoShell extends Algo {
 
                 @Override
                 protected Void call() throws Exception {
-
+                    long startTime = System.nanoTime();
                     int n = 0;
                     while (n < tab.length) {
                         n = 3 * n + 1;
@@ -47,7 +47,8 @@ public class AlgoShell extends Algo {
                             executerAux(AFFECTATIONVCASE, j);
                         }
                     }
-
+                    long endTime = System.nanoTime();
+                    toucan.setExecTime(endTime - startTime);
                     return null;
                 }
             };

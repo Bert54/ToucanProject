@@ -1,0 +1,246 @@
+package toucan.analyse ;
+
+import java_cup.runtime.*;
+import toucan.arbre.*;
+
+action code {: /* vide pour le moment */
+	    :} ;
+   
+/* Parser code to change the way the parser reports errors (include
+   line and column number of the error). */
+parser code {:
+    /* Change the method report_error so it will display the line and column of where the error
+       occurred in the input as well as the reason for the error which is passed into the method
+       in the String 'message'. */
+    public void report_error(String message, Object info) {
+   
+        /* Create a StringBuffer called 'm' with the string 'Error' in it. */
+        StringBuffer m = new StringBuffer("Error");
+   
+        /* Check if the information passed to the method is the same type as the type 
+           java_cup.runtime.Symbol. */
+        if (info instanceof java_cup.runtime.Symbol) {
+            /* Declare a java_cup.runtime.Symbol object 's' with the information in the object 
+               info that is being typecasted as a java_cup.runtime.Symbol object. */
+            java_cup.runtime.Symbol s = ((java_cup.runtime.Symbol) info);
+   
+            /* Check if the line number in the input is greater or equal to zero. */
+            if (s.left >= 0) {                
+                /* Add to the end of the StringBuffer error message the line number of the error 
+                   in the input. */
+                m.append(" in line "+(s.left+1));   
+                /* Check if the column number in the input is greater or equal to zero. */
+                if (s.right >= 0)                    
+                    /* Add to the end of the StringBuffer error message the column number of the 
+                       error in the input. */
+                    m.append(", column "+(s.right+1));
+            }
+        }
+        /* Add to the end of the StringBuffer error message created in this method the message that
+           was passed into this method. */
+        m.append(" : "+message);
+   
+        /* Print the contents of the StringBuffer 'm', which contains an error message, out on 
+           a line. */
+        System.err.println(m);
+    }
+    /* Change the method report_fatal_error so when it reports a fatal error it will display the 
+       line and column number of where the fatal error occurred in the input as well as the reason
+       for the fatal error which is passed into the method in the object 'message' and then exit.*/
+    public void report_fatal_error(String message, Object info) {
+        report_error(message, info);
+        System.exit(1);
+    }
+:};
+/* ------------Declaration of Terminals and Non Terminals Section----------- */
+/* Terminals (tokens returned by the scanner).  
+   Terminals that have no value are listed first and then terminals that do have a value, in this 
+   case a String value, are listed on the next line down. */
+
+terminal Symbol    POINTVIRGULE, TABFERMER, EGALE, PARENTHESEOUVR, PARENTHESEFERM, BRACKETOUVR, BRACKETFERM, CONDITIONNELLEIF, CONDITIONNELLEELSE, BOUCLEFOR, BOUCLEWHILE;
+terminal String    TYPEVAR, VARIABLE, TABOUVRIR, COMPARATEUR, CONSTANTE, OPERATION, OPERAPIDE ;
+   
+/* Non terminals used in the grammar section.  
+   Non terminals that have an object value are listed first and then non terminals that have an 
+   integer value are listed.  An object value means that it can be any type, it isn't set to a 
+   specific type.  So it could be an Integer or a String or whatever. */
+
+non terminal ArbreAbstrait	PROG;
+non terminal BlocDInstructions LINST;
+non terminal Instruction  DECL, INST, ATDECL, LDECL, AFFC, ATAFFC, ATCOND, COND, CONDIF, CONDEL, ATLOOP, FLOOP, WLOOP;
+non terminal String  VORC, VORT, TABL, OPER;
+
+/* ----------------------------Grammar Section-------------------- */
+
+start with PROG ;
+
+PROG	::=	LINST:li
+		{: RESULT = li ; :}
+		;
+
+LINST  ::=  LINST:li INST:i
+        {:  li.ajouter(i) ;
+            RESULT = li ;
+        :}
+    |   INST:i
+        {:  BlocDInstructions li = new BlocDInstructions() ;
+            li.ajouter(i) ;
+            RESULT = li ;
+        :}
+        ;
+
+INST    ::=	ATDECL:i
+        {:
+            RESULT = i ;
+        :}
+	|	ATAFFC:i
+	     {:
+            RESULT = i ;
+         :}
+	|	ATLOOP
+	|	ATCOND:i
+	    {:
+            RESULT = i ;
+        :}
+		;
+
+ATLOOP	::=	FLOOP
+	|	WLOOP
+		;
+
+FLOOP	::=	BOUCLEFOR PARENTHESEOUVR VORT EGALE VORC POINTVIRGULE VORT COMPARATEUR VORC POINTVIRGULE VORT OPERAPIDE PARENTHESEFERM BRACKETOUVR INST BRACKETFERM
+	|	BOUCLEFOR PARENTHESEOUVR DECL EGALE VORC POINTVIRGULE VORT COMPARATEUR VORC POINTVIRGULE VORT OPERAPIDE PARENTHESEFERM BRACKETOUVR INST BRACKETFERM
+	|	BOUCLEFOR PARENTHESEOUVR VORT EGALE VORC POINTVIRGULE VORT COMPARATEUR VORC POINTVIRGULE VORT EGALE VORC PARENTHESEFERM BRACKETOUVR INST BRACKETFERM
+	|	BOUCLEFOR PARENTHESEOUVR DECL EGALE VORC POINTVIRGULE VORT COMPARATEUR VORC POINTVIRGULE VORT EGALE VORC PARENTHESEFERM BRACKETOUVR INST BRACKETFERM
+	|	BOUCLEFOR PARENTHESEOUVR VORT EGALE VORC POINTVIRGULE VORT COMPARATEUR VORC POINTVIRGULE VORT EGALE VORC OPERATION VORC PARENTHESEFERM BRACKETOUVR INST BRACKETFERM
+	|	BOUCLEFOR PARENTHESEOUVR DECL EGALE VORC POINTVIRGULE VORT COMPARATEUR VORC POINTVIRGULE VORT EGALE VORC OPERATION VORC PARENTHESEFERM BRACKETOUVR INST BRACKETFERM
+		;
+		
+WLOOP	::=	BOUCLEWHILE PARENTHESEOUVR VORC COMPARATEUR VORC PARENTHESEFERM BRACKETOUVR INST BRACKETFERM
+	|	BOUCLEWHILE PARENTHESEOUVR OPER COMPARATEUR VORC PARENTHESEFERM BRACKETOUVR INST BRACKETFERM
+	|	BOUCLEWHILE PARENTHESEOUVR VORC COMPARATEUR OPER PARENTHESEFERM BRACKETOUVR INST BRACKETFERM
+	|	BOUCLEWHILE PARENTHESEOUVR OPER COMPARATEUR OPER PARENTHESEFERM BRACKETOUVR INST BRACKETFERM
+		;
+		
+ATCOND  ::=	COND
+		;
+		
+COND	::=	CONDIF
+	|	CONDIF CONDEL
+		;
+		
+CONDIF  ::=	CONDITIONNELLEIF PARENTHESEOUVR VORC COMPARATEUR VORC PARENTHESEFERM BRACKETOUVR INST BRACKETFERM
+	|	CONDITIONNELLEIF PARENTHESEOUVR VORC OPERATION VORC COMPARATEUR VORC PARENTHESEFERM BRACKETOUVR INST BRACKETFERM
+	|	CONDITIONNELLEIF PARENTHESEOUVR VORC COMPARATEUR VORC OPERATION VORC PARENTHESEFERM BRACKETOUVR INST BRACKETFERM
+	|	CONDITIONNELLEIF PARENTHESEOUVR VORC OPERATION VORC COMPARATEUR VORC OPERATION VORC PARENTHESEFERM BRACKETOUVR INST BRACKETFERM
+		;
+		
+CONDEL	::=	CONDITIONNELLEELSE BRACKETOUVR INST BRACKETFERM
+		;
+		
+ATAFFC	::=	AFFC:af
+        {:
+           RESULT = af;
+        :}
+		;
+		
+AFFC	::=	VARIABLE:opg EGALE VORC:opd POINTVIRGULE
+        {:
+            Instruction ins = new AffectationSimple(opg, opd);
+            RESULT = ins;
+        :}
+    |   TABL:opg EGALE TABL:opd POINTVIRGULE
+        {:
+            Instruction ins = new AffectationCaseCaseVarTemp(opg, opd, true);
+            RESULT = ins;
+        :}
+	|	PARENTHESEOUVR:x VARIABLE:opg EGALE VORC:opd PARENTHESEFERM:y POINTVIRGULE
+	    {:
+            Instruction ins = new AffectationSimple(x+opg, opd+y);
+            RESULT = ins;
+        :}
+    |   PARENTHESEOUVR:x TABL:opg EGALE TABL:opd PARENTHESEOUVR:y POINTVIRGULE
+            {:
+                Instruction ins = new AffectationCaseCaseVarTemp(x+opg, opd+y, true);
+                RESULT = ins;
+            :}
+	|	VARIABLE:opg EGALE OPER:opd POINTVIRGULE
+	        {:
+                            Instruction ins = new AffectationSimple(opg, opd);
+                            RESULT = ins;
+                        :}
+	|	PARENTHESEOUVR VARIABLE:opg EGALE OPER:opd PARENTHESEFERM POINTVIRGULE
+	    {:
+                        Instruction ins = new AffectationSimple("("+opg, opd+")");
+                        RESULT = ins;
+                    :}
+		;
+		
+ATDECL	::=	LDECL:i
+        {:
+            RESULT = i ;
+        :}
+		;
+
+LDECL	::=	DECL:i POINTVIRGULE
+        {:
+            RESULT = i ;
+        :}
+	|	TYPEVAR:ty VARIABLE:var EGALE VORC:v POINTVIRGULE
+	    {:
+            Instruction ins = new DeclarationAvecAffectation(ty, var, v);
+            RESULT = ins;
+        :}
+		;
+
+DECL	::=	TYPEVAR:ty VARIABLE:var
+        {:
+            Instruction ins = new Declaration(ty, var);
+            RESULT = ins;
+        :}
+		;
+		
+VORC	::=	CONSTANTE:c
+        {:
+           RESULT = c ;
+        :}
+	|	VARIABLE:v
+	    {:
+            RESULT = v ;
+        :}
+		;
+
+
+VORT	::=	VARIABLE:v
+        {:
+            RESULT = v ;
+        :}
+	|	TABL:t
+	    {:
+            RESULT = t ;
+        :}
+		;
+		
+TABL	::=	TABOUVRIR:to VORC:v TABFERMER
+        {:
+           RESULT = to + v + "]";
+        :}
+	|	TABOUVRIR:to OPER:op TABFERMER
+	    {:
+           RESULT = to + op + "]" ;
+        :}
+		;
+		
+OPER    ::= OPER:op OPERATION:oper VORC:v
+        {:
+            RESULT = op + oper + v ;
+        :}
+	|	VORC:vg OPERATION:oper VORC:vd
+	    {:
+            RESULT = vg + oper + vd ;
+        :}
+	|	PARENTHESEOUVR OPER:op PARENTHESEFERM
+	    {:
+            RESULT =  "(" + op + ")";
+        :}
+		;

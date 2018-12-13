@@ -2,8 +2,8 @@ package toucan.arbre;
 
 public class Declaration extends Instruction {
 
-    private String nom;
-    private String type;
+    protected String nom;
+    protected String type;
 
     /**
      * Constructeur d'une declaration

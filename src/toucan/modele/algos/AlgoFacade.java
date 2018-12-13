@@ -1,8 +1,11 @@
 package toucan.modele.algos;
 
 import toucan.arbre.*;
+import toucan.analyse.*;
 import toucan.modele.Toucan;
 import toucan.outils.KitJava;
+
+import java.io.StringReader;
 
 public class AlgoFacade extends Algo {
 
@@ -17,8 +20,12 @@ public class AlgoFacade extends Algo {
 
     @Override
     public void trier() {
-        BlocDInstructions arbre = new BlocDInstructions();
-        arbre.ajouter(new Declaration("int", "temp"));
+        AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(
+                new AnalyseurLexical(
+                        new StringReader(toucan.getCodeUtilisateur()))) ;
+        try {
+            ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
+        /*arbre.ajouter(new Declaration("int", "temp"));
         arbre.ajouter(new Declaration("int", "abc"));
         arbre.ajouter(new AffectEcrasementCaseCase("abc", "2", false, true));
         arbre.ajouter(new AffectEcrasementCaseCase("abc", "abc+3", false, true));
@@ -37,11 +44,14 @@ public class AlgoFacade extends Algo {
         sinonAlors.ajouter(new AffectCaseCase("tab[2]","tab[1]", false));
         sinonSinon.ajouter(new AffectCaseCase("tab[6-5]","tab[7]", true));
         arbre.ajouter(new CompaVarCase("<", "tab[8]", sinonAlors, sinonSinon, false));
-        //KitJava.getInstance().construireClasse(toucan.getCodeUtilisateur())
-        KitJava.getInstance().construireClasse(arbre.getCodeDecore());
-        System.out.println(KitJava.getInstance().toString());   // Affiche les erreurs de l'utilisateur sur la sortie standard
-        KitJava.getInstance().compiler();
-        KitJava.getInstance().executer(toucan);
+        //KitJava.getInstance().construireClasse(toucan.getCodeUtilisateur())*/
+            KitJava.getInstance().construireClasse(arbre.getCodeDecore());
+            //System.out.println(KitJava.getInstance().toString());   // Affiche les erreurs de l'utilisateur sur la sortie standard
+            KitJava.getInstance().compiler();
+            KitJava.getInstance().executer(toucan);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         toucan.prevenirVues();
     }
 }

@@ -21,6 +21,7 @@ public class Toucan extends Observable {
     private StatutAnimation statutAnimation = StatutAnimation.NON_INITIALISEE; // permet de definir l'etat actuel de l'animation
     private LesCases lesCases;
     private int coeffDuree = 5;
+    private double execTime = -1.00; // Stock le temps que l'algorithme actif a prit pour s'exécuter (-1.00 == l'algo n'a pas été lancé)
     private String codeUtilisateur;
 
     /**
@@ -29,10 +30,18 @@ public class Toucan extends Observable {
      */
     public Toucan(int nbCases) {
         assert (nbCases >= 0) : "Nombre de cases invalide";
-        this.lesCases = new LesCases(nbCases);
-        genererCases();
+        this.setArraySize(nbCases);
         this.algoTri = new AlgoBulle(this);
         this.codeUtilisateur = "";
+    }
+
+    /**
+     * Change la taille du tableau à trier et regénère ses valeurs.
+     * @param length la taille du tableau
+     */
+    public void setArraySize(int length) {
+        this.lesCases = new LesCases(length);
+        genererCases();
     }
 
     /**
@@ -75,6 +84,7 @@ public class Toucan extends Observable {
         switch (s) {
             case 0:
                 GestionThreads.getInstance().detruireTout();
+                this.resetExecTime();
                 this.statutAnimation = StatutAnimation.NON_INITIALISEE;
                 break;
             case 1:
@@ -250,6 +260,28 @@ public class Toucan extends Observable {
         return this.codeUtilisateur;
     }
 
+    /**
+     * Set le temps d'exécution de l'algorithme choisit
+     * @param newVal Le nouveau temps
+     */
+    public void setExecTime(double newVal) {
+        this.execTime = newVal;
+    }
+
+    /**
+     * Get le temps d'exécution de l'algo choisit
+     * @return Le temps d'exécution de l'algo choisit
+     */
+    public double getExecTime() {
+        return this.execTime;
+    }
+
+    /**
+     * Réinitialise le temps d'exécution de l'algo choisit
+     */
+    public void resetExecTime() {
+        this.setExecTime(-1.00);
+    }
 
     @Override
     public String toString() {

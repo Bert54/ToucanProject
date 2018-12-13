@@ -25,7 +25,7 @@ public class AlgoCocktail extends Algo {
 
                 @Override
                 protected Void call() throws Exception {
-
+                    long startTime = System.nanoTime();
                     boolean encore = true;
                     int debut = 0;
                     int fin = lesCases.nbCases() - 1;
@@ -70,7 +70,8 @@ public class AlgoCocktail extends Algo {
                         Thread.sleep(5);
                         toucan.prevenirVues();
                     }
-
+                    long endTime = System.nanoTime();
+                    toucan.setExecTime(endTime - startTime);
                     return null;
                 }
             };

@@ -24,6 +24,7 @@ public class AlgoPeigne extends Algo{
 
                 @Override
                 protected Void call() throws Exception {
+                    long startTime = System.nanoTime();
                     int gap = tab.length;
                     boolean encore = true;
                     int temp;
@@ -53,6 +54,8 @@ public class AlgoPeigne extends Algo{
                             toucan.prevenirVues();
                         }
                     }
+                    long endTime = System.nanoTime();
+                    toucan.setExecTime(endTime - startTime);
 
                     return null;
                 }

@@ -30,6 +30,12 @@ public class ControlesControleur implements Observer {
     public CheckBox varTempCheckBox;
     @FXML
     public Slider sliderVitesse;
+    @FXML
+    public Label labelExecTime;
+    @FXML
+    public Label labelExecTimeValue;
+    @FXML
+    public CheckBox viewAlgoTimeEll;
 
     /**
      * Constructeur de la vue. ImagePlay, imagePause et ImageReset sont definies ici, permettant
@@ -54,6 +60,7 @@ public class ControlesControleur implements Observer {
         this.updateLabel();
         this.setVitesse();
         this.algoVariableTempDetection();
+        this.toggleAlgorithmExecTimeView();
     }
 
     /**
@@ -96,6 +103,43 @@ public class ControlesControleur implements Observer {
     }
 
     /**
+     * Met à jour le bael qui affiche le temps d'exécution de l'algorithme sélectionné
+     */
+    public void updateExecTimeLabel() {
+        if (this.toucan.getExecTime() != -1.00) {
+            double timeElapsed = this.toucan.getExecTime() / 1000000000;
+            int minutes = 0;
+            int seconds = 0;
+            int milSeconds = 0;
+            while (timeElapsed > 60.00) {
+                minutes += 1;
+                timeElapsed -= 60.00;
+            }
+            while (timeElapsed > 1.00) {
+                seconds += 1;
+                timeElapsed -= 1.00;
+            }
+            milSeconds = (int) (timeElapsed * 1000);
+            String minutesPlur = "minute";
+            String secondsPlur = "seconde";
+            String milSecondsPlus = "milliseconde";
+            if (minutes > 1) {
+                minutesPlur += "s";
+            }
+            if (seconds > 1) {
+                secondsPlur += "s";
+            }
+            if (milSeconds > 1) {
+                milSecondsPlus += "s";
+            }
+            labelExecTimeValue.setText(minutes + " " + minutesPlur + " " + seconds + " " + secondsPlur + " " + milSeconds + " " + milSecondsPlus);
+        }
+        else {
+            labelExecTimeValue.setText("NaN");
+        }
+    }
+
+    /**
      * Met a jour le label affichant l'algo en cours
      */
     public void updateLabel() {
@@ -112,6 +156,21 @@ public class ControlesControleur implements Observer {
         }
         else {
             this.toucan.setVariableTemp(false);
+        }
+    }
+
+    /**
+     * Change si on veut visualiser le temps de l'exécution de l'algorithme sélectionné ou non
+     */
+    @FXML
+    public void toggleAlgorithmExecTimeView() {
+        if (viewAlgoTimeEll.isSelected()) {
+            this.labelExecTimeValue.setVisible(true);
+            this.labelExecTime.setVisible(true);
+        }
+        else {
+            this.labelExecTimeValue.setVisible(false);
+            this.labelExecTime.setVisible(false);
         }
     }
 
@@ -142,24 +201,32 @@ public class ControlesControleur implements Observer {
                         varTempCheckBox.setDisable(true);
                         boutonStop.setDisable(true);
                         sliderVitesse.setDisable(true);
+                        viewAlgoTimeEll.setDisable(true);
+                        updateExecTimeLabel();
                         break;
                     case FINIE:
                         playPauseImage.setImage(imageReset);
                         varTempCheckBox.setDisable(true);
                         boutonStop.setDisable(true);
                         sliderVitesse.setDisable(true);
+                        viewAlgoTimeEll.setDisable(true);
+                        updateExecTimeLabel();
                         break;
                     case EN_COURS_PAUSE:
                         playPauseImage.setImage(imagePlay);
                         varTempCheckBox.setDisable(true);
                         boutonStop.setDisable(false);
                         sliderVitesse.setDisable(true);
+                        viewAlgoTimeEll.setDisable(true);
+                        updateExecTimeLabel();
                         break;
                     case NON_INITIALISEE:
                         playPauseImage.setImage(imagePlay);
                         boutonStop.setDisable(true);
                         algoVariableTempDetection();
                         sliderVitesse.setDisable(false);
+                        viewAlgoTimeEll.setDisable(false);
+                        updateExecTimeLabel();
                 }
                 updateLabel();
             }

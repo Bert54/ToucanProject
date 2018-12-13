@@ -24,7 +24,7 @@ public class AlgoTest extends Algo {
 
                 @Override
                 protected Void call() throws Exception {
-
+                    long startTime = System.nanoTime();
                     executerAux(AFFECTATIONCVAL, 0);
                     executerAux(AFFECTATIONECRASEMENTCASECASE, 0, 1);
                     executerAux(AFFECTATIONECRASEMENTCASECASE, 3, 6);
@@ -32,6 +32,8 @@ public class AlgoTest extends Algo {
                     executerAux(AFFECTATIONVCASE, 4);
                     Thread.sleep(5);
                     toucan.prevenirVues();
+                    long endTime = System.nanoTime();
+                    toucan.setExecTime(endTime - startTime);
                     return null;
                 }
             };

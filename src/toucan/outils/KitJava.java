@@ -59,7 +59,11 @@ public class KitJava {
                 "               this.nbCases = tab.length;\n" +
                 "       }\n\n");
         codeACompiler.append("       public void trier() {\n\n");
+        codeACompiler.append("long startTime = System.nanoTime();\n");
+        codeACompiler.append("int temp;\n");
         codeACompiler.append(code);
+        codeACompiler.append("long endTime = System.nanoTime();\n");
+        codeACompiler.append("toucan.setExecTime(endTime - startTime);\n");
         codeACompiler.append(
                 "\n\n       }\n");
         codeACompiler.append("}");

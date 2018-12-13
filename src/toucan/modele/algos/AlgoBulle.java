@@ -24,6 +24,7 @@ public class AlgoBulle extends Algo {
 
                 @Override
                 protected Void call() throws Exception {
+                    long startTime = System.nanoTime();
                     boolean encore = true ;
                     int n = lesCases.nbCases() ;
                     while (encore) {
@@ -49,6 +50,8 @@ public class AlgoBulle extends Algo {
                         Thread.sleep(5);
                         toucan.prevenirVues();
                     }
+                    long endTime = System.nanoTime();
+                    toucan.setExecTime(endTime - startTime);
                     return null;
                 }
             };

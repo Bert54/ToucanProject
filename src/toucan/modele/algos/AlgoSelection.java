@@ -24,7 +24,7 @@ public class AlgoSelection extends Algo {
 
                 @Override
                 protected Void call() throws Exception {
-
+                    long startTime = System.nanoTime();
                     int min;
                     int temp;
                     for (int i = 0; i < tab.length - 1 ; i++) {
@@ -53,7 +53,8 @@ public class AlgoSelection extends Algo {
                         Thread.sleep(5);
                         toucan.prevenirVues();
                     }
-
+                    long endTime = System.nanoTime();
+                    toucan.setExecTime(endTime - startTime);
                     return null;
                 }
             };

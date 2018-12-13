@@ -22,7 +22,7 @@ public class AlgoDecalageCirculaire extends Algo {
 
                 @Override
                 protected Void call() throws Exception {
-
+                    long startTime = System.nanoTime();
                     for (int k = 0; k < 100000 ; k++) {
                         executerAux(AFFECTATIONCVAL, 0);
                         int x = tab[0];
@@ -36,6 +36,8 @@ public class AlgoDecalageCirculaire extends Algo {
                         Thread.sleep(5);
                         toucan.prevenirVues();
                     }
+                    long endTime = System.nanoTime();
+                    toucan.setExecTime(endTime - startTime);
                     return null;
                 }
             };

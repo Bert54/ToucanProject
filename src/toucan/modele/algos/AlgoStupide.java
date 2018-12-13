@@ -26,7 +26,7 @@ public class AlgoStupide  extends Algo {
 
                 @Override
                 protected Void call() throws Exception {
-
+                    long startTime = System.nanoTime();
                     Random random = new Random();
                     int temp;
                     int rVal1;
@@ -50,6 +50,8 @@ public class AlgoStupide  extends Algo {
                         Thread.sleep(5);
                         toucan.prevenirVues();
                     }
+                    long endTime = System.nanoTime();
+                    toucan.setExecTime(endTime - startTime);
                     return null;
                 }
             };
