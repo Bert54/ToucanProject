@@ -3,50 +3,21 @@
   Interface Observer {
   }
   
-  class Observable {
-  }
-  
-  class Case {
-  }
-  
   class Text {
   }
   
   class Rectangle {
   }
+  
+  package "modele" {
+    class Case {
+    }
+
+    class Toucan {
+    }
+}
 
 package "vues" {
-
-class Toucan extends Observable {
-  {field} public static final int NORD
-  {field} public static final int SUD
-  {field} public static final int EST
-  {field} public static final int OUEST
-  {field} public static final int STABLE
-  {field} public static final int CASELONGUEUR
-  {field} public static final int CASETEMPORDONNE
-  {field} public static final int NOMBREALEATOIREMAX
-  {field} private int[] tabEntiers
-  {field} private int coeffDuree
-  public Toucan(int nbCases)
-  public void prevenirVues()
-  public void setStatutAnimation(int s)
-  public StatutAnimation getStatutAnimation()
-  public void setValeurInitiale(int noCase, int val)
-  public int getValeurInitiale(int noCase)
-  public void setPosition(int noCase, int x, int y)
-  public String getAlgoActuel()
-  public void creerLesMouvements()
-  public int nbCases()
-  public Case getCase(int numCase)
-  public int getNbMaxEtapes()
-  public void setVariableTemp(boolean status)
-  public boolean varTempForceActif()
-  public boolean variableTempActivee()
-  public void setVitesse(int nouveauCoeff, int valMax)
-  public int getVitesse()
-  public String toString()
-}
 
   class CaseAnimation {
     {field} protected static Color[] lesCouleurs
@@ -80,7 +51,7 @@ class Toucan extends Observable {
     public LesCasesAnimation(BorderPane panneau, Toucan modele)
     public ParallelTransition animerLesCases(int noEtape)
   }
-  LesCasesAnimation -- "1" Toucan
+  LesCasesAnimation - "1" Toucan
   LesCasesAnimation --"*" CaseAnimation
   
 }
@@ -127,7 +98,7 @@ package vuesFXML {
       public void reinitialiseAnimation()
       public void update(Observable o, Object arg)
     }
-    ControlesControleur -- "1" Toucan
+    ControlesControleur - "1" Toucan
   }
   
   package "panneauMenu" {

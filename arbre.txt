@@ -99,7 +99,7 @@ package "arbre" {
     public String getCodeDecore()
   }
   
-  class Conditionnelle extends Instruction {
+  abstract class Conditionnelle extends Instruction {
   }
   
   class Declaration extends Instruction {

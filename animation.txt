@@ -1,0 +1,72 @@
+@startuml
+
+package "modele" {
+
+package "algos" {
+    abstract class Algo {
+    }
+  }
+
+package "animation" {
+    enum AttributAnimation {
+      COMPARAISON
+      COMPARAISONVALCASE
+      AFFECTATION
+      AFFECTATIONVCASE
+      AFFECTATIONCVAL
+      AFFECTATIONECRASEMENTCASECASE
+    }
+
+    class AffectationCaseCase <<(S, #FF7700) Singleton>> implements IAnimation {
+      {field} private static AffectationCaseCase affInstance
+      {field} public static AffectationCaseCase getInstance()
+      {field} private static final int COULEURANIMATION
+      void executer(LesCases lesCases, int... lesIndices)
+    }
+
+    class AffectationCaseVal <<(S, #FF7700) Singleton>> implements IAnimation {
+      {field} private static AffectationCaseVal affInstance
+      {field} public static AffectationCaseVal getInstance()
+      {field} private static final int COULEURANIMATION
+      void executer(LesCases lesCases, int... lesIndices)
+    }
+    
+    class AffectationEcrasementCaseCase <<(S, #FF7700) Singleton>> implements IAnimation {
+      {field} private static AffectationEcrasementCaseCase affInstance
+      {field} public static AffectationEcrasementCaseCase getInstance()
+      {field} private static final int COULEURANIMATION
+      void executer(LesCases lesCases, int... lesIndices)
+    }
+    AffectationEcrasementCaseCase ...|> IAnimation
+    
+    class AffectationValCase <<(S, #FF7700) Singleton>> implements IAnimation {
+      {field} private static AffectationValCase affInstance
+      {field} public static AffectationValCase getInstance()
+      {field} private static final int COULEURANIMATION
+      void executer(LesCases lesCases, int... lesIndices)
+    }
+
+    class ComparaisonCaseCase <<(S, #FF7700) Singleton>> implements IAnimation {
+      {field} private static ComparaisonCaseCase compInstance
+      {field} public static ComparaisonCaseCase getInstance()
+      {field} private static final int COULEURANIMATION
+      void executer(LesCases lesCases, int... lesIndices)
+    }
+    ComparaisonCaseCase .|> IAnimation
+    
+    class ComparaisonValCase <<(S, #FF7700) Singleton>> {
+      {field} private static ComparaisonValCase compInstance
+      {field} public static ComparaisonValCase getInstance()
+      {field} private static final int COULEURANIMATION
+      void executer(LesCases lesCases, int... lesIndices)
+    }
+    ComparaisonValCase .|> IAnimation
+
+    interface IAnimation {
+      void executer(LesCases lesCases, int... lesIndices)
+    }
+    Algo --- "*" IAnimation
+  }
+}
+
+@enduml

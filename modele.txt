@@ -1,5 +1,8 @@
 @startuml
 
+abstract class Observable {
+}
+
 package "modele" {
 
   class Toucan extends Observable {
@@ -45,7 +48,6 @@ package "modele" {
   }
   Toucan -- "1" LesCases
   Toucan -- "1" StatutAnimation
-  Toucan -- "1" Algo
 
 
   class LesCases {
@@ -92,7 +94,7 @@ package "modele" {
     public void viderEtapes()
     public String toString()
   }
-  Case -- "*" Etape
+  Case - "*" Etape
 
   class Etape {
     {field} int numero
@@ -126,64 +128,11 @@ package "modele" {
     FINIE
   }
 
-
   package "animation" {
-    enum AttributAnimation {
-      COMPARAISON
-      COMPARAISONVALCASE
-      AFFECTATION
-      AFFECTATIONVCASE
-      AFFECTATIONCVAL
-      AFFECTATIONECRASEMENTCASECASE
-    }
-
-    class AffectationCaseCase <<(S, #FF7700) Singleton>> implements IAnimation {
-      {field} private static AffectationCaseCase affInstance
-      {field} public static AffectationCaseCase getInstance()
-      {field} private static final int COULEURANIMATION
-      void executer(LesCases lesCases, int... lesIndices)
-    }
-
-    class AffectationCaseVal <<(S, #FF7700) Singleton>> implements IAnimation {
-      {field} private static AffectationCaseVal affInstance
-      {field} public static AffectationCaseVal getInstance()
-      {field} private static final int COULEURANIMATION
-      void executer(LesCases lesCases, int... lesIndices)
-    }
-    
-    class AffectationEcrasementCaseCase <<(S, #FF7700) Singleton>> implements IAnimation {
-      {field} private static AffectationEcrasementCaseCase affInstance
-      {field} public static AffectationEcrasementCaseCase getInstance()
-      {field} private static final int COULEURANIMATION
-      void executer(LesCases lesCases, int... lesIndices)
-    }
-    AffectationEcrasementCaseCase ...|> IAnimation
-    
-    class AffectationValCase <<(S, #FF7700) Singleton>> implements IAnimation {
-      {field} private static AffectationValCase affInstance
-      {field} public static AffectationValCase getInstance()
-      {field} private static final int COULEURANIMATION
-      void executer(LesCases lesCases, int... lesIndices)
-    }
-
-    class ComparaisonCaseCase <<(S, #FF7700) Singleton>> implements IAnimation {
-      {field} private static ComparaisonCaseCase compInstance
-      {field} public static ComparaisonCaseCase getInstance()
-      {field} private static final int COULEURANIMATION
-      void executer(LesCases lesCases, int... lesIndices)
-    }
-    
-    class ComparaisonValCase <<(S, #FF7700) Singleton>> implements IAnimation {
-      {field} private static ComparaisonValCase compInstance
-      {field} public static ComparaisonValCase getInstance()
-      {field} private static final int COULEURANIMATION
-      void executer(LesCases lesCases, int... lesIndices)
-    }
-
     interface IAnimation {
-      void executer(LesCases lesCases, int... lesIndices)
     }
   }
+
 
   package "algos" {
     abstract class Algo {
@@ -200,12 +149,13 @@ package "modele" {
     }
     Algo -- "1" LesCases
     Algo --- "*" IAnimation
+    Toucan -- "1" Algo
     
     class AlgoBulle {
       public AlgoBulle(Toucan mod)
       public void trier()
     }
-    AlgoBulle ---|> Algo
+    AlgoBulle --|> Algo
     
     class AlgoCocktail {
       public AlgoCocktail(Toucan mod)
@@ -213,30 +163,35 @@ package "modele" {
     }
     AlgoCocktail ---|> Algo
     
-    class AlgoDecalageCirculaire extends Algo {
+    class AlgoDecalageCirculaire {
       public AlgoDecalageCirculaire(Toucan mod)
       public void trier()
     }
+    AlgoDecalageCirculaire ---|> Algo
     
-    class AlgoFacade extends Algo {
+    class AlgoFacade {
       public AlgoFacade(Toucan mod)
       public void trier()
     }
+    AlgoFacade ---|> Algo
     
-    class AlgoInsertion extends Algo {
+    class AlgoInsertion {
       public AlgoInsertion(Toucan mod)
       public void trier()
     }
+    AlgoInsertion ---|> Algo
     
-    class AlgoPeigne extends Algo {
+    class AlgoPeigne {
       public AlgoPeigne(Toucan mod)
       public void trier()
     }
+    AlgoPeigne --|> Algo
     
-    class AlgoSelection extends Algo {
+    class AlgoSelection {
       public AlgoSelection(Toucan mod)
       public void trier()
     }
+    AlgoSelection --|> Algo
     
     class AlgoShell extends Algo {
       public AlgoShell(Toucan mod)
