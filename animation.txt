@@ -31,13 +31,13 @@ package "animation" {
       void executer(LesCases lesCases, int... lesIndices)
     }
     
-    class AffectationEcrasementCaseCase <<(S, #FF7700) Singleton>> implements IAnimation {
+    class AffectationEcrasementCaseCase <<(S, #FF7700) Singleton>> {
       {field} private static AffectationEcrasementCaseCase affInstance
       {field} public static AffectationEcrasementCaseCase getInstance()
       {field} private static final int COULEURANIMATION
       void executer(LesCases lesCases, int... lesIndices)
     }
-    AffectationEcrasementCaseCase ...|> IAnimation
+    AffectationEcrasementCaseCase .|> IAnimation
     
     class AffectationValCase <<(S, #FF7700) Singleton>> implements IAnimation {
       {field} private static AffectationValCase affInstance
@@ -46,7 +46,7 @@ package "animation" {
       void executer(LesCases lesCases, int... lesIndices)
     }
 
-    class ComparaisonCaseCase <<(S, #FF7700) Singleton>> implements IAnimation {
+    class ComparaisonCaseCase <<(S, #FF7700) Singleton>> {
       {field} private static ComparaisonCaseCase compInstance
       {field} public static ComparaisonCaseCase getInstance()
       {field} private static final int COULEURANIMATION
@@ -60,7 +60,7 @@ package "animation" {
       {field} private static final int COULEURANIMATION
       void executer(LesCases lesCases, int... lesIndices)
     }
-    ComparaisonValCase .|> IAnimation
+    ComparaisonValCase ..|> IAnimation
 
     interface IAnimation {
       void executer(LesCases lesCases, int... lesIndices)

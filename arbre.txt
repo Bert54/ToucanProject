@@ -60,9 +60,9 @@ package "arbre" {
   BlocDInstruction -- "*" Instruction
   
   class CompaCaseCase {
-    {field} private String opeGauche
+    {field} private String operandeGauche
     {field} private String comparateur
-    {field} private String opeDroite
+    {field} private String operandeDroite
     {field} private BlocDInstructions instructionsAlors
     {field} private BlocDInstructions instructionsSinon
     public CompaCaseCase(String opeGauche, String compa, String opeDroite, BlocDInstructions alors, BlocDInstructions sinon, boolean var)
@@ -71,18 +71,18 @@ package "arbre" {
   CompaCaseCase ---|> Conditionnelle
   
   class CompaCaseVar extends Conditionnelle {
-    {field} private String opeGauche
+    {field} private String operandeGauche
     {field} private String comparateur
     {field} private BlocDInstructions instructionsAlors
     {field} private BlocDInstructions instructionsSinon
-    public CompaCaseVar(String compa, String opeDroite, BlocDInstructions alors, BlocDInstructions sinon, boolean var)
+    public CompaCaseVar(String opeGauche, String compa, BlocDInstructions alors, BlocDInstructions sinon, boolean var)
     public String getCodeDecore()
   }
   
   class ComparaisonSimple {
     {field} private String operandeGauche
     {field} private String comparateur
-    {field} private String operandeGauche
+    {field} private String operandeDroite
     {field} private BlocDInstructions instructionsAlors
     {field} private BlocDInstructions instructionsSinon
     public CompaCaseVar(String opGauche, String compa, String opeDroite, BlocDInstructions alors, BlocDInstructions sinon, boolean var)
@@ -92,10 +92,10 @@ package "arbre" {
   
   class CompaVarCase extends Conditionnelle {
     {field} private String comparateur
-    {field} private String opeDroite
+    {field} private String operandeDroite
     {field} private BlocDInstructions instructionsAlors
     {field} private BlocDInstructions instructionsSinon
-    public CompaVarCase(String opeGauche, String compa, BlocDInstructions alors, BlocDInstructions sinon, boolean var)
+    public CompaVarCase(String compa, String opeDroite, BlocDInstructions alors, BlocDInstructions sinon, boolean var)
     public String getCodeDecore()
   }
   

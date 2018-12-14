@@ -5,8 +5,7 @@ package "outils" {
   class ClassFileManager extends ForwardingJavaFileManager {
     public ClassFileManager(StandardJavaFileManager standardManager)
     public ClassLoader getClassLoader(JavaFileManager.Location location)
-    public JavaFileObject getJavaFileForOutput(JavaFileManager.Location location,
-	  String className, Kind kind, FileObject sibling)
+    public JavaFileObject getJavaFileForOutput(JavaFileManager.Location location, String className, Kind kind, FileObject sibling)
   }
   ClassFileManager -- "1" JavaClassObject
   
@@ -18,7 +17,7 @@ package "outils" {
   }
   
   class JavaSource extends SimpleJavaFileObject {
-    {field}protected final String code
+    {field} protected final String code
     public JavaSource(String name, String code)
     public CharSequence getCharContent(boolean ignoreEncodingErrors)
   }

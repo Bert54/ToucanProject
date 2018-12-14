@@ -97,11 +97,11 @@ package "modele" {
   Case - "*" Etape
 
   class Etape {
-    {field} int numero
-    {field} int valCase
-    {field} int deplacementX
-    {field} int deplacementY
-    {field] int couleur
+    {field} private int numero
+    {field} private int valCase
+    {field} private int deplacementX
+    {field} private int deplacementY
+    {field} private int couleur
     public Etape(int num, int val, int depX, int depY, int coul)
     public int getNumero()
     public int getValeur()
