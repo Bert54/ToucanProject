@@ -6,7 +6,7 @@ public class AffectationCaseCaseVarTemp extends Affectation {
     private String opeDroite;
 
     /**
-     * Constructeur d'affectation entre 2 operandes
+     * Constructeur d'affectation entre deux operandes
      * @param p operande gauche
      * @param d operande droite
      * @param var le booleen qui determine si on a un operande avec une variable utilisateur ou avec un calcul
